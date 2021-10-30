@@ -1,0 +1,50 @@
+<component name="libraryTable">
+  <library name="io.shiftleft.semanticcpg_2.13" type="repository">
+    <properties maven-id="io.shiftleft:semanticcpg_2.13:1.3.381" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.13.5/scala-library-2.13.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.13.6/scala-reflect-2.13.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jline/jline/3.19.0/jline-3.19.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/5.3.1/jna-5.3.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/trove4j/core/3.1.0/core-3.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/bytecode/opencsv/2.4/opencsv-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/sourcecode_2.13/0.2.7/sourcecode_2.13-0.2.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-collection-compat_2.13/2.4.4/scala-collection-compat_2.13-2.4.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/geny_2.13/0.6.5/geny_2.13-0.6.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scalap/2.13.6/scalap-2.13.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

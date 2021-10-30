@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="scala.graph.dot_2.13" type="repository">
+    <properties maven-id="org.scala-graph:graph-dot_2.13:1.13.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

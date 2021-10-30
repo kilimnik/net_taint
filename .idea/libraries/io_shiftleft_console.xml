@@ -1,0 +1,68 @@
+<component name="libraryTable">
+  <library name="io.shiftleft.console" type="repository">
+    <properties maven-id="io.shiftleft:console:0.10.25" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/shiftleft/console/0.10.25/console-0.10.25.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/bytecode/opencsv/2.4/opencsv-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/scopt/scopt_2.12/3.7.0/scopt_2.12-3.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/pathikrit/better-files_2.12/3.2.0/better-files_2.12-3.2.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8/commons-lang3-3.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite_2.12.8/1.6.7/ammonite_2.12.8-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-terminal_2.12/1.6.7/ammonite-terminal_2.12-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/sourcecode_2.12/0.1.5/sourcecode_2.12-0.1.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/fansi_2.12/0.2.6/fansi_2.12-0.2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-ops_2.12/1.6.7/ammonite-ops_2.12-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/os-lib_2.12/0.2.9/os-lib_2.12-0.2.9.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/geny_2.12/0.1.6/geny_2.12-0.1.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-collection-compat_2.12/0.3.0/scala-collection-compat_2.12-0.3.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-util_2.12/1.6.7/ammonite-util_2.12-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/upickle_2.12/0.7.4/upickle_2.12-0.7.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ujson_2.12/0.7.4/ujson_2.12-0.7.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/upickle-core_2.12/0.7.4/upickle-core_2.12-0.7.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/upack_2.12/0.7.4/upack_2.12-0.7.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/upickle-implicits_2.12/0.7.4/upickle-implicits_2.12-0.7.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/pprint_2.12/0.5.4/pprint_2.12-0.5.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-runtime_2.12/1.6.7/ammonite-runtime_2.12-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/get-coursier/coursier_2.12/1.1.0-M14-3/coursier_2.12-1.1.0-M14-3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/get-coursier/coursier-core_2.12/1.1.0-M14-3/coursier-core_2.12-1.1.0-M14-3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/get-coursier/coursier-cache_2.12/1.1.0-M14-3/coursier-cache_2.12-1.1.0-M14-3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/alexarchambault/argonaut-shapeless_6.2_2.12/1.2.0-M11/argonaut-shapeless_6.2_2.12-1.2.0-M11.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/argonaut/argonaut_2.12/6.2.3/argonaut_2.12-6.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/chuusai/shapeless_2.12/2.3.3/shapeless_2.12-2.3.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/macro-compat_2.12/1.1.1/macro-compat_2.12-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/requests_2.12/0.1.8/requests_2.12-0.1.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-interp_2.12.8/1.6.7/ammonite-interp_2.12.8-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/scalaparse_2.12/2.1.0/scalaparse_2.12-2.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/fastparse_2.12/2.1.0/fastparse_2.12-2.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.21.0-GA/javassist-3.21.0-GA.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/ammonite-repl_2.12.8/1.6.7/ammonite-repl_2.12.8-1.6.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jline/jline-terminal/3.6.2/jline-terminal-3.6.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jline/jline-terminal-jna/3.6.2/jline-terminal-jna-3.6.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.2.2/jna-4.2.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jline/jline-reader/3.6.2/jline-reader-3.6.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/javaparser/javaparser-core/3.2.5/javaparser-core-3.2.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/cats-kernel_2.12/1.4.0/cats-kernel_2.12-1.4.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.12/3.0.3/scalatest_2.12-3.0.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalactic/scalactic_2.12/3.0.3/scalactic_2.12-3.0.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.12.1/scala-reflect-2.12.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.5/scala-xml_2.12-1.0.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.12/1.0.4/scala-parser-combinators_2.12-1.0.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/pauldijou/jwt-json4s-native_2.12/3.0.1/jwt-json4s-native_2.12-3.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/pauldijou/jwt-json4s-common_2.12/3.0.1/jwt-json4s-common_2.12-3.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/pauldijou/jwt-json-common_2.12/3.0.1/jwt-json-common_2.12-3.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/pauldijou/jwt-core_2.12/3.0.1/jwt-core_2.12-3.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.12/3.6.6/json4s-core_2.12-3.6.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.12/3.6.6/json4s-ast_2.12-3.6.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-scalap_2.12/3.6.6/json4s-scalap_2.12-3.6.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-native_2.12/3.6.6/json4s-native_2.12-3.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

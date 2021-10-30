@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="scala-sdk-2.13.6" level="application" />
+    <orderEntry type="library" name="io.shiftleft.console" level="project" />
+    <orderEntry type="library" name="io.shiftleft.macros_2.13" level="project" />
+    <orderEntry type="library" name="io.shiftleft.semanticcpg_2.13" level="project" />
+    <orderEntry type="library" name="scala.graph.core_2.13" level="project" />
+    <orderEntry type="library" name="scala.graph.dot_2.13" level="project" />
+  </component>
+</module>
