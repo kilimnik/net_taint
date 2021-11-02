@@ -3,10 +3,12 @@ import io.shiftleft.codepropertygraph.generated.nodes.Call
 import io.shiftleft.semanticcpg.language._
 import overflowdb.traversal.Traversal
 import scalax.collection.Graph
-import scalax.collection.GraphEdge.DiEdge
 import scalax.collection.GraphPredef.EdgeAssoc
+import scalax.collection.edge.Implicits.any2XEdgeAssoc
+import scalax.collection.edge.LDiEdge
 import scalax.collection.io.dot._
 import java.io.PrintWriter
+import scala.collection.mutable.ListBuffer
 
 import $ivy.`org.scala-graph:graph-core_2.13:1.13.3`
 import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
@@ -18,16 +20,22 @@ def escape(raw: String): String = {
   escapeJava(raw)
 }
 
+object EdgeType extends Enumeration {
+  type EdgeType = Value
+  val IndirectSource, IndirectSourceCall, Call, Parameter, Return, Sink = Value
+}
+
+import EdgeType._
+
 object TaintNodeType extends Enumeration {
   type TaintNodeType = Value
   val Argument, Parameter, Return, Call, Sink = Value
 }
-
 import TaintNodeType._
 
 case class TaintNode(id: Long, nodeType: TaintNodeType, isSource: Boolean)
 
-var taintGraph: Graph[TaintNode, DiEdge] = Graph()
+var taintGraph: Graph[TaintNode, LDiEdge] = Graph()
 
 def getArgumentFromId(id: Long) = cpg_typed.argument.id(id)
 def getArgumentMethod(id: Long) = getArgumentFromId(id).call.inAst.isMethod
@@ -57,78 +65,112 @@ def getCode(node: TaintNode) =
     case TaintNodeType.Call => getCallFromId(node.id).code.head
   }
 
-def renderNode(node: TaintNode) = {
-
+def renderNode(node: TaintNode) =
   node.nodeType match {
     case TaintNodeType.Argument =>
       def arg = getArgumentFromId(node.id)
 
-      s"""${arg.call.inAst.isMethod.filename.head}#${arg.call.lineNumber.head} = \\"${escape(arg.call.code.head)}\\" ${escape(arg.code.head)}"""
+      s"""${arg.call.inAst.isMethod.filename.head}#${arg.call.lineNumber.head} \n\\"${escape(arg.call.code.head)}\\" ${escape(arg.code.head)}"""
     case TaintNodeType.Parameter =>
       def param = getParameterFromId(node.id)
 
-      s"""${param.method.filename.head}#${param.lineNumber.head} = \\"${escape(param.method.code.head)}\\" ${escape(param.name.head)}"""
+      s"""${param.method.filename.head}#${param.lineNumber.head} \n\\"${escape(param.method.code.head)}\\" ${escape(param.name.head)}"""
     case TaintNodeType.Return =>
       def ret = getReturnFromId(node.id)
 
-      s"""${ret.method.filename.head}#${ret.lineNumber.head} = \\"${escape(ret.code.head)}\\" ${escape(ret.astChildren.code.head)}"""
+      s"""${ret.method.filename.head}#${ret.lineNumber.head} \n\\"${escape(ret.code.head)}\\" ${escape(ret.astChildren.code.head)}"""
     case TaintNodeType.Call =>
       def call = getCallFromId(node.id)
 
-      s"""${call.method.filename.head}#${call.lineNumber.head} = \\"${escape(call.code.head)}\\""""
+      s"""${call.method.filename.head}#${call.lineNumber.head} \n\\"${escape(call.code.head)}\\""""
     case TaintNodeType.Sink =>
       def call = getCallFromId(node.id)
 
-      s"""SINK: ${call.method.filename.head}#${call.lineNumber.head} = \\"${escape(call.code.head)}\\""""
+      s"""${call.method.filename.head}#${call.lineNumber.head} \n\\"${escape(call.code.head)}\\""""
   }
 
+def getNodeAttrList(node: TaintNode) = {
+  var attrList: ListBuffer[DotAttr] = ListBuffer()
+
+  if (!node.isSource && node.nodeType != TaintNodeType.Sink) {
+    attrList += DotAttr(Id("shape"), Id("plain"))
+  } else {
+    node.nodeType match {
+      case TaintNodeType.Argument =>
+
+      case TaintNodeType.Parameter =>
+
+      case TaintNodeType.Return =>
+
+      case TaintNodeType.Call =>
+
+      case TaintNodeType.Sink =>
+        attrList += DotAttr(Id("shape"), Id("diamond"))
+    }
+  }
+
+  attrList.toSeq
 }
 
-def exportPrettyTaintGraph(taintGraph: Graph[TaintNode, DiEdge]) = {
+def getEdgeAttrList(edge: LDiEdge[Graph[TaintNode, LDiEdge]#NodeT]) = {
+  var attrList: ListBuffer[DotAttr] = ListBuffer()
+  attrList += DotAttr(Id("label"), Id(edge.label.toString))
+
+  attrList.toSeq
+}
+
+def exportPrettyTaintGraph(taintGraph: Graph[TaintNode, LDiEdge]) = {
   val dotRoot = DotRootGraph(
     directed = true,
     id = Some(Id("TaintDot")),
+    attrList = Seq(
+      DotAttr(Id("nodesep"), Id("1.5")),
+      DotAttr(Id("ranksep"), Id("1.5")),
+    )
   )
 
-  def edgeTransformer(innerEdge: Graph[TaintNode, DiEdge]#EdgeT): Option[(DotGraph, DotEdgeStmt)] = {
+  def edgeTransformer(innerEdge: Graph[TaintNode, LDiEdge]#EdgeT): Option[(DotGraph, DotEdgeStmt)] = {
     val edge = innerEdge.edge
     Some(
       dotRoot,
       DotEdgeStmt(
         NodeId(renderNode(edge.from.value)),
-        NodeId(renderNode(edge.to.value))
+        NodeId(renderNode(edge.to.value)),
+        getEdgeAttrList(edge)
       )
     )
   }
 
-  def nodeTransformer(innerNode: Graph[TaintNode, DiEdge]#NodeT): Option[(DotGraph, DotNodeStmt)] =
-    Some(dotRoot, DotNodeStmt(NodeId(renderNode(innerNode.value))))
+  def nodeTransformer(innerNode: Graph[TaintNode, LDiEdge]#NodeT): Option[(DotGraph, DotNodeStmt)] =
+    Some(dotRoot, DotNodeStmt(NodeId(renderNode(innerNode.value)), getNodeAttrList(innerNode.value)))
 
   taintGraph.toDot(
     dotRoot,
     edgeTransformer,
-    iNodeTransformer = Some(nodeTransformer)
+    iNodeTransformer = Some(nodeTransformer),
+    cNodeTransformer = Some(nodeTransformer),
   )
 }
 
-def exportTaintGraph(taintGraph: Graph[TaintNode, DiEdge]) = {
+def exportTaintGraph(taintGraph: Graph[TaintNode, LDiEdge]) = {
   val dotRoot = DotRootGraph(
     directed = true,
     id = Some(Id("TaintDot")),
   )
 
-  def edgeTransformer(innerEdge: Graph[TaintNode, DiEdge]#EdgeT): Option[(DotGraph, DotEdgeStmt)] = {
+  def edgeTransformer(innerEdge: Graph[TaintNode, LDiEdge]#EdgeT): Option[(DotGraph, DotEdgeStmt)] = {
     val edge = innerEdge.edge
     Some(
       dotRoot,
       DotEdgeStmt(
         NodeId(edge.from.toString),
-        NodeId(edge.to.toString)
+        NodeId(edge.to.toString),
+        getEdgeAttrList(edge)
       )
     )
   }
 
-  def nodeTransformer(innerNode: Graph[TaintNode, DiEdge]#NodeT): Option[(DotGraph, DotNodeStmt)] =
+  def nodeTransformer(innerNode: Graph[TaintNode, LDiEdge]#NodeT): Option[(DotGraph, DotNodeStmt)] =
     Some(dotRoot, DotNodeStmt(NodeId(innerNode.toString)))
 
   taintGraph.toDot(
@@ -240,24 +282,24 @@ def getSource(calls: Traversal[Call], operations: Map[String, Int]): List[TaintN
     .map(node => TaintNode(getArgs(node, operations).id.head, TaintNodeType.Argument, isSource = true)).l
 
 
-def getIndirectSource(nodes: Graph[TaintNode, DiEdge]#NodeSetT, operations: Map[(String, Int), Int]): List[DiEdge[TaintNode]] =
-  nodes.flatMap((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def getIndirectSource(nodes: Graph[TaintNode, LDiEdge]#NodeSetT, operations: Map[(String, Int), Int]): List[LDiEdge[TaintNode]] =
+  nodes.flatMap((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     getMethod(taintNode.value).call.flatMap(node =>
       operations.find { case ((name, srcIndex), _) =>
         node.name == name &&
           node.argument.argumentIndex(srcIndex).code.l.contains(getCode(taintNode.value)) &&
           taintNode.value.isSource
-      }.map { case ((_, _), dstIndex) => taintNode.value ~> TaintNode(node.argument(dstIndex).id, TaintNodeType.Argument, isSource = true) }
+      }.map { case ((_, _), dstIndex) => (taintNode.value ~+> TaintNode(node.argument(dstIndex).id, TaintNodeType.Argument, isSource = true)) (EdgeType.IndirectSource) }
     )
   ).toList
 
-def getIndirectSourceCall(nodes: Graph[TaintNode, DiEdge]#NodeSetT, operations: Map[String, Int]): List[DiEdge[TaintNode]] =
-  nodes.flatMap((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def getIndirectSourceCall(nodes: Graph[TaintNode, LDiEdge]#NodeSetT, operations: Map[String, Int]): List[LDiEdge[TaintNode]] =
+  nodes.flatMap((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     getMethod(taintNode.value).call.flatMap(node =>
       operations.find { case (name, srcIndex) => node.name == name &&
         node.argument.argumentIndex(srcIndex).code.l.contains(getCode(taintNode.value)) &&
         taintNode.value.isSource
-      }.map(_ => taintNode.value ~> TaintNode(node.id, TaintNodeType.Call, isSource = true))
+      }.map(_ => (taintNode.value ~+> TaintNode(node.id, TaintNodeType.Call, isSource = true)) (EdgeType.IndirectSourceCall))
     )
   ).toList
 
@@ -289,8 +331,8 @@ def getAssignmentVariables(calls: Traversal[Call], creators: Map[String, Int]) =
     }
   ).l.toMap
 
-def followFunctionCalls(nodes: Graph[TaintNode, DiEdge]#NodeSetT): List[DiEdge[TaintNode]] =
-  nodes.flatMap((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def followFunctionCalls(nodes: Graph[TaintNode, LDiEdge]#NodeSetT): List[LDiEdge[TaintNode]] =
+  nodes.flatMap((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     getMethod(taintNode.value).call.
       filter(node => node.callee.isExternal(false).nonEmpty).
       flatMap(node =>
@@ -299,39 +341,39 @@ def followFunctionCalls(nodes: Graph[TaintNode, DiEdge]#NodeSetT): List[DiEdge[T
             taintNode.value.isSource
         ).flatMap(arg =>
           List(
-            taintNode.value ~> TaintNode(arg.call.id.head, TaintNodeType.Call, isSource = false),
-            TaintNode(arg.call.id.head, TaintNodeType.Call, isSource = false) ~> TaintNode(arg.parameter.id.head, TaintNodeType.Parameter, isSource = true)
+            (taintNode.value ~+> TaintNode(arg.call.id.head, TaintNodeType.Call, isSource = false)) (EdgeType.Call),
+            (TaintNode(arg.call.id.head, TaintNodeType.Call, isSource = false) ~+> TaintNode(arg.parameter.id.head, TaintNodeType.Parameter, isSource = true)) (EdgeType.Parameter)
           )
         )
       ).l
   ).toList
 
-def findReturns(nodes: Graph[TaintNode, DiEdge]#NodeSetT): List[DiEdge[TaintNode]] =
-  nodes.flatMap((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def findReturns(nodes: Graph[TaintNode, LDiEdge]#NodeSetT): List[LDiEdge[TaintNode]] =
+  nodes.flatMap((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     getMethod(taintNode.value).find(method =>
       method.methodReturn.toReturn.astChildren.code.l.contains(getCode(taintNode.value)) &&
         taintNode.value.isSource
     ).map(method =>
-      taintNode.value ~> TaintNode(method.methodReturn.toReturn.id.head, TaintNodeType.Return, isSource = false)
+      (taintNode.value ~+> TaintNode(method.methodReturn.toReturn.id.head, TaintNodeType.Return, isSource = false)) (EdgeType.Return)
     )
   ).toList
 
-def followReturns(nodes: Graph[TaintNode, DiEdge]#NodeSetT): List[DiEdge[TaintNode]] =
-  nodes.filter((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def followReturns(nodes: Graph[TaintNode, LDiEdge]#NodeSetT): List[LDiEdge[TaintNode]] =
+  nodes.filter((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     taintNode.value.nodeType == TaintNodeType.Return
-  ).map((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
-    taintNode.value ~> TaintNode(taintNode.outerNodeTraverser.
+  ).map((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
+    (taintNode.value ~+> TaintNode(taintNode.outerNodeTraverser.
       findPredecessor(node => node.value.nodeType == TaintNodeType.Call && !node.value.isSource).get.value.id,
-      TaintNodeType.Argument, isSource = true)
+      TaintNodeType.Argument, isSource = true)) (EdgeType.Return)
   ).toList
 
-def getSinks(nodes: Graph[TaintNode, DiEdge]#NodeSetT, operations: Map[String, Int]): List[DiEdge[TaintNode]] =
-  nodes.flatMap((taintNode: Graph[TaintNode, DiEdge]#NodeT) =>
+def getSinks(nodes: Graph[TaintNode, LDiEdge]#NodeSetT, operations: Map[String, Int]): List[LDiEdge[TaintNode]] =
+  nodes.flatMap((taintNode: Graph[TaintNode, LDiEdge]#NodeT) =>
     getMethod(taintNode.value).call.flatMap(node =>
       operations.find { case (name, srcIndex) => node.name == name &&
         node.argument.argumentIndex(srcIndex).code.l.contains(getCode(taintNode.value)) &&
         taintNode.value.nodeType != TaintNodeType.Call && taintNode.value.nodeType != TaintNodeType.Return
-      }.map(_ => taintNode.value ~> TaintNode(node.id, TaintNodeType.Sink, isSource = false))
+      }.map(_ => (taintNode.value ~+> TaintNode(node.id, TaintNodeType.Sink, isSource = false)) (EdgeType.Sink))
     )
   ).toList
 
@@ -363,4 +405,4 @@ println()
 println(s"Found ${taintGraph.nodes.size} nodes.\n")
 
 
-println("Found " + taintGraph.nodes.count((taintNode: Graph[TaintNode, DiEdge]#NodeT) => taintNode.value.nodeType == TaintNodeType.Sink) + " sink.")
+println("Found " + taintGraph.nodes.count((taintNode: Graph[TaintNode, LDiEdge]#NodeT) => taintNode.value.nodeType == TaintNodeType.Sink) + " sink.")

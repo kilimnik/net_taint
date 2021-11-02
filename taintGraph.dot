@@ -1,38 +1,173 @@
 digraph TaintDot {
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#104 = \"test(buf)\""
-	"/home/daniel/joern_test/test/test.c#94 = \"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "SINK: /home/daniel/joern_test/test/test.c#96 = \"strcpy(abcd, buf)\""
-	"/home/daniel/joern_test/test/test.c#109 = \"test(buf)\"" -> "/home/daniel/joern_test/test/test.c#43 = \"char* test (char* buf1234)\" buf1234"
-	"/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\"" -> "/home/daniel/joern_test/test/test.c#104 = \"* p = (int*) test(buf)\" p"
-	"/home/daniel/joern_test/test/test.c#36 = \"int* test2 (char* buf123)\" buf123" -> "/home/daniel/joern_test/test/test.c#40 = \"(int*) buf123\""
-	"/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" retBuf"
-	"/home/daniel/joern_test/test/test.c#47 = \"return buf1234;\" buf1234" -> "/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\" test(buf)"
-	"/home/daniel/joern_test/test/test.c#43 = \"char* test (char* buf1234)\" buf1234" -> "/home/daniel/joern_test/test/test.c#47 = \"return buf1234;\" buf1234"
-	"/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\""
-	"/home/daniel/joern_test/test/test.c#96 = \"strcpy(abcd, buf)\" abcd" -> "SINK: /home/daniel/joern_test/test/test.c#101 = \"strlen(abcd)\""
-	"/home/daniel/joern_test/test/test.c#40 = \"(int*) buf123\"" -> "/home/daniel/joern_test/test/test.c#40 = \"return (int*) buf123;\" (int*) buf123"
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#113 = \"testWhile(buf)\""
-	"/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\""
-	"/home/daniel/joern_test/test/test.c#104 = \"test(buf)\"" -> "/home/daniel/joern_test/test/test.c#43 = \"char* test (char* buf1234)\" buf1234"
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#94 = \"memcpy(abcd, buf, sizeof(buf))\" abcd"
-	"/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" retBuf" -> "SINK: /home/daniel/joern_test/test/test.c#110 = \"atoi(retBuf)\""
-	"/home/daniel/joern_test/test/test.c#36 = \"int* test2 (char* buf123)\" buf123" -> "SINK: /home/daniel/joern_test/test/test.c#38 = \"strlen(buf123)\""
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#96 = \"strcpy(abcd, buf)\" abcd"
-	"/home/daniel/joern_test/test/test.c#104 = \"(int*) test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" retBuf"
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#98 = \"buf[1]\""
-	"/home/daniel/joern_test/test/test.c#47 = \"return buf1234;\" buf1234" -> "/home/daniel/joern_test/test/test.c#109 = \"* retBuf = test(buf)\" test(buf)"
-	"/home/daniel/joern_test/test/test.c#111 = \"p = test2(buf)\" test2(buf)" -> "/home/daniel/joern_test/test/test.c#111 = \"p = test2(buf)\" p"
-	"/home/daniel/joern_test/test/test.c#98 = \"buf[1]\"" -> "/home/daniel/joern_test/test/test.c#98 = \"* abc = buf[1]\" abc"
-	"/home/daniel/joern_test/test/test.c#113 = \"testWhile(buf)\"" -> "/home/daniel/joern_test/test/test.c#18 = \"int testWhile (char* buf)\" buf"
-	"/home/daniel/joern_test/test/test.c#94 = \"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "SINK: /home/daniel/joern_test/test/test.c#101 = \"strlen(abcd)\""
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "SINK: /home/daniel/joern_test/test/test.c#100 = \"strlen(buf)\""
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#87 = \"buf[sizeof(buf)-1]\""
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#111 = \"test2(buf)\""
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#109 = \"test(buf)\""
-	"/home/daniel/joern_test/test/test.c#96 = \"strcpy(abcd, buf)\" abcd" -> "SINK: /home/daniel/joern_test/test/test.c#96 = \"strcpy(abcd, buf)\""
-	"/home/daniel/joern_test/test/test.c#98 = \"* abc = buf[1]\" abc" -> "SINK: /home/daniel/joern_test/test/test.c#102 = \"strlen(abc)\""
-	"/home/daniel/joern_test/test/test.c#43 = \"char* test (char* buf1234)\" buf1234" -> "SINK: /home/daniel/joern_test/test/test.c#45 = \"strlen(buf1234)\""
-	"/home/daniel/joern_test/test/test.c#79 = \"frecv(s, buf1, sizeof(buf1)-1, 0)\" buf1"
-	"/home/daniel/joern_test/test/test.c#82 = \"recv(s, buf, sizeof(buf), 0)\" buf" -> "SINK: /home/daniel/joern_test/test/test.c#106 = \"atoi(buf)\""
-	"/home/daniel/joern_test/test/test.c#111 = \"test2(buf)\"" -> "/home/daniel/joern_test/test/test.c#36 = \"int* test2 (char* buf123)\" buf123"
-	"/home/daniel/joern_test/test/test.c#40 = \"return (int*) buf123;\" (int*) buf123" -> "/home/daniel/joern_test/test/test.c#111 = \"p = test2(buf)\" test2(buf)"
+	nodesep = 1.5
+	ranksep = 1.5
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#87 
+\"buf[sizeof(buf)-1]\"" [label = IndirectSourceCall]
+	"/home/daniel/joern_test/test/test.c#98 
+\"* abc = buf[1]\" abc" -> "/home/daniel/joern_test/test/test.c#102 
+\"strlen(abc)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#87 
+\"buf[sizeof(buf)-1]\""
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#113 
+\"testWhile(buf)\"" [label = Call]
+	"/home/daniel/joern_test/test/test.c#111 
+\"p = test2(buf)\" test2(buf)"
+	"/home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" -> "/home/daniel/joern_test/test/test.c#45 
+\"strlen(buf1234)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" retBuf"
+	"/home/daniel/joern_test/test/test.c#111 
+\"test2(buf)\"" -> "/home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" [label = Parameter]
+	"/home/daniel/joern_test/test/test.c#104 
+\"test(buf)\"" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" -> "/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\" test(buf)" [label = Return]
+	"/home/daniel/joern_test/test/test.c#111 
+\"test2(buf)\"" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#113 
+\"testWhile(buf)\"" -> "/home/daniel/joern_test/test/test.c#18 
+\"int testWhile (char* buf)\" buf" [label = Parameter]
+	"/home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123"
+	"/home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd"
+	"/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" test(buf)"
+	"/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" retBuf" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#104 
+\"test(buf)\"" [label = Call]
+	"/home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" -> "/home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" [label = Return]
+	"/home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" -> "/home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\"" [label = IndirectSourceCall]
+	"/home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" -> "/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" test(buf)" [label = Return]
+	"/home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" retBuf" -> "/home/daniel/joern_test/test/test.c#110 
+\"atoi(retBuf)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#109 
+\"test(buf)\"" -> "/home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" [label = Parameter]
+	"/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd"
+	"/home/daniel/joern_test/test/test.c#38 
+\"strlen(buf123)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\""
+	"/home/daniel/joern_test/test/test.c#111 
+\"p = test2(buf)\" p"
+	"/home/daniel/joern_test/test/test.c#100 
+\"strlen(buf)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#98 
+\"* abc = buf[1]\" abc"
+	"/home/daniel/joern_test/test/test.c#110 
+\"atoi(retBuf)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#100 
+\"strlen(buf)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" -> "/home/daniel/joern_test/test/test.c#111 
+\"p = test2(buf)\" test2(buf)" [label = Return]
+	"/home/daniel/joern_test/test/test.c#111 
+\"p = test2(buf)\" test2(buf)" -> "/home/daniel/joern_test/test/test.c#111 
+\"p = test2(buf)\" p" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#98 
+\"buf[1]\"" -> "/home/daniel/joern_test/test/test.c#98 
+\"* abc = buf[1]\" abc" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" -> "/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "/home/daniel/joern_test/test/test.c#101 
+\"strlen(abcd)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" -> "/home/daniel/joern_test/test/test.c#101 
+\"strlen(abcd)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#109 
+\"test(buf)\"" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#18 
+\"int testWhile (char* buf)\" buf"
+	"/home/daniel/joern_test/test/test.c#113 
+\"testWhile(buf)\"" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\"" [label = IndirectSourceCall]
+	"/home/daniel/joern_test/test/test.c#101 
+\"strlen(abcd)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#79 
+\"frecv(s, buf1, sizeof(buf1)-1, 0)\" buf1"
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf"
+	"/home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\""
+	"/home/daniel/joern_test/test/test.c#104 
+\"* p = (int*) test(buf)\" p"
+	"/home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\"" -> "/home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" [label = Return]
+	"/home/daniel/joern_test/test/test.c#106 
+\"atoi(buf)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\"" -> "/home/daniel/joern_test/test/test.c#104 
+\"* p = (int*) test(buf)\" p" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" [shape = plain]
+	"/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\"" [label = IndirectSourceCall]
+	"/home/daniel/joern_test/test/test.c#104 
+\"test(buf)\"" -> "/home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" [label = Parameter]
+	"/home/daniel/joern_test/test/test.c#45 
+\"strlen(buf1234)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#102 
+\"strlen(abc)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#104 
+\"(int*) test(buf)\" test(buf)"
+	"/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" test(buf)" -> "/home/daniel/joern_test/test/test.c#109 
+\"* retBuf = test(buf)\" retBuf" [label = IndirectSource]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#109 
+\"test(buf)\"" [label = Call]
+	"/home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" -> "/home/daniel/joern_test/test/test.c#38 
+\"strlen(buf123)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#98 
+\"buf[1]\""
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#106 
+\"atoi(buf)\"" [label = Sink]
+	"/home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234"
+	"/home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [shape = diamond]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#111 
+\"test2(buf)\"" [label = Call]
+	"/home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "/home/daniel/joern_test/test/test.c#98 
+\"buf[1]\"" [label = IndirectSourceCall]
 }
