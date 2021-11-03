@@ -1,181 +1,181 @@
 digraph TaintDot {
 	nodesep = 1.5
 	ranksep = 1.5
-	"2.0: /home/daniel/joern_test/test/test.c#87 
-\"buf[sizeof(buf)-1]\""
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#110 
-\"test(buf)\"" [label = Call, penwidth = 3.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#105 
-\"test(buf)\"" [label = Call, penwidth = 3.0]
-	"20.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" test(buf)" -> "21.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" retBuf" [label = IndirectSource, penwidth = 1.0]
-	"20.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\" test(buf)" -> "21.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" retBuf" [label = IndirectSource, penwidth = 1.0]
-	"20.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\" test(buf)" -> "22.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\"" [label = IndirectSourceCall, penwidth = 2.0]
-	"23.0: /home/daniel/joern_test/test/test.c#105 
-\"* p = (int*) test(buf)\" p"
-	"22.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\"" -> "23.0: /home/daniel/joern_test/test/test.c#105 
-\"* p = (int*) test(buf)\" p" [label = IndirectSource, penwidth = 1.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#112 
-\"test2(buf)\"" [label = Call, penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\" abcd" -> "9.0: /home/daniel/joern_test/test/test.c#102 
-\"strlen(abcd)\"" [label = Sink, penwidth = 8.0]
-	"15.0: /home/daniel/joern_test/test/test.c#38 
-\"strlen(buf123)\"" [shape = diamond]
-	"20.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" test(buf)" -> "22.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\"" [label = IndirectSourceCall, penwidth = 2.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#94 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = IndirectSource, penwidth = 1.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "8.0: /home/daniel/joern_test/test/test.c#101 
-\"strlen(buf)\"" [label = Sink, penwidth = 8.0]
-	"29.0: /home/daniel/joern_test/test/test.c#111 
-\"atoi(retBuf)\"" [shape = diamond]
-	"2.0: /home/daniel/joern_test/test/test.c#99 
-\"buf[1]\""
-	"8.0: /home/daniel/joern_test/test/test.c#107 
-\"atoi(buf)\"" [shape = diamond]
-	"3.0: /home/daniel/joern_test/test/test.c#105 
-\"test(buf)\"" [shape = plain]
-	"22.0: /home/daniel/joern_test/test/test.c#112 
-\"p = test2(buf)\" test2(buf)" -> "23.0: /home/daniel/joern_test/test/test.c#112 
-\"p = test2(buf)\" p" [label = IndirectSource, penwidth = 1.0]
-	"20.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\" test(buf)"
-	"3.0: /home/daniel/joern_test/test/test.c#114 
-\"testWhile(buf)\"" [shape = plain]
-	"3.0: /home/daniel/joern_test/test/test.c#114 
-\"testWhile(buf)\"" -> "7.0: /home/daniel/joern_test/test/test.c#18 
-\"int testWhile (char* buf)\" buf" [label = Parameter, penwidth = 4.0]
-	"20.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" test(buf)"
-	"3.0: /home/daniel/joern_test/test/test.c#99 
-\"* abc = buf[1]\" abc"
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#114 
-\"testWhile(buf)\"" [label = Call, penwidth = 3.0]
-	"9.0: /home/daniel/joern_test/test/test.c#103 
-\"strlen(abc)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\" abcd" -> "9.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\"" [label = Sink, penwidth = 8.0]
-	"13.0: /home/daniel/joern_test/test/test.c#47 
-\"return buf1234;\" buf1234" -> "20.0: /home/daniel/joern_test/test/test.c#105 
-\"(int*) test(buf)\" test(buf)" [label = Return, penwidth = 7.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\" abcd" [label = IndirectSource, penwidth = 1.0]
-	"8.0: /home/daniel/joern_test/test/test.c#101 
-\"strlen(buf)\"" [shape = diamond]
-	"7.0: /home/daniel/joern_test/test/test.c#36 
-\"int* test2 (char* buf123)\" buf123"
-	"23.0: /home/daniel/joern_test/test/test.c#112 
-\"p = test2(buf)\" p"
-	"2.0: /home/daniel/joern_test/test/test.c#99 
-\"buf[1]\"" -> "3.0: /home/daniel/joern_test/test/test.c#99 
-\"* abc = buf[1]\" abc" [label = IndirectSource, penwidth = 1.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "2.0: /home/daniel/joern_test/test/test.c#87 
-\"buf[sizeof(buf)-1]\"" [label = IndirectSourceCall, penwidth = 2.0]
-	"15.0: /home/daniel/joern_test/test/test.c#40 
-\"return (int*) buf123;\" (int*) buf123" [shape = plain]
-	"15.0: /home/daniel/joern_test/test/test.c#40 
-\"return (int*) buf123;\" (int*) buf123" -> "22.0: /home/daniel/joern_test/test/test.c#112 
-\"p = test2(buf)\" test2(buf)" [label = Return, penwidth = 7.0]
-	"9.0: /home/daniel/joern_test/test/test.c#102 
-\"strlen(abcd)\"" [shape = diamond]
-	"7.0: /home/daniel/joern_test/test/test.c#18 
-\"int testWhile (char* buf)\" buf"
-	"1.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\" abcd"
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#97 
-\"* abc = buf\" abc" [label = IndirectSource, penwidth = 1.0]
-	"9.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\"" [shape = diamond]
-	"3.0: /home/daniel/joern_test/test/test.c#112 
-\"test2(buf)\"" [shape = plain]
-	"9.0: /home/daniel/joern_test/test/test.c#40 
-\"(int*) buf123\""
-	"7.0: /home/daniel/joern_test/test/test.c#43 
-\"char* test (char* buf1234)\" buf1234" -> "13.0: /home/daniel/joern_test/test/test.c#47 
-\"return buf1234;\" buf1234" [label = Return, penwidth = 6.0]
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf"
-	"21.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" retBuf"
-	"0.0: /home/daniel/joern_test/test/test.c#79 
-\"frecv(s, buf1, sizeof(buf1)-1, 0)\" buf1"
-	"13.0: /home/daniel/joern_test/test/test.c#47 
-\"return buf1234;\" buf1234" -> "20.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" test(buf)" [label = Return, penwidth = 7.0]
-	"1.0: /home/daniel/joern_test/test/test.c#94 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "9.0: /home/daniel/joern_test/test/test.c#102 
-\"strlen(abcd)\"" [label = Sink, penwidth = 8.0]
-	"3.0: /home/daniel/joern_test/test/test.c#110 
-\"test(buf)\"" -> "7.0: /home/daniel/joern_test/test/test.c#43 
-\"char* test (char* buf1234)\" buf1234" [label = Parameter, penwidth = 4.0]
-	"7.0: /home/daniel/joern_test/test/test.c#36 
-\"int* test2 (char* buf123)\" buf123" -> "15.0: /home/daniel/joern_test/test/test.c#38 
-\"strlen(buf123)\"" [label = Sink, penwidth = 8.0]
-	"1.0: /home/daniel/joern_test/test/test.c#97 
-\"* abc = buf\" abc"
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "8.0: /home/daniel/joern_test/test/test.c#107 
-\"atoi(buf)\"" [label = Sink, penwidth = 8.0]
-	"1.0: /home/daniel/joern_test/test/test.c#94 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "9.0: /home/daniel/joern_test/test/test.c#96 
-\"strcpy(abcd, buf)\"" [label = Sink, penwidth = 8.0]
-	"21.0: /home/daniel/joern_test/test/test.c#110 
-\"* retBuf = test(buf)\" retBuf" -> "29.0: /home/daniel/joern_test/test/test.c#111 
-\"atoi(retBuf)\"" [label = Sink, penwidth = 8.0]
-	"7.0: /home/daniel/joern_test/test/test.c#43 
-\"char* test (char* buf1234)\" buf1234"
-	"3.0: /home/daniel/joern_test/test/test.c#112 
-\"test2(buf)\"" -> "7.0: /home/daniel/joern_test/test/test.c#36 
-\"int* test2 (char* buf123)\" buf123" [label = Parameter, penwidth = 4.0]
-	"7.0: /home/daniel/joern_test/test/test.c#43 
-\"char* test (char* buf1234)\" buf1234" -> "15.0: /home/daniel/joern_test/test/test.c#45 
-\"strlen(buf1234)\"" [label = Sink, penwidth = 8.0]
-	"9.0: /home/daniel/joern_test/test/test.c#40 
-\"(int*) buf123\"" -> "15.0: /home/daniel/joern_test/test/test.c#40 
-\"return (int*) buf123;\" (int*) buf123" [label = Return, penwidth = 6.0]
-	"3.0: /home/daniel/joern_test/test/test.c#105 
-\"test(buf)\"" -> "7.0: /home/daniel/joern_test/test/test.c#43 
-\"char* test (char* buf1234)\" buf1234" [label = Parameter, penwidth = 4.0]
-	"22.0: /home/daniel/joern_test/test/test.c#112 
-\"p = test2(buf)\" test2(buf)"
-	"15.0: /home/daniel/joern_test/test/test.c#45 
-\"strlen(buf1234)\"" [shape = diamond]
-	"3.0: /home/daniel/joern_test/test/test.c#110 
-\"test(buf)\"" [shape = plain]
-	"3.0: /home/daniel/joern_test/test/test.c#99 
-\"* abc = buf[1]\" abc" -> "9.0: /home/daniel/joern_test/test/test.c#103 
-\"strlen(abc)\"" [label = Sink, penwidth = 8.0]
-	"1.0: /home/daniel/joern_test/test/test.c#97 
-\"* abc = buf\" abc" -> "9.0: /home/daniel/joern_test/test/test.c#103 
-\"strlen(abc)\"" [label = Sink, penwidth = 8.0]
-	"1.0: /home/daniel/joern_test/test/test.c#94 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd"
-	"7.0: /home/daniel/joern_test/test/test.c#36 
-\"int* test2 (char* buf123)\" buf123" -> "9.0: /home/daniel/joern_test/test/test.c#40 
-\"(int*) buf123\"" [label = IndirectSourceCall, penwidth = 2.0]
-	"13.0: /home/daniel/joern_test/test/test.c#47 
+	"1.0: /home/daniel/joern_test/test/test.c#47 
 \"return buf1234;\" buf1234" [shape = plain]
-	"22.0: /home/daniel/joern_test/test/test.c#105 
+	"1.0: /home/daniel/joern_test/test/test.c#18 
+\"int testWhile (char* buf)\" buf"
+	"3.0: /home/daniel/joern_test/test/test.c#107 
+\"atoi(buf)\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#99 
+\"buf[1]\"" [label = IndirectSourceCall, penwidth = 5.0]
+	"1.0: /home/daniel/joern_test/test/test.c#105 
+\"test(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" [label = Parameter, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#114 
+\"testWhile(buf)\"" [shape = plain]
+	"1.0: /home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123"
+	"1.0: /home/daniel/joern_test/test/test.c#110 
+\"test(buf)\"" [shape = plain]
+	"1.0: /home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" -> "5.0: /home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\"" [label = IndirectSourceCall, penwidth = 5.0]
+	"1.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\" test(buf)"
+	"3.0: /home/daniel/joern_test/test/test.c#38 
+\"strlen(buf123)\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234"
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#110 
+\"test(buf)\"" [label = Call, penwidth = 1.0]
+	"8.0: /home/daniel/joern_test/test/test.c#112 
+\"p = test2(buf)\" p"
+	"1.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\" test(buf)" -> "5.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\"" [label = IndirectSourceCall, penwidth = 5.0]
+	"5.0: /home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\""
+	"5.0: /home/daniel/joern_test/test/test.c#105 
 \"(int*) test(buf)\""
-	"0.0: /home/daniel/joern_test/test/test.c#82 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "2.0: /home/daniel/joern_test/test/test.c#99 
-\"buf[1]\"" [label = IndirectSourceCall, penwidth = 2.0]
+	"1.0: /home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\" test(buf)" [label = Return, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" test(buf)" [label = Return, penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" -> "5.0: /home/daniel/joern_test/test/test.c#112 
+\"p = test2(buf)\" test2(buf)" [label = Return, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" [label = IndirectSource, penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\" test(buf)" -> "4.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" retBuf" [label = IndirectSource, penwidth = 4.0]
+	"3.0: /home/daniel/joern_test/test/test.c#101 
+\"strlen(buf)\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" -> "3.0: /home/daniel/joern_test/test/test.c#38 
+\"strlen(buf123)\"" [label = Sink, penwidth = 3.0]
+	"5.0: /home/daniel/joern_test/test/test.c#87 
+\"buf[sizeof(buf)-1]\""
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#97 
+\"* abc = buf\" abc" [label = IndirectSource, penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/test/test.c#112 
+\"test2(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#36 
+\"int* test2 (char* buf123)\" buf123" [label = Parameter, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#112 
+\"test2(buf)\"" [shape = plain]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#114 
+\"testWhile(buf)\"" [label = Call, penwidth = 1.0]
+	"8.0: /home/daniel/joern_test/test/test.c#99 
+\"* abc = buf[1]\" abc"
+	"3.0: /home/daniel/joern_test/test/test.c#45 
+\"strlen(buf1234)\"" [shape = diamond]
+	"6.0: /home/daniel/joern_test/test/test.c#103 
+\"strlen(abc)\"" [shape = diamond]
+	"5.0: /home/daniel/joern_test/test/test.c#112 
+\"p = test2(buf)\" test2(buf)"
+	"4.0: /home/daniel/joern_test/test/test.c#97 
+\"* abc = buf\" abc"
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#101 
+\"strlen(buf)\"" [label = Sink, penwidth = 3.0]
+	"4.0: /home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#102 
+\"strlen(abcd)\"" [label = Sink, penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#87 
+\"buf[sizeof(buf)-1]\"" [label = IndirectSourceCall, penwidth = 5.0]
+	"1.0: /home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#47 
+\"return buf1234;\" buf1234" [label = Return, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" test(buf)"
+	"5.0: /home/daniel/joern_test/test/test.c#99 
+\"buf[1]\"" -> "8.0: /home/daniel/joern_test/test/test.c#99 
+\"* abc = buf[1]\" abc" [label = IndirectSource, penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/test/test.c#114 
+\"testWhile(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#18 
+\"int testWhile (char* buf)\" buf" [label = Parameter, penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" [shape = plain]
+	"4.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" retBuf"
+	"1.0: /home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" -> "3.0: /home/daniel/joern_test/test/test.c#45 
+\"strlen(buf1234)\"" [label = Sink, penwidth = 3.0]
+	"5.0: /home/daniel/joern_test/test/test.c#40 
+\"(int*) buf123\"" -> "5.0: /home/daniel/joern_test/test/test.c#40 
+\"return (int*) buf123;\" (int*) buf123" [label = Return, penwidth = 1.0]
+	"4.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [label = Sink, penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#105 
+\"test(buf)\"" [label = Call, penwidth = 1.0]
+	"1.0: /home/daniel/joern_test/test/test.c#79 
+\"frecv(s, buf1, sizeof(buf1)-1, 0)\" buf1"
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = IndirectSource, penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" test(buf)" -> "5.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\"" [label = IndirectSourceCall, penwidth = 5.0]
+	"1.0: /home/daniel/joern_test/test/test.c#105 
+\"test(buf)\"" [shape = plain]
+	"8.0: /home/daniel/joern_test/test/test.c#99 
+\"* abc = buf[1]\" abc" -> "6.0: /home/daniel/joern_test/test/test.c#103 
+\"strlen(abc)\"" [label = Sink, penwidth = 3.0]
+	"4.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd"
+	"4.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#102 
+\"strlen(abcd)\"" [label = Sink, penwidth = 3.0]
+	"5.0: /home/daniel/joern_test/test/test.c#99 
+\"buf[1]\""
+	"4.0: /home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [label = Sink, penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" test(buf)" -> "4.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" retBuf" [label = IndirectSource, penwidth = 4.0]
+	"6.0: /home/daniel/joern_test/test/test.c#111 
+\"atoi(retBuf)\"" [shape = diamond]
+	"4.0: /home/daniel/joern_test/test/test.c#110 
+\"* retBuf = test(buf)\" retBuf" -> "6.0: /home/daniel/joern_test/test/test.c#111 
+\"atoi(retBuf)\"" [label = Sink, penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#107 
+\"atoi(buf)\"" [label = Sink, penwidth = 3.0]
+	"8.0: /home/daniel/joern_test/test/test.c#105 
+\"* p = (int*) test(buf)\" p"
+	"6.0: /home/daniel/joern_test/test/test.c#102 
+\"strlen(abcd)\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/test/test.c#110 
+\"test(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#43 
+\"char* test (char* buf1234)\" buf1234" [label = Parameter, penwidth = 1.0]
+	"4.0: /home/daniel/joern_test/test/test.c#97 
+\"* abc = buf\" abc" -> "6.0: /home/daniel/joern_test/test/test.c#103 
+\"strlen(abc)\"" [label = Sink, penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf"
+	"5.0: /home/daniel/joern_test/test/test.c#112 
+\"p = test2(buf)\" test2(buf)" -> "8.0: /home/daniel/joern_test/test/test.c#112 
+\"p = test2(buf)\" p" [label = IndirectSource, penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/test/test.c#82 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#112 
+\"test2(buf)\"" [label = Call, penwidth = 1.0]
+	"4.0: /home/daniel/joern_test/test/test.c#94 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd"
+	"5.0: /home/daniel/joern_test/test/test.c#105 
+\"(int*) test(buf)\"" -> "8.0: /home/daniel/joern_test/test/test.c#105 
+\"* p = (int*) test(buf)\" p" [label = IndirectSource, penwidth = 4.0]
+	"6.0: /home/daniel/joern_test/test/test.c#96 
+\"strcpy(abcd, buf)\"" [shape = diamond]
 }
