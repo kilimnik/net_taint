@@ -94,6 +94,7 @@ int main() {
     memcpy(abcd, buf, sizeof(buf));
 
     strcpy(abcd, buf);
+    char* abc = buf;
 
     char* abc = buf[1];
 
