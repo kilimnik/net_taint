@@ -12,49 +12,58 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
+#pragma comment(lib, "ws2_32.lib")
 
-#pragma comment(lib,"ws2_32.lib")
+int testPointers(char *buf)
+{
+}
 
-int testWhile(char* buf) {
+int testWhile(char *buf)
+{
     int i = 0;
-    while (buf!= 0)
+    while (*buf != 0)
     {
         i++;
         buf++;
     }
     return 0;
+
+    *buf++;
 }
 
-int test3(char* buf123) {
+int test3(char *buf123)
+{
 
     int z = strlen(buf123);
 
     return z;
 }
 
-
-int* test2(char* buf123) {
+int *test2(char *buf123)
+{
 
     int z = strlen(buf123);
 
-    return (int*) buf123;
+    return (int *)buf123;
 }
 
-char* test(char* buf1234) {
+char *test(char *buf1234)
+{
 
     int z = strlen(buf1234);
 
     return buf1234;
 }
 
-int main() {
+int main()
+{
     char buf123[10] = "1234";
-    char* buf111 = test(buf123);
+    char *buf111 = test(buf123);
     int x = atoi(buf111);
 
     SOCKET s;
     struct WSAData wsa;
-    
+
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
         printf("WSAStartup failed. Error Code : %d", WSAGetLastError());
 
@@ -67,7 +76,7 @@ int main() {
     if ((s = socket(AF_INET, SOCK_STREAM, IPPROTO_IP)) == SOCKET_ERROR)
         printf("socket() failed with error code : %d", WSAGetLastError());
 
-    if (connect(s, (SOCKADDR *)& si_other, sizeof(si_other)) == SOCKET_ERROR)
+    if (connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR)
         printf("connect() failed with error code : %d", WSAGetLastError());
 
     char buf[256];
@@ -76,7 +85,7 @@ int main() {
 
     int frecv = GetProcAddress(NULL, "recv");
 
-    if (frecv(s, buf1, sizeof(buf1)-1, 0) == SOCKET_ERROR)
+    if (frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR)
         printf("recv() failed with error code : %d", WSAGetLastError());
 
     if (recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR)
@@ -84,34 +93,35 @@ int main() {
 
     closesocket(s);
 
-    if (buf[sizeof(buf)-1] != 0)
+    if (buf[sizeof(buf) - 1] != 0)
     {
         return;
     }
-    
 
-    char abcd[10]; 
+    char abcd[10];
     memcpy(abcd, buf, sizeof(buf));
 
     strcpy(abcd, buf);
-    char* abc = buf;
+    char *abc = buf;
 
-    char* abc = buf[1];
+    char *abc = buf[1];
 
     int z = strlen(buf);
     z = strlen(abcd);
     z = strlen(abc);
 
-    int* p = (int*) test(buf);
+    int *p = (int *)test(buf);
 
     x = atoi(buf);
     data[x] = 0x41;
 
-    char* retBuf = test(buf);
+    char *retBuf = test(buf);
     x = atoi(retBuf);
     p = test2(buf);
 
     x = testWhile(buf);
+
+    testPointers(buf);
 
     return 0;
 }
