@@ -4,25 +4,8 @@
 
 int main2()
 {
-    char buf1[] = "123";
-    char* buf = malloc(4);
-    strcpy(buf, buf1);
+    char buf[] = "123";
 
-    printf("%s\n", buf);
-
-    *buf++;
-
-    printf("%s\n", buf);
-
-    (*buf)++;
-
-    printf("%s\n", buf);
-
-    ++*buf;
-
-    printf("%s\n", buf);
-
-    ++(*buf);
-
-    printf("%s\n", buf);
+    buf += 1;
+    buf -= 1;
 }

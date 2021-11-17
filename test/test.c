@@ -14,8 +14,13 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
+struct dnshdr {
+    uint16_t id, opts, qdcount, ancount, nscount, arcount;
+};
+
 int testPointers(char *buf)
 {
+    char *xyz = (struct dnshdr *)(buf + 1);
 }
 
 int testWhile(char *buf)
@@ -122,6 +127,10 @@ int main()
     x = testWhile(buf);
 
     testPointers(buf);
+
+    char bufTest[10] = "1234";
+    recv(s, &bufTest, sizeof(bufTest), 0);
+
 
     return 0;
 }

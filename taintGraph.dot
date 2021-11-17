@@ -1,206 +1,174 @@
 digraph TaintDot {
 	nodesep = 1.5
 	ranksep = 1.5
-	"6.0: /home/daniel/joern_test/test/test.c#110 
-\"strlen(abcd)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#21 
-\"int testWhile (char *buf)\" buf" -> "1.5: /home/daniel/joern_test/test/test.c#31 
-\"buf++\"" [label = "0.5: IndirectSourceCall", penwidth = 1.5]
-	"6.0: /home/daniel/joern_test/test/test.c#119 
-\"atoi(retBuf)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf"
-	"3.0: /home/daniel/joern_test/test/test.c#115 
-\"atoi(buf)\"" [shape = diamond]
-	"4.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#110 
-\"strlen(abcd)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"5.0: /home/daniel/joern_test/test/test.c#24 
-\"*buf\""
-	"4.0: /home/daniel/joern_test/test/test.c#102 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#110 
-\"strlen(abcd)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" test(buf)" -> "5.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"1.0: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" [shape = plain]
-	"5.0: /home/daniel/joern_test/test/test.c#47 
-\"(int *)buf123\""
-	"4.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" retBuf" -> "6.0: /home/daniel/joern_test/test/test.c#119 
-\"atoi(retBuf)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#113 
-\"test(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#50 
-\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
-	"8.0: /home/daniel/joern_test/test/test.c#120 
-\"p = test2(buf)\" p"
-	"1.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" test(buf)"
-	"1.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\" test(buf)" -> "5.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"1.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" test(buf)" -> "4.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" retBuf" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#113 
-\"test(buf)\"" [shape = plain]
-	"5.0: /home/daniel/joern_test/test/test.c#47 
-\"(int *)buf123\"" -> "5.0: /home/daniel/joern_test/test/test.c#47 
-\"return (int *)buf123;\" (int *)buf123" [label = "0.0: ReturnCall", penwidth = 1.0]
-	"3.0: /home/daniel/joern_test/test/test.c#53 
-\"strlen(buf1234)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#50 
-\"char * test (char *buf1234)\" buf1234"
-	"5.0: /home/daniel/joern_test/test/test.c#96 
-\"buf[sizeof(buf) - 1]\""
-	"1.0: /home/daniel/joern_test/test/test.c#50 
-\"char * test (char *buf1234)\" buf1234" -> "3.0: /home/daniel/joern_test/test/test.c#53 
-\"strlen(buf1234)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"3.0: /home/daniel/joern_test/test/test.c#45 
-\"strlen(buf123)\"" [shape = diamond]
-	"6.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#88 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
-	"8.0: /home/daniel/joern_test/test/test.c#113 
-\"*p = (int *)test(buf)\" p"
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\" abcd" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.5: /home/daniel/joern_test/test/test.c#27 
-\"buf++\"" [shape = plain]
-	"1.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\" test(buf)"
-	"5.0: /home/daniel/joern_test/test/test.c#120 
-\"p = test2(buf)\" test2(buf)"
-	"1.5: /home/daniel/joern_test/test/test.c#31 
-\"buf++\"" [shape = plain]
-	"1.0: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#50 
-\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#124 
-\"testPointers(buf)\"" [shape = plain]
-	"1.0: /home/daniel/joern_test/test/test.c#21 
-\"int testWhile (char *buf)\" buf" -> "1.5: /home/daniel/joern_test/test/test.c#27 
-\"buf++\"" [label = "0.5: IndirectSourceCall", penwidth = 1.5]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#124 
-\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#122 
-\"testWhile(buf)\"" [shape = plain]
-	"4.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" retBuf"
-	"1.0: /home/daniel/joern_test/test/test.c#55 
-\"return buf1234;\" buf1234" [shape = plain]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#96 
-\"buf[sizeof(buf) - 1]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"1.0: /home/daniel/joern_test/test/test.c#21 
-\"int testWhile (char *buf)\" buf"
-	"5.0: /home/daniel/joern_test/test/test.c#120 
-\"p = test2(buf)\" test2(buf)" -> "8.0: /home/daniel/joern_test/test/test.c#120 
-\"p = test2(buf)\" p" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"3.0: /home/daniel/joern_test/test/test.c#109 
-\"strlen(buf)\"" [shape = diamond]
-	"4.0: /home/daniel/joern_test/test/test.c#105 
-\"*abc = buf\" abc"
-	"5.0: /home/daniel/joern_test/test/test.c#107 
-\"buf[1]\"" -> "8.0: /home/daniel/joern_test/test/test.c#107 
-\"*abc = buf[1]\" abc" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\" test(buf)" -> "4.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" retBuf" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#55 
-\"return buf1234;\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#118 
-\"*retBuf = test(buf)\" test(buf)" [label = "0.0: Return", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#55 
-\"return buf1234;\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\" test(buf)" [label = "0.0: Return", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#102 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "4.0: /home/daniel/joern_test/test/test.c#105 
-\"*abc = buf\" abc" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#42 
-\"int * test2 (char *buf123)\" buf123"
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#107 
-\"buf[1]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"1.0: /home/daniel/joern_test/test/test.c#42 
-\"int * test2 (char *buf123)\" buf123" -> "5.0: /home/daniel/joern_test/test/test.c#47 
-\"(int *)buf123\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#120 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#113 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\""
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#122 
-\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#120 
-\"test2(buf)\"" [shape = plain]
-	"1.0: /home/daniel/joern_test/test/test.c#120 
-\"test2(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#42 
-\"int * test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#47 
-\"return (int *)buf123;\" (int *)buf123" [shape = plain]
-	"4.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\" abcd"
-	"1.0: /home/daniel/joern_test/test/test.c#17 
-\"int testPointers (char *buf)\" buf"
-	"5.0: /home/daniel/joern_test/test/test.c#107 
-\"buf[1]\""
-	"1.0: /home/daniel/joern_test/test/test.c#21 
-\"int testWhile (char *buf)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#24 
-\"*buf\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"4.0: /home/daniel/joern_test/test/test.c#105 
-\"*abc = buf\" abc" -> "6.0: /home/daniel/joern_test/test/test.c#111 
-\"strlen(abc)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"8.0: /home/daniel/joern_test/test/test.c#107 
-\"*abc = buf[1]\" abc"
-	"4.0: /home/daniel/joern_test/test/test.c#102 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd"
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#109 
-\"strlen(buf)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"4.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "3.0: /home/daniel/joern_test/test/test.c#115 
-\"atoi(buf)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#50 
-\"char * test (char *buf1234)\" buf1234" -> "1.0: /home/daniel/joern_test/test/test.c#55 
-\"return buf1234;\" buf1234" [label = "0.0: ReturnCall", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#47 
-\"return (int *)buf123;\" (int *)buf123" -> "5.0: /home/daniel/joern_test/test/test.c#120 
-\"p = test2(buf)\" test2(buf)" [label = "0.0: Return", penwidth = 1.0]
-	"1.0: /home/daniel/joern_test/test/test.c#42 
-\"int * test2 (char *buf123)\" buf123" -> "3.0: /home/daniel/joern_test/test/test.c#45 
-\"strlen(buf123)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"8.0: /home/daniel/joern_test/test/test.c#107 
-\"*abc = buf[1]\" abc" -> "6.0: /home/daniel/joern_test/test/test.c#111 
-\"strlen(abc)\"" [label = "2.0: Sink", penwidth = 3.0]
-	"1.0: /home/daniel/joern_test/test/test.c#124 
-\"testPointers(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#17 
-\"int testPointers (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#113 
-\"(int *)test(buf)\"" -> "8.0: /home/daniel/joern_test/test/test.c#113 
-\"*p = (int *)test(buf)\" p" [label = "3.0: IndirectSource", penwidth = 4.0]
-	"1.0: /home/daniel/joern_test/test/test.c#91 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "1.0: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"6.0: /home/daniel/joern_test/test/test.c#111 
-\"strlen(abc)\"" [shape = diamond]
-	"1.0: /home/daniel/joern_test/test/test.c#122 
-\"testWhile(buf)\"" -> "1.0: /home/daniel/joern_test/test/test.c#21 
-\"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"4.0: /home/daniel/joern_test/test/test.c#102 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "6.0: /home/daniel/joern_test/test/test.c#104 
-\"strcpy(abcd, buf)\"" [label = "2.0: Sink", penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#342 
+\"fncrecv(sSock, cInPacket, sizeof(cInPacket), NULL)\" cInPacket" -> "4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" [label = "3.0: IndirectSource", penwidth = 4.0]
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#119 
+\"recv(lSock, &c, sizeof(c), 0)\"" [shape = house]
+	"4.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"&cFileToBuffer[dwTotal]\""
+	"1.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" -> "4.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"&cFileToBuffer[dwTotal]\"" [label = "3.0: IndirectSource", penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" -> "3.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#103 
+\"strcpy(cFileToBuffer, GenRandLCText())\"" [label = "2.0: Sink", penwidth = 3.0]
+	"0.0: /home/daniel/joern_test/Athena/IrcWar/IrcWar.cpp#155 
+\"fncrecv(sWar[dwSocket], cRemoteReceive, sizeof(cRemoteReceive), 0)\"" [shape = house]
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket"
+	"1.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\" cPacket" -> "4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket" [label = "3.0: IndirectSource", penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" -> "5.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"cFileToBuffer[dwTotal]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"5.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"cFileToBuffer[dwTotal]\"" -> "9.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"&cFileToBuffer[dwTotal]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"1.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\" cPacket"
+	"5.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"cFileToBuffer[dwTotal]\""
+	"6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\"" [shape = diamond]
+	"6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#358 
+\"strlen(cParsePacket)\"" [shape = diamond]
+	"3.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#558 
+\"strcpy(cPacket, GenerateHttpPacket(usPacketGenerationType, cHttpHost, cHttpPath, usHttpPort, cHttpData))\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/Athena/Hub/Connect.cpp#262 
+\"fncrecv(nIrcSock, cReceive, sizeof(cReceive), NULL)\" cReceive"
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#24 
+\"recv(lSock, cBuff, sizeof(cBuff), 0)\"" [shape = house]
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" -> "6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#368 
+\"strcpy(cParsePacket, \"ERR_FAILED_TO_SEND\")\"" [label = "2.0: Sink", penwidth = 3.0]
+	"6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#572 
+\"strcpy(cReceivedPacket, \"ERR_FAILED_TO_CONNECT\")\"" [shape = diamond]
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#33 
+\"recv(rSock, cBuff, sizeof(cBuff), 0)\"" [shape = house]
+	"0.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#342 
+\"fncrecv(sSock, cInPacket, sizeof(cInPacket), NULL)\"" [shape = house]
+	"3.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#103 
+\"strcpy(cFileToBuffer, GenRandLCText())\"" [shape = diamond]
+	"4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket" -> "8.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#574 
+\"(char*)cReceivedPacket\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"0.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\"" -> "1.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" [label = "1.0: Call", penwidth = 2.0]
+	"0.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\"" -> "1.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" [label = "1.0: Call", penwidth = 2.0]
+	"0.0: /home/daniel/joern_test/Athena/Hub/Connect.cpp#262 
+\"fncrecv(nIrcSock, cReceive, sizeof(cReceive), NULL)\"" -> "1.0: /home/daniel/joern_test/Athena/Hub/Connect.cpp#262 
+\"fncrecv(nIrcSock, cReceive, sizeof(cReceive), NULL)\" cReceive" [label = "1.0: Call", penwidth = 2.0]
+	"4.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"&cFileToBuffer[dwTotal]\""
+	"0.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\"" [shape = house]
+	"1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#110 
+\"(char *)(&packet)\""
+	"6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#368 
+\"strcpy(cParsePacket, \"ERR_FAILED_TO_SEND\")\"" [shape = diamond]
+	"6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#569 
+\"strcpy(cReceivedPacket, \"ERR_FAILED_TO_SEND\")\"" [shape = diamond]
+	"1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#24 
+\"recv(lSock, cBuff, sizeof(cBuff), 0)\" cBuff"
+	"1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#119 
+\"&c\""
+	"6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#346 
+\"strlen(cParsePacket)\"" [shape = diamond]
+	"5.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"cFileToBuffer[dwTotal]\"" -> "9.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"&cFileToBuffer[dwTotal]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#33 
+\"recv(rSock, cBuff, sizeof(cBuff), 0)\"" -> "1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#33 
+\"recv(rSock, cBuff, sizeof(cBuff), 0)\" cBuff" [label = "1.0: Call", penwidth = 2.0]
+	"4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket"
+	"1.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\" cPacket" -> "3.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#563 
+\"strlen(cPacket)\"" [label = "2.0: Sink", penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" -> "5.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"cFileToBuffer[dwTotal]\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"0.0: /home/daniel/joern_test/Athena/IrcWar/IrcWar.cpp#155 
+\"fncrecv(sWar[dwSocket], cRemoteReceive, sizeof(cRemoteReceive), 0)\"" -> "1.0: /home/daniel/joern_test/Athena/IrcWar/IrcWar.cpp#155 
+\"fncrecv(sWar[dwSocket], cRemoteReceive, sizeof(cRemoteReceive), 0)\" cRemoteReceive" [label = "1.0: Call", penwidth = 2.0]
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" -> "6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#346 
+\"strlen(cParsePacket)\"" [label = "2.0: Sink", penwidth = 3.0]
+	"0.0: /home/daniel/joern_test/Athena/Hub/Connect.cpp#262 
+\"fncrecv(nIrcSock, cReceive, sizeof(cReceive), NULL)\"" [shape = house]
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" -> "6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#377 
+\"strcpy(cParsePacket, \"ERR_FAILED_TO_CONNECT\")\"" [label = "2.0: Sink", penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#342 
+\"fncrecv(sSock, cInPacket, sizeof(cInPacket), NULL)\" cInPacket"
+	"9.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#116 
+\"&cFileToBuffer[dwTotal]\""
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" -> "6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\"" [label = "2.0: Sink", penwidth = 3.0]
+	"1.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer" -> "4.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"&cFileToBuffer[dwTotal]\"" [label = "3.0: IndirectSource", penwidth = 4.0]
+	"1.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer"
+	"6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\"" [shape = diamond]
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#110 
+\"recv(lSock, (char *)(&packet), sizeof(packet), 0)\"" -> "1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#110 
+\"(char *)(&packet)\"" [label = "1.0: Call", penwidth = 2.0]
+	"1.0: /home/daniel/joern_test/Athena/IrcWar/IrcWar.cpp#155 
+\"fncrecv(sWar[dwSocket], cRemoteReceive, sizeof(cRemoteReceive), 0)\" cRemoteReceive"
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#119 
+\"recv(lSock, &c, sizeof(c), 0)\"" -> "1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#119 
+\"&c\"" [label = "1.0: Call", penwidth = 2.0]
+	"5.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"cFileToBuffer[dwTotal]\""
+	"1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#33 
+\"recv(rSock, cBuff, sizeof(cBuff), 0)\" cBuff"
+	"4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket" -> "6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#572 
+\"strcpy(cReceivedPacket, \"ERR_FAILED_TO_CONNECT\")\"" [label = "2.0: Sink", penwidth = 3.0]
+	"0.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#41 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\"" [shape = house]
+	"1.0: /home/daniel/joern_test/Athena/General/DlExecUpdate.cpp#92 
+\"InternetReadFile(hOpenUrl, cFileToBuffer, sizeof(cFileToBuffer), &dwBytesRead)\" cFileToBuffer"
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#24 
+\"recv(lSock, cBuff, sizeof(cBuff), 0)\"" -> "1.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#24 
+\"recv(lSock, cBuff, sizeof(cBuff), 0)\" cBuff" [label = "1.0: Call", penwidth = 2.0]
+	"0.0: /home/daniel/joern_test/Athena/General/Socks4.cpp#110 
+\"recv(lSock, (char *)(&packet), sizeof(packet), 0)\"" [shape = house]
+	"1.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\" cPacket" -> "3.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#558 
+\"strcpy(cPacket, GenerateHttpPacket(usPacketGenerationType, cHttpHost, cHttpPath, usHttpPort, cHttpData))\"" [label = "2.0: Sink", penwidth = 3.0]
+	"8.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#574 
+\"(char*)cReceivedPacket\""
+	"4.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#344 
+\"strcpy(cParsePacket, cInPacket)\" cParsePacket" -> "6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#358 
+\"strlen(cParsePacket)\"" [label = "2.0: Sink", penwidth = 3.0]
+	"9.0: /home/daniel/joern_test/Athena/DDoS/BandwithDrain.cpp#52 
+\"&cFileToBuffer[dwTotal]\""
+	"3.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#563 
+\"strlen(cPacket)\"" [shape = diamond]
+	"4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket" -> "6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#569 
+\"strcpy(cReceivedPacket, \"ERR_FAILED_TO_SEND\")\"" [label = "2.0: Sink", penwidth = 3.0]
+	"6.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#377 
+\"strcpy(cParsePacket, \"ERR_FAILED_TO_CONNECT\")\"" [shape = diamond]
+	"0.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\"" -> "1.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\" cPacket" [label = "1.0: Call", penwidth = 2.0]
+	"0.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#342 
+\"fncrecv(sSock, cInPacket, sizeof(cInPacket), NULL)\"" -> "1.0: /home/daniel/joern_test/Athena/Hub/HttpUtilities.cpp#342 
+\"fncrecv(sSock, cInPacket, sizeof(cInPacket), NULL)\" cInPacket" [label = "1.0: Call", penwidth = 2.0]
+	"0.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#565 
+\"fncrecv(sSock, cPacket, 20000, 0)\"" [shape = house]
+	"4.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\" cReceivedPacket" -> "6.0: /home/daniel/joern_test/Athena/Utilities/Http.cpp#566 
+\"strcpy(cReceivedPacket, cPacket)\"" [label = "2.0: Sink", penwidth = 3.0]
 }
