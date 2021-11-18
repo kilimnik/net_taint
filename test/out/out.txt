@@ -1,0 +1,42 @@
+Found 48 nodes.
+Found 8 sink. 
+17.0: /home/daniel/joern_test/test/test.c#109 
+\"strcpy(abcd, buf)\"
+
+15.0: /home/daniel/joern_test/test/test.c#115 
+\"strlen(abcd)\"
+
+9.0: /home/daniel/joern_test/test/test.c#114 
+\"strlen(buf)\"
+
+9.0: /home/daniel/joern_test/test/test.c#116 
+\"strlen(abc)\"
+
+9.0: /home/daniel/joern_test/test/test.c#58 
+\"strlen(buf1234)\"
+
+9.0: /home/daniel/joern_test/test/test.c#50 
+\"strlen(buf123)\"
+
+8.0: /home/daniel/joern_test/test/test.c#120 
+\"atoi(buf)\"
+
+8.0: /home/daniel/joern_test/test/test.c#124 
+\"atoi(retBuf)\"
+
+Found 5 methods. 
+3.625: /home/daniel/joern_test/test/test.c#26 
+\"int testWhile (char *buf)\"
+
+2.25: /home/daniel/joern_test/test/test.c#21 
+\"int testPointers (char *buf)\"
+
+2.0: /home/daniel/joern_test/test/test.c#47 
+\"int * test2 (char *buf123)\"
+
+1.3333333333333333: /home/daniel/joern_test/test/test.c#55 
+\"char * test (char *buf1234)\"
+
+0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
+\"int main ()\"
+

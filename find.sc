@@ -313,6 +313,8 @@ case class OperationValue(weight: Double = 0)
 
 case class Operation(name: String, srcIndex: Int = 0, dstIndex: Int = 0)
 
+val min_method_weight = 2
+
 val recv_weight = 5
 val cpy_weight = 6
 val cat_weight = 7
@@ -600,8 +602,8 @@ new PrintWriter(s"${output_path}/methodGraph.dot") {
 }
 Process(s"dot -Tsvg ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.svg").!
 
-println()
-println(s"Found ${taintGraphNoRoot.nodes.size} nodes.\n")
+var output = ""
+output += s"Found ${taintGraphNoRoot.nodes.size} nodes.\n"
 
 def sinks = taintGraphNoRoot.nodes
   .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => taintNode.value.nodeType == TaintNodeType.Sink)
@@ -610,7 +612,7 @@ def sinks = taintGraphNoRoot.nodes
     weightMap.getOrElse(node1.value, TaintNodeWeight()).shortestPath > weightMap.getOrElse(node2.value, TaintNodeWeight()).shortestPath
   )
 
-println(s"Found ${sinks.size} sink. ${sinks.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, weightMap)).mkString("\n", "\n\n", "\n\n")}")
+output += s"Found ${sinks.size} sink. ${sinks.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, weightMap)).mkString("\n", "\n\n", "\n\n")}"
 
 def methods = methodGraph.nodes
   .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => taintNode.value.nodeType == TaintNodeType.Method)
@@ -619,4 +621,22 @@ def methods = methodGraph.nodes
     methodWeightMap.getOrElse(node1.value, TaintNodeWeight()).shortestPath > methodWeightMap.getOrElse(node2.value, TaintNodeWeight()).shortestPath
   )
 
-println(s"Found ${sinks.size} methods. ${methods.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, methodWeightMap)).mkString("\n", "\n\n", "\n\n")}")
+output += s"Found ${methods.size} methods. ${methods.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, methodWeightMap)).mkString("\n", "\n\n", "\n\n")}"
+println(output)
+
+new PrintWriter(s"${output_path}/out.txt") {
+  write(output)
+  close()
+}
+
+def methods_filtered = methods.filter((node: Graph[TaintNode, WLDiEdge]#NodeT) => methodWeightMap.getOrElse(node.value, TaintNodeWeight()).shortestPath >= min_method_weight)
+var vuln_output = ""
+vuln_output += s"Found ${sinks.size} sink. ${sinks.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, weightMap)).mkString("\n", "\n\n", "\n\n\n")}"
+
+vuln_output += s"Found ${methods_filtered.size} methods. ${methods_filtered.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, methodWeightMap)).mkString("\n", "\n\n", "\n")}"
+
+
+new PrintWriter(s"${output_path}/vuln.txt") {
+  write(vuln_output)
+  close()
+}
