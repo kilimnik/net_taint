@@ -11,5 +11,6 @@
     <orderEntry type="library" name="io.shiftleft.semanticcpg_2.13" level="project" />
     <orderEntry type="library" name="scala.graph.core_2.13" level="project" />
     <orderEntry type="library" name="scala.graph.dot_2.13" level="project" />
+    <orderEntry type="library" name="io.shiftleft.codepropertygraph" level="project" />
   </component>
 </module>

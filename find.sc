@@ -6,13 +6,21 @@ import scalax.collection.Graph
 import scalax.collection.edge.Implicits.any2XEdgeAssoc
 import scalax.collection.edge.WLDiEdge
 import scalax.collection.io.dot._
-import java.io.PrintWriter
+import scala.sys.process.Process
+import java.io.{File, PrintWriter}
 import scala.collection.mutable.ListBuffer
 
+//import $ivy.`org.scala-graph:graph-core_2.13:1.13.3`
+//import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
 import $ivy.`org.scala-graph:graph-core_2.13:1.13.3`
 import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
 
 def cpg_typed: Cpg = cpg
+def output_path = s"${project.inputPath}/out"
+def directory: File = new File(output_path)
+if (!directory.exists()){
+  directory.mkdir()
+}
 
 def escape(raw: String): String = {
   import org.apache.commons.lang.StringEscapeUtils.escapeJava
@@ -305,112 +313,121 @@ case class OperationValue(weight: Double = 0)
 
 case class Operation(name: String, srcIndex: Int = 0, dstIndex: Int = 0)
 
+val recv_weight = 5
+val cpy_weight = 6
+val cat_weight = 7
+var strlen_weight = 4
+val atoi_weight = 3
+val system_weight = 10
+val pointer_math_weight = 5
+val cmp_weight = 4
+
 // Map[Function name, OperationValue]
 var sourceOperations: Map[Operation, OperationValue] = Map(
-  Operation("recv", dstIndex = 2) -> OperationValue(1),
-  Operation("recvfrom", dstIndex = 2) -> OperationValue(1),
-  Operation("WSARecvEx", dstIndex = 2) -> OperationValue(1),
-  Operation("HttpQueryInfo", dstIndex = 3) -> OperationValue(1),
-  Operation("HttpQueryInfoA", dstIndex = 3) -> OperationValue(1),
-  Operation("HttpQueryInfoW", dstIndex = 3) -> OperationValue(1),
-  Operation("InternetReadFile", dstIndex = 2) -> OperationValue(1),
-  Operation("InternetReadFileExA", dstIndex = 2) -> OperationValue(1),
-  Operation("InternetReadFileExW", dstIndex = 2) -> OperationValue(1),
+  Operation("recv", dstIndex = 2) -> OperationValue(recv_weight),
+  Operation("recvfrom", dstIndex = 2) -> OperationValue(recv_weight),
+  Operation("WSARecvEx", dstIndex = 2) -> OperationValue(recv_weight),
+  Operation("HttpQueryInfo", dstIndex = 3) -> OperationValue(recv_weight),
+  Operation("HttpQueryInfoA", dstIndex = 3) -> OperationValue(recv_weight),
+  Operation("HttpQueryInfoW", dstIndex = 3) -> OperationValue(recv_weight),
+  Operation("InternetReadFile", dstIndex = 2) -> OperationValue(recv_weight),
+  Operation("InternetReadFileExA", dstIndex = 2) -> OperationValue(recv_weight),
+  Operation("InternetReadFileExW", dstIndex = 2) -> OperationValue(recv_weight),
 )
 
 // Map[Function name, OperationValue]
 val sinkOperations: Map[Operation, OperationValue] = Map(
-  Operation("atoi", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoi", srcIndex = 1) -> OperationValue(2),
-  Operation("atoi_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoi_l", srcIndex = 1) -> OperationValue(2),
-  Operation("strlen", srcIndex = 1) -> OperationValue(2),
-  Operation("strcpy", srcIndex = 1) -> OperationValue(2),
-  Operation("wcscpy", srcIndex = 1) -> OperationValue(2),
-  Operation("_mbscpy", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcat", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcatA", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcatW", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpy", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpyA", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpyW", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpyn", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpynA", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrcpynW", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrlen", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrlenA", srcIndex = 1) -> OperationValue(2),
-  Operation("lstrlenW", srcIndex = 1) -> OperationValue(2),
-  Operation("_atodbl", srcIndex = 2) -> OperationValue(2),
-  Operation("_atodbl_l", srcIndex = 2) -> OperationValue(2),
-  Operation("_atoldbl", srcIndex = 2) -> OperationValue(2),
-  Operation("_atoldbl_l", srcIndex = 2) -> OperationValue(2),
-  Operation("_atoflt", srcIndex = 2) -> OperationValue(2),
-  Operation("_atoflt_l", srcIndex = 2) -> OperationValue(2),
-  Operation("atof", srcIndex = 1) -> OperationValue(2),
-  Operation("_atof_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtof", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtof_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_atoi64", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoi64", srcIndex = 1) -> OperationValue(2),
-  Operation("_atoi64_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoi64_l", srcIndex = 1) -> OperationValue(2),
-  Operation("atol", srcIndex = 1) -> OperationValue(2),
-  Operation("_atol_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtol", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtol_l", srcIndex = 1) -> OperationValue(2),
-  Operation("atoll", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoll", srcIndex = 1) -> OperationValue(2),
-  Operation("_atoll_l", srcIndex = 1) -> OperationValue(2),
-  Operation("_wtoll_l", srcIndex = 1) -> OperationValue(2),
-  Operation("system", srcIndex = 1) -> OperationValue(2),
+  Operation("strcpy", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("wcscpy", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("_mbscpy", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyA", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyW", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyn", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpynA", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpynW", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpy", srcIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcat", srcIndex = 1) -> OperationValue(cat_weight),
+  Operation("lstrcatA", srcIndex = 1) -> OperationValue(cat_weight),
+  Operation("lstrcatW", srcIndex = 1) -> OperationValue(cat_weight),
+  Operation("strlen", srcIndex = 1) -> OperationValue(strlen_weight),
+  Operation("lstrlen", srcIndex = 1) -> OperationValue(strlen_weight),
+  Operation("lstrlenA", srcIndex = 1) -> OperationValue(strlen_weight),
+  Operation("lstrlenW", srcIndex = 1) -> OperationValue(strlen_weight),
+  Operation("atoi", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoi", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("atoi_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoi_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atodbl", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("_atodbl_l", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("_atoldbl", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("_atoldbl_l", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("_atoflt", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("_atoflt_l", srcIndex = 2) -> OperationValue(atoi_weight),
+  Operation("atof", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atof_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtof", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtof_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atoi64", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoi64", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atoi64_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoi64_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("atol", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atol_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtol", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtol_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("atoll", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoll", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_atoll_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("_wtoll_l", srcIndex = 1) -> OperationValue(atoi_weight),
+  Operation("system", srcIndex = 1) -> OperationValue(system_weight),
 )
 
 // Map[Function name, Src Index, OperationValue]
 val indirectSourceOperations: Map[Operation, OperationValue] = Map(
-  Operation("memcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("<operator>.assignment", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("<operator>.assignmentPlus", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("<operator>.assignmentMinus", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("strcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("wcscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("_mbscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcat", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcatA", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcatW", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpyA", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpyW", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpyn", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpynA", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
-  Operation("lstrcpynW", srcIndex = 2, dstIndex = 1) -> OperationValue(3),
+  Operation("<operator>.assignment", srcIndex = 2, dstIndex = 1) -> OperationValue(0),
+  Operation("<operator>.assignmentPlus", srcIndex = 2, dstIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.assignmentMinus", srcIndex = 2, dstIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("memcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("strcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("wcscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("_mbscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyA", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyW", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpyn", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpynA", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcpynW", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
+  Operation("lstrcat", srcIndex = 2, dstIndex = 1) -> OperationValue(cat_weight),
+  Operation("lstrcatA", srcIndex = 2, dstIndex = 1) -> OperationValue(cat_weight),
+  Operation("lstrcatW", srcIndex = 2, dstIndex = 1) -> OperationValue(cat_weight),
 )
 
 // Map[Function name, OperationValue]
 val indirectSourceOperationsCall: Map[Operation, OperationValue] = Map(
-  Operation("<operator>.indirectIndexAccess", srcIndex = 1) -> OperationValue(4),
+  Operation("<operator>.indirectIndexAccess", srcIndex = 1) -> OperationValue(pointer_math_weight),
   Operation("<operator>.cast", srcIndex = 2) -> OperationValue(4),
-  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(4),
-  Operation("<operator>.addressOf", srcIndex = 1) -> OperationValue(4),
-  Operation("<operator>.indirection", srcIndex = 1) -> OperationValue(4),
-  Operation("<operator>.preIncrement", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.postIncrement", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.notEquals", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.notEquals", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.equals", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.equals", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.lessThan", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.lessThan", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.lessEqualsThan", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.lessEqualsThan", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.greaterThan", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.greaterThan", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.greaterEqualsThan", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.greaterEqualsThan", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.logicalNot", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.subtraction", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.subtraction", srcIndex = 2) -> OperationValue(0.5),
-  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(0.5),
-  Operation("<operator>.addition", srcIndex = 2) -> OperationValue(0.5),
+  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addressOf", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.indirection", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.preIncrement", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.postIncrement", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.notEquals", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.notEquals", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.equals", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.equals", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.lessThan", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.lessThan", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.lessEqualsThan", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.lessEqualsThan", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.greaterThan", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.greaterThan", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.greaterEqualsThan", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.greaterEqualsThan", srcIndex = 2) -> OperationValue(cmp_weight),
+  Operation("<operator>.logicalNot", srcIndex = 1) -> OperationValue(cmp_weight),
+  Operation("<operator>.subtraction", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.subtraction", srcIndex = 2) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addition", srcIndex = 2) -> OperationValue(pointer_math_weight),
 )
 
 // Map[Function name, source name Index]
@@ -565,18 +582,23 @@ methodGraph.get(rootNode).diSuccessors.foreach((node: Graph[TaintNode, WLDiEdge]
     node.innerEdgeTraverser.map((edge: Graph[TaintNode, WLDiEdge]#EdgeT) => edge.weight).sum / (getMethod(node.value).call.size + 1)
   ))
 
-new PrintWriter("taintGraphSimple.dot") {
+new PrintWriter(s"${output_path}/taintGraphSimple.dot") {
   write(exportTaintGraph(taintGraph))
   close()
 }
-new PrintWriter("taintGraph.dot") {
+Process(s"dot -Tsvg ${output_path}/taintGraphSimple.dot -o ${output_path}/taintGraphSimple.svg").!
+
+new PrintWriter(s"${output_path}/taintGraph.dot") {
   write(exportPrettyTaintGraph(taintGraphNoRoot, weightMap))
   close()
 }
-new PrintWriter("methodGraph.dot") {
+Process(s"dot -Tsvg ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.svg").!
+
+new PrintWriter(s"${output_path}/methodGraph.dot") {
   write(exportPrettyTaintGraph(methodGraph - rootNode, methodWeightMap))
   close()
 }
+Process(s"dot -Tsvg ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.svg").!
 
 println()
 println(s"Found ${taintGraphNoRoot.nodes.size} nodes.\n")
