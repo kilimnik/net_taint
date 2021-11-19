@@ -1,262 +1,375 @@
 digraph TaintDot {
 	nodesep = 1.5
 	ranksep = 1.5
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#107 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#125 
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#136 
 \"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\""
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#115 
-\"strlen(abcd)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#129 
-\"testPointers(buf)\"" [shape = plain]
-	"Infinity: /home/daniel/joern_test/test/test.c#116 
-\"strlen(abc)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#23 
-\"buf + 1\""
-	"Infinity: /home/daniel/joern_test/test/test.c#36 
-\"*buf++\""
-	"Infinity: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#36 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#93 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
-	"Infinity: /home/daniel/joern_test/test/test.c#125 
-\"test2(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#125 
-\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#132 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [shape = house]
-	"Infinity: /home/daniel/joern_test/test/test.c#125 
-\"test2(buf)\""
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#93 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#23 
-\"(struct dnshdr *)(buf + 1)\""
-	"Infinity: /home/daniel/joern_test/test/test.c#93 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
-	"Infinity: /home/daniel/joern_test/test/test.c#101 
-\"buf[sizeof(buf) - 1]\""
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"2.25: /home/daniel/joern_test/test/test.c#21 
-\"int testPointers (char *buf)\"" [shape = parallelogram]
-	"Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#115 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf"
-	"3.625: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#132 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#132 
-\"&bufTest\"" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#32 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#112 
-\"buf[1]\""
-	"Infinity: /home/daniel/joern_test/test/test.c#32 
-\"buf++\""
-	"Infinity: /home/daniel/joern_test/test/test.c#23 
-\"(struct dnshdr *)(buf + 1)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#23 
-\"*xyz = (struct dnshdr *)(buf + 1)\" xyz" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#124 
-\"atoi(retBuf)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
-\"*retBuf = test(buf)\" retBuf" -> "Infinity: /home/daniel/joern_test/test/test.c#124 
-\"atoi(retBuf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#120 
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#131 
 \"atoi(buf)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\" abcd"
-	"Infinity: /home/daniel/joern_test/test/test.c#55 
-\"char * test (char *buf1234)\" buf1234" -> "Infinity: /home/daniel/joern_test/test/test.c#58 
-\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#132 
-\"&bufTest\""
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\"" [shape = house]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" [shape = plain]
-	"Infinity: /home/daniel/joern_test/test/test.c#32 
-\"buf++\"" -> "Infinity: /home/daniel/joern_test/test/test.c#36 
+	"Infinity: /home/daniel/joern_test/test/test.c#126 
+\"strlen(abcd)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#47 
+\"buf++\"" -> "Infinity: /home/daniel/joern_test/test/test.c#47 
 \"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#58 
-\"strlen(buf1234)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#29 
-\"*buf\""
-	"Infinity: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\" buf123" -> "Infinity: /home/daniel/joern_test/test/test.c#50 
-\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#101 
-\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#55 
-\"char * test (char *buf1234)\" buf1234"
-	"Infinity: /home/daniel/joern_test/test/test.c#36 
-\"buf++\""
-	"Infinity: /home/daniel/joern_test/test/test.c#101 
-\"buf[sizeof(buf) - 1] != 0\""
-	"1.3333333333333333: /home/daniel/joern_test/test/test.c#55 
-\"char * test (char *buf1234)\"" [shape = parallelogram]
-	"Infinity: /home/daniel/joern_test/test/test.c#23 
-\"buf + 1\"" -> "Infinity: /home/daniel/joern_test/test/test.c#23 
-\"(struct dnshdr *)(buf + 1)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#21 
-\"int testPointers (char *buf)\" buf"
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#127 
-\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#107 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
-\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#112 
-\"*abc = buf[1]\" abc"
-	"Infinity: /home/daniel/joern_test/test/test.c#21 
-\"int testPointers (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#23 
-\"buf + 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#29 
-\"*buf != 0\""
-	"Infinity: /home/daniel/joern_test/test/test.c#52 
-\"(int *)buf123\""
-	"Infinity: /home/daniel/joern_test/test/test.c#125 
-\"p = test2(buf)\" p"
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#107 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd"
-	"Infinity: /home/daniel/joern_test/test/test.c#110 
-\"*abc = buf\" abc"
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
-\"*retBuf = test(buf)\" retBuf"
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#112 
-\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"*p = (int *)test(buf)\" p"
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
-\"test(buf)\"" [shape = plain]
-	"Infinity: /home/daniel/joern_test/test/test.c#107 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#115 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#50 
-\"strlen(buf123)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#110 
-\"*abc = buf\" abc" -> "Infinity: /home/daniel/joern_test/test/test.c#116 
-\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\" buf123"
-	"Infinity: /home/daniel/joern_test/test/test.c#29 
-\"*buf\"" -> "Infinity: /home/daniel/joern_test/test/test.c#29 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#93 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#93 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
-\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
-\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#110 
-\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#36 
-\"buf++\"" -> "Infinity: /home/daniel/joern_test/test/test.c#36 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#112 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/daniel/joern_test/test/test.c#116 
-\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"1.3333333333333333: /home/daniel/joern_test/test/test.c#55 
-\"char * test (char *buf1234)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#55 
-\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#127 
-\"testWhile(buf)\"" [shape = plain]
-	"Infinity: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\" buf"
-	"Infinity: /home/daniel/joern_test/test/test.c#26 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#29 
-\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#132 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\" buf123" -> "Infinity: /home/daniel/joern_test/test/test.c#52 
-\"(int *)buf123\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
-\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"(int *)test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#114 
-\"strlen(buf)\"" [shape = diamond]
-	"2.0: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\"" [shape = parallelogram]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
-\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" [shape = parallelogram]
-	"Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\"" [shape = diamond]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#114 
-\"strlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"2.0: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#47 
-\"int * test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
-	"0.9666666666666667: /home/daniel/joern_test/test/test.c#63 
-\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#125 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"2.25: /home/daniel/joern_test/test/test.c#21 
-\"int testPointers (char *buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#21 
-\"int testPointers (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#101 
-\"buf[sizeof(buf) - 1]\"" -> "Infinity: /home/daniel/joern_test/test/test.c#101 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#112 
-\"buf[1]\"" -> "Infinity: /home/daniel/joern_test/test/test.c#112 
-\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#109 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#123 
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
 \"test(buf)\""
-	"Infinity: /home/daniel/joern_test/test/test.c#23 
-\"*xyz = (struct dnshdr *)(buf + 1)\" xyz"
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#96 
-\"recv(s, buf, sizeof(buf), 0)\" buf" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/daniel/joern_test/test/test.c#125 
+	"Infinity: /home/daniel/joern_test/test/test.c#136 
 \"test2(buf)\"" [shape = plain]
-	"Infinity: /home/daniel/joern_test/test/test.c#118 
-\"(int *)test(buf)\""
-	"3.625: /home/daniel/joern_test/test/test.c#26 
+	"1.3333333333333333: /home/daniel/joern_test/test/test.c#66 
+\"char * test (char *buf1234)\"" [shape = parallelogram]
+	"3.625: /home/daniel/joern_test/test/test.c#37 
 \"int testWhile (char *buf)\"" [shape = parallelogram]
-	"Infinity: /home/daniel/joern_test/test/test.c#96 
+	"Infinity: /home/daniel/joern_test/test/test.c#47 
+\"buf++\""
+	"Infinity: /home/daniel/joern_test/test/test.c#112 
+\"buf[sizeof(buf) - 1] != 0\""
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#47 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\""
+	"Infinity: /home/daniel/joern_test/test/test.c#118 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"*p = (int *)test(buf)\" p"
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\""
+	"Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#126 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\" buf123" -> "Infinity: /home/daniel/joern_test/test/test.c#63 
+\"(int *)buf123\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#143 
+\"&bufTest\""
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"(int *)test(buf)\""
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"* buf3 = test2->x\" buf3"
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\""
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"* buf1 = test1.x\" buf1"
+	"Infinity: /home/daniel/joern_test/test/test.c#123 
+\"buf[1]\""
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"* buf4 = test2->z\" buf4"
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#104 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#104 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#43 
+\"buf++\"" -> "Infinity: /home/daniel/joern_test/test/test.c#47 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#123 
+\"*abc = buf[1]\" abc"
+	"Infinity: /home/daniel/joern_test/test/test.c#66 
+\"char * test (char *buf1234)\" buf1234"
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#125 
+\"strlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\" abcd"
+	"Infinity: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\" buf123" -> "Infinity: /home/daniel/joern_test/test/test.c#61 
+\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#40 
+\"*buf != 0\""
+	"0.0: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#134 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#136 
+\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#127 
+\"strlen(abc)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#121 
+\"*abc = buf\" abc" -> "Infinity: /home/daniel/joern_test/test/test.c#127 
+\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#112 
+\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#40 
+\"*buf\"" -> "Infinity: /home/daniel/joern_test/test/test.c#40 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"test(buf)\"" [shape = plain]
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\""
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#135 
+\"atoi(retBuf)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
 \"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\" test1"
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#123 
+\"buf[1]\"" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
+\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\""
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\" test1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"3.625: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" [shape = parallelogram]
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\" test2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf"
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\"" [shape = plain]
+	"Infinity: /home/daniel/joern_test/test/test.c#104 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\"" -> "Infinity: /home/daniel/joern_test/test/test.c#34 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#118 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#126 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#134 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#121 
+\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#140 
+\"testPointers(buf)\"" [shape = plain]
+	"Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/daniel/joern_test/test/test.c#120 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\" test2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\""
+	"Infinity: /home/daniel/joern_test/test/test.c#61 
+\"strlen(buf123)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\" test2"
+	"Infinity: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#43 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#123 
+\"*abc = buf[1]\" abc" -> "Infinity: /home/daniel/joern_test/test/test.c#127 
+\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"(int *)test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#118 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd"
+	"Infinity: /home/daniel/joern_test/test/test.c#125 
+\"strlen(buf)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\" buf"
+	"Infinity: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\" buf123"
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
+\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#140 
+\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"* buf2 = test1.z\" buf2"
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"*retBuf = test(buf)\" retBuf"
+	"Infinity: /home/daniel/joern_test/test/test.c#66 
+\"char * test (char *buf1234)\" buf1234" -> "Infinity: /home/daniel/joern_test/test/test.c#69 
+\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#104 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#138 
+\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\""
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\"" -> "Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\" test2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#40 
+\"*buf\""
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\"" -> "Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\" test1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#143 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [shape = house]
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\" test1"
+	"Infinity: /home/daniel/joern_test/test/test.c#138 
+\"testWhile(buf)\"" [shape = plain]
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\" test1"
+	"Infinity: /home/daniel/joern_test/test/test.c#63 
+\"(int *)buf123\""
+	"Infinity: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#136 
+\"test2(buf)\""
+	"2.0: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\"" [shape = parallelogram]
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#112 
+\"buf[sizeof(buf) - 1]\"" -> "Infinity: /home/daniel/joern_test/test/test.c#112 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"1.3333333333333333: /home/daniel/joern_test/test/test.c#66 
+\"char * test (char *buf1234)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#66 
+\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\" buf"
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\"" -> "Infinity: /home/daniel/joern_test/test/test.c#31 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#121 
+\"*abc = buf\" abc"
+	"Infinity: /home/daniel/joern_test/test/test.c#129 
+\"test(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#129 
+\"(int *)test(buf)\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#47 
+\"*buf++\""
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" -> "Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\" test1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#123 
+\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#134 
+\"*retBuf = test(buf)\" retBuf" -> "Infinity: /home/daniel/joern_test/test/test.c#135 
+\"atoi(retBuf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#131 
 \"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\" test2"
+	"Infinity: /home/daniel/joern_test/test/test.c#69 
+\"strlen(buf1234)\"" [shape = diamond]
+	"Infinity: /home/daniel/joern_test/test/test.c#104 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
+	"Infinity: /home/daniel/joern_test/test/test.c#112 
+\"buf[sizeof(buf) - 1]\""
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#30 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#118 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"0.0: /home/daniel/joern_test/test/test.c#22 
+\"int testPointers (char *buf)\"" [shape = parallelogram]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#28 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#143 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#143 
+\"&bufTest\"" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#107 
+\"recv(s, buf, sizeof(buf), 0)\"" [shape = house]
+	"Infinity: /home/daniel/joern_test/test/test.c#34 
+\"test2->z\" test2" -> "Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#136 
+\"test2(buf)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#136 
+\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#31 
+\"test1.z\" test1" -> "Infinity: /home/daniel/joern_test/test/test.c#25 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#33 
+\"test2->x\" test2"
+	"Infinity: /home/daniel/joern_test/test/test.c#43 
+\"buf++\""
+	"0.9666666666666667: /home/daniel/joern_test/test/test.c#74 
+\"int main ()\"" -> "Infinity: /home/daniel/joern_test/test/test.c#143 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"2.0: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\"" -> "Infinity: /home/daniel/joern_test/test/test.c#58 
+\"int * test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /home/daniel/joern_test/test/test.c#136 
+\"p = test2(buf)\" p"
+	"Infinity: /home/daniel/joern_test/test/test.c#37 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /home/daniel/joern_test/test/test.c#40 
+\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
 }

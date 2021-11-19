@@ -99,6 +99,14 @@ def getCode(node: TaintNode) =
     case TaintNodeType.Call => getCallFromId(node.id).code.head
   }
 
+def getObject(node: TaintNode) =
+  getType(node) match {
+    case TaintNodeType.Argument => getArgumentFromId(node.id)
+    case TaintNodeType.Parameter => getParameterFromId(node.id)
+    case TaintNodeType.Return => getReturnFromId(node.id).astChildren
+    case TaintNodeType.Call => getCallFromId(node.id)
+  }
+
 def renderNode(innerNode: Graph[TaintNode, WLDiEdge]#NodeT, weightMap: Map[TaintNode, TaintNodeWeight]) = {
   val node = innerNode.value
   getType(node) match {
@@ -430,6 +438,8 @@ val indirectSourceOperationsCall: Map[Operation, OperationValue] = Map(
   Operation("<operator>.subtraction", srcIndex = 2) -> OperationValue(pointer_math_weight),
   Operation("<operator>.addition", srcIndex = 1) -> OperationValue(pointer_math_weight),
   Operation("<operator>.addition", srcIndex = 2) -> OperationValue(pointer_math_weight),
+  Operation("<operator>.fieldAccess", srcIndex = 1) -> OperationValue(0),
+  Operation("<operator>.indirectFieldAccess", srcIndex = 1) -> OperationValue(0),
 )
 
 // Map[Function name, source name Index]
@@ -476,7 +486,7 @@ def getIndirectSourceCall(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations
           node.argument.argumentIndex(operation.srcIndex).code.l.contains(getCode(taintNode.value)) &&
           taintNode.value.isSource
       }.map { case (_, operationValue: OperationValue) =>
-        (taintNode.value ~%+> TaintNode(node.id, TaintNodeType.Call, true)) (operationValue.weight, EdgeType.IndirectSourceCall)
+        (taintNode.value ~%+> TaintNode(node.id, TaintNodeType.Call, isSource = true)) (operationValue.weight, EdgeType.IndirectSourceCall)
       }
     )
   ).toList
@@ -545,10 +555,18 @@ def followReturns(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[Tai
       TaintNodeType.Argument, isSource = true)) (0, EdgeType.Return)
   ).toList
 
+def unzipFieldAccess(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
+  nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    getObject(taintNode.value).isCall.name.l.contains("<operator>.fieldAccess") || getObject(taintNode.value).isCall.name.l.contains("<operator>.indirectFieldAccess")
+  ).map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    (taintNode.value
+      ~%+> TaintNode(getObject(taintNode.value).isCall.argument.argumentIndex(1).id.head, TaintNodeType.Argument, isSource = true)) (0, EdgeType.IndirectSource)
+  ).toList
+
 def getSinks(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations: Map[Operation, OperationValue]): List[WLDiEdge[TaintNode]] =
   nodes.flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
     getMethod(taintNode.value).call.flatMap(node =>
-      operations.find { case (operation: Operation, operationValue: OperationValue) => node.name == operation.name &&
+      operations.find { case (operation: Operation, _) => node.name == operation.name &&
         node.argument.argumentIndex(operation.srcIndex).code.l.contains(getCode(taintNode.value)) &&
         taintNode.value.nodeType != TaintNodeType.Call && taintNode.value.nodeType != TaintNodeType.Return
       }.map { case (_, operationValue: OperationValue) =>
@@ -570,6 +588,7 @@ while (lastCount != taintGraph.size) {
   taintGraph ++= getIndirectSource(taintGraphNoRoot.nodes, indirectSourceOperations)
   taintGraph ++= getIndirectSourceCall(taintGraphNoRoot.nodes, indirectSourceOperationsCall)
   taintGraph ++= followFunctionCalls(taintGraphNoRoot.nodes)
+  taintGraph ++= unzipFieldAccess(taintGraphNoRoot.nodes)
   taintGraph ++= findReturns(taintGraphNoRoot.nodes)
   taintGraph ++= followReturns(taintGraphNoRoot.nodes)
 }

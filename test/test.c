@@ -14,13 +14,24 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-struct dnshdr {
-    uint16_t id, opts, qdcount, ancount, nscount, arcount;
+struct test_struct {
+    char* x;
+    int z;
 };
 
 int testPointers(char *buf)
 {
-    char *xyz = (struct dnshdr *)(buf + 1);
+    struct test_struct test1;
+    test1.x = buf;
+
+    struct test_struct *test2;
+    test2->x = buf;
+
+    char* buf1 = test1.x;
+    char* buf2 = test1.z;
+
+    char* buf3 = test2->x;
+    char* buf4 = test2->z;
 }
 
 int testWhile(char *buf)
