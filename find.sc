@@ -585,6 +585,8 @@ var lastCount = 0
 
 while (lastCount != taintGraph.size) {
   lastCount = taintGraph.size
+  println(s"last count: ${lastCount}")
+
   taintGraph ++= getIndirectSource(taintGraphNoRoot.nodes, indirectSourceOperations)
   taintGraph ++= getIndirectSourceCall(taintGraphNoRoot.nodes, indirectSourceOperationsCall)
   taintGraph ++= followFunctionCalls(taintGraphNoRoot.nodes)
