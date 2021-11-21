@@ -9,6 +9,7 @@ import scalax.collection.io.dot._
 import scala.sys.process.Process
 import java.io.{File, PrintWriter}
 import scala.collection.mutable.ListBuffer
+import scala.reflect.io.Directory
 
 //import $ivy.`org.scala-graph:graph-core_2.13:1.13.3`
 //import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
@@ -18,6 +19,8 @@ import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
 def cpg_typed: Cpg = cpg
 def output_path = s"${project.inputPath}/out"
 def directory: File = new File(output_path)
+val directoryD = new Directory(directory)
+directoryD.deleteRecursively()
 if (!directory.exists()) {
   directory.mkdir()
 }
@@ -607,6 +610,15 @@ sourceCreatorCalls.foreach{ case (operation, value) =>
 }
 
 taintGraph ++= getSource(cpg_typed.call, sourceOperations)
+if (taintGraph.size == 1) {
+  new PrintWriter(s"${output_path}/vuln.txt") {
+    write("No sources found!")
+    close()
+  }
+
+  throw new RuntimeException("No sources found!")
+} 
+
 var lastCount = 0
 
 while (lastCount != taintGraph.size) {
