@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef long unsigned int (*hStrLenFunc)(const char *str);
+
 int main2()
 {
-    char buf[] = "123";
+    hStrLenFunc strLenFunc = &strlen;
+    return (*strLenFunc)("123");
+}
 
-    buf += 1;
-    buf -= 1;
+int main()
+{
+    return main2();
 }

@@ -18,7 +18,7 @@ import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
 def cpg_typed: Cpg = cpg
 def output_path = s"${project.inputPath}/out"
 def directory: File = new File(output_path)
-if (!directory.exists()){
+if (!directory.exists()) {
   directory.mkdir()
 }
 
@@ -41,10 +41,12 @@ import TaintNodeType._
 
 case class TaintNode(id: Long,
                      nodeType: TaintNodeType,
-                     isSource: Boolean)
+                     isSource: Boolean
+                    )
 
 case class TaintNodeWeight(var shortestPath: Double = Double.PositiveInfinity,
-                           var visited: Boolean = false)
+                           var visited: Boolean = false
+                          )
 
 val rootNode = TaintNode(0, TaintNodeType.Root, isSource = false)
 var taintGraph: Graph[TaintNode, WLDiEdge] = Graph(rootNode)
@@ -414,8 +416,9 @@ val indirectSourceOperations: Map[Operation, OperationValue] = Map(
 
 // Map[Function name, OperationValue]
 val indirectSourceOperationsCall: Map[Operation, OperationValue] = Map(
+  Operation("<operator>.cast", srcIndex = 1) -> OperationValue(0),
+  Operation("<operator>.cast", srcIndex = 2) -> OperationValue(0),
   Operation("<operator>.indirectIndexAccess", srcIndex = 1) -> OperationValue(pointer_math_weight),
-  Operation("<operator>.cast", srcIndex = 2) -> OperationValue(4),
   Operation("<operator>.addition", srcIndex = 1) -> OperationValue(pointer_math_weight),
   Operation("<operator>.addressOf", srcIndex = 1) -> OperationValue(pointer_math_weight),
   Operation("<operator>.indirection", srcIndex = 1) -> OperationValue(pointer_math_weight),
@@ -451,7 +454,7 @@ val sourceCreator: Map[String, Int] = Map(
 def getSource(calls: Traversal[Call], operations: Map[Operation, OperationValue]): List[WLDiEdge[TaintNode]] =
   calls.flatMap(call =>
     operations.find { case (operation: Operation, _) =>
-      operation.name == call.name
+      operation.name == call.name || s"*${operation.name}" == call.name
     }.map { case (operation: Operation, operationValue: OperationValue) =>
       List(
         (rootNode ~%+> TaintNode(call.id, TaintNodeType.Source, isSource = false)) (0, EdgeType.Source),
@@ -496,7 +499,10 @@ def getCreatedSourceFunctions(calls: Traversal[Call], sourceCreator: Map[String,
     sourceOperations.flatMap { case (operation: Operation, operationValue: OperationValue) =>
       sourceCreator.find { case (creatorName, sourceNameIndex) => node.name == creatorName &&
         // Escaping double quote doesn't work https://github.com/scala/bug/issues/6476
-        node.argument.argumentIndex(sourceNameIndex).code.l.contains(s""""${operation.name}"""")
+        (
+          node.argument.argumentIndex(sourceNameIndex).code.l.contains(s""""${operation.name}"""") ||
+            node.code.contains(operation.name)
+          )
       }.map(_ => (Operation(node.code, dstIndex = operation.dstIndex), operationValue))
     }
   ).l.toMap
@@ -576,9 +582,29 @@ def getSinks(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations: Map[Operati
   ).toList
 
 var sourceCreatorCalls = getCreatedSourceFunctions(cpg_typed.call, sourceCreator, sourceOperations)
-sourceCreatorCalls ++= getCastVariables(cpg_typed.call, sourceCreatorCalls)
-sourceCreatorCalls ++= getAssignmentVariables(cpg_typed.call, sourceCreatorCalls)
-sourceOperations ++= sourceCreatorCalls
+
+sourceCreatorCalls.foreach{ case (operation, value) =>
+  var sourceGraph: Graph[TaintNode, WLDiEdge] = Graph(TaintNode(
+    cpg_typed.call.find(node => node.code == operation.name).get.id, TaintNodeType.Source, isSource = true
+  ))
+
+  var lastCount = 0
+  while (lastCount != sourceGraph.size) {
+    lastCount = sourceGraph.size
+    println(s"last source count: ${lastCount}")
+
+    sourceGraph ++= getIndirectSource(sourceGraph.nodes, indirectSourceOperations)
+    sourceGraph ++= getIndirectSourceCall(sourceGraph.nodes, indirectSourceOperationsCall)
+    sourceGraph ++= followFunctionCalls(sourceGraph.nodes)
+    sourceGraph ++= unzipFieldAccess(sourceGraph.nodes)
+    sourceGraph ++= findReturns(sourceGraph.nodes)
+    sourceGraph ++= followReturns(sourceGraph.nodes)
+  }
+
+  sourceOperations ++=  sourceGraph.nodes.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => (
+    (Operation(getCode(node.value), srcIndex = operation.srcIndex, dstIndex = operation.dstIndex)), value)
+  ).toMap
+}
 
 taintGraph ++= getSource(cpg_typed.call, sourceOperations)
 var lastCount = 0
@@ -599,12 +625,6 @@ taintGraph ++= getSinks(taintGraphNoRoot.nodes, sinkOperations)
 
 weightMap = fillShortestPaths(taintGraph, rootNode, weightMap)
 
-def methodGraph = getMethodGraph(taintGraph)
-methodGraph.get(rootNode).diSuccessors.foreach((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
-  methodWeightMap += node.value -> TaintNodeWeight(
-    node.innerEdgeTraverser.map((edge: Graph[TaintNode, WLDiEdge]#EdgeT) => edge.weight).sum / (getMethod(node.value).call.size + 1)
-  ))
-
 new PrintWriter(s"${output_path}/taintGraphSimple.dot") {
   write(exportTaintGraph(taintGraph))
   close()
@@ -616,6 +636,13 @@ new PrintWriter(s"${output_path}/taintGraph.dot") {
   close()
 }
 Process(s"dot -Tsvg ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.svg").!
+
+
+def methodGraph = getMethodGraph(taintGraph)
+methodGraph.get(rootNode).diSuccessors.foreach((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
+  methodWeightMap += node.value -> TaintNodeWeight(
+    node.innerEdgeTraverser.map((edge: Graph[TaintNode, WLDiEdge]#EdgeT) => edge.weight).sum / (getMethod(node.value).call.size + 1)
+  ))
 
 new PrintWriter(s"${output_path}/methodGraph.dot") {
   write(exportPrettyTaintGraph(methodGraph - rootNode, methodWeightMap))
@@ -643,7 +670,7 @@ def methods = methodGraph.nodes
   )
 
 output += s"Found ${methods.size} methods. ${methods.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => renderNode(node, methodWeightMap)).mkString("\n", "\n\n", "\n\n")}"
-println(output)
+// println(output)
 
 new PrintWriter(s"${output_path}/out.txt") {
   write(output)

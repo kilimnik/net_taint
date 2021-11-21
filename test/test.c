@@ -19,6 +19,15 @@ struct test_struct {
     int z;
 };
 
+int testProc()
+{
+    char* recv_s = "recv";
+    int frecv = GetProcAddress(NULL, recv_s);
+
+    if (frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR)
+        printf("recv() failed with error code : %d", WSAGetLastError());
+}
+
 int testPointers(char *buf)
 {
     struct test_struct test1;
@@ -70,6 +79,8 @@ char *test(char *buf1234)
 
     return buf1234;
 }
+typedef int (WSAAPI *hRecvFunc)(SOCKET s, char* buf, int len, int flags);
+
 
 int main()
 {
@@ -99,7 +110,8 @@ int main()
     char buf1[256];
     memset(buf, 0, sizeof(buf));
 
-    int frecv = GetProcAddress(NULL, "recv");
+    int frecv = (char*)GetProcAddress(NULL, "recv");
+    hRecv = (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv);
 
     if (frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR)
         printf("recv() failed with error code : %d", WSAGetLastError());
