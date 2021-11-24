@@ -32,12 +32,12 @@ def escape(raw: String): String = {
 
 object EdgeType extends Enumeration {
   type EdgeType = Value
-  val Source, IndirectSource, IndirectSourceCall, Call, Parameter, Return, ReturnCall, Sink = Value
+  val Source, IndirectSource, IndirectSourceCall, Call, Parameter, ParameterReverse, ParameterSource, Return, ReturnCall, Sink = Value
 }
 
 object TaintNodeType extends Enumeration {
   type TaintNodeType = Value
-  val Root, Argument, Parameter, Return, Call, Sink, Method, Source = Value
+  val Root, Argument, Parameter, ParameterReverse, Return, Call, Sink, Method, Source = Value
 }
 
 import TaintNodeType._
@@ -91,6 +91,7 @@ def getMethod(node: TaintNode) =
   getType(node) match {
     case TaintNodeType.Argument => getArgumentMethod(node.id)
     case TaintNodeType.Parameter => getParameterMethod(node.id)
+    case TaintNodeType.ParameterReverse => getParameterMethod(node.id)
     case TaintNodeType.Return => getReturnMethod(node.id)
     case TaintNodeType.Call => getCallMethod(node.id)
     case TaintNodeType.Method => getMethodFromId(node.id)
@@ -100,6 +101,7 @@ def getCode(node: TaintNode) =
   getType(node) match {
     case TaintNodeType.Argument => getArgumentFromId(node.id).code.head
     case TaintNodeType.Parameter => getParameterFromId(node.id).name.head
+    case TaintNodeType.ParameterReverse => getParameterFromId(node.id).name.head
     case TaintNodeType.Return => getReturnFromId(node.id).astChildren.code.head
     case TaintNodeType.Call => getCallFromId(node.id).code.head
   }
@@ -108,6 +110,7 @@ def getObject(node: TaintNode) =
   getType(node) match {
     case TaintNodeType.Argument => getArgumentFromId(node.id)
     case TaintNodeType.Parameter => getParameterFromId(node.id)
+    case TaintNodeType.ParameterReverse => getParameterFromId(node.id)
     case TaintNodeType.Return => getReturnFromId(node.id).astChildren
     case TaintNodeType.Call => getCallFromId(node.id)
   }
@@ -159,6 +162,8 @@ def getNodeAttrList(node: TaintNode) = {
       case TaintNodeType.Argument =>
 
       case TaintNodeType.Parameter =>
+
+      case TaintNodeType.ParameterReverse =>
 
       case TaintNodeType.Return =>
 
@@ -288,6 +293,8 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
   methodGraph ++= graph.edges
     .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.Source)
     .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.Parameter)
+    .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.ParameterReverse)
+    .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.ParameterSource)
     .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.Return)
     .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label != EdgeType.ReturnCall)
 
@@ -305,6 +312,23 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
     .flatMap((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) =>
       List(
         (rootNode ~%+> TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false)) (0, EdgeType.Call),
+        (TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false) ~%+> innerEdge.to.value) (0, innerEdge.edge.label)
+      )
+    )
+
+  methodGraph ++= graph.edges
+    .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label == EdgeType.ParameterReverse)
+    .flatMap((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) =>
+      List(
+        (rootNode ~%+> TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false)) (0, EdgeType.Call),
+        (TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false) ~%+> innerEdge.to.value) (0, innerEdge.edge.label)
+      )
+    )
+
+  methodGraph ++= graph.edges
+    .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label == EdgeType.ParameterSource)
+    .flatMap((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) =>
+      List(
         (TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false) ~%+> innerEdge.to.value) (0, innerEdge.edge.label)
       )
     )
@@ -535,7 +559,8 @@ def followFunctionCalls(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEd
       flatMap(node =>
         node.argument.filter(arg =>
           arg.code == getCode(taintNode.value) &&
-            taintNode.value.isSource
+            taintNode.value.isSource &&
+            !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) => paramNode.value.id == arg.id)
         ).flatMap(arg =>
           List(
             (taintNode.value ~%+> TaintNode(arg.call.id.head, TaintNodeType.Call, isSource = false)) (0, EdgeType.Call),
@@ -564,6 +589,34 @@ def followReturns(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[Tai
       TaintNodeType.Argument, isSource = true)) (0, EdgeType.Return)
   ).toList
 
+def lookForParameters(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
+  nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    taintNode.value.nodeType != TaintNodeType.ParameterReverse &&
+      taintNode.value.nodeType != TaintNodeType.Parameter
+  ).flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    getMethod(taintNode.value).parameter.find(
+      param => param.name == getCode(taintNode.value) &&
+        !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) => paramNode.value.id == param.id)
+    ).map(param =>
+      (taintNode.value ~%+> TaintNode(param.id, TaintNodeType.ParameterReverse, isSource = true)) (0, EdgeType.ParameterReverse)
+    )
+  ).toList
+
+def lookForCalls(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
+  nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    taintNode.value.nodeType == TaintNodeType.ParameterReverse
+  ).flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    getMethod(taintNode.value).callIn.map(call =>
+      (taintNode.value ~%+>
+        TaintNode(
+          call.argument.argumentIndex(
+            getParameterFromId(taintNode.value.id).order.head).id.head, TaintNodeType.Argument, isSource = true
+        )
+        ) (0, EdgeType.ParameterSource)
+    )
+  ).toList
+
+
 def unzipFieldAccess(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
   nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
     getObject(taintNode.value).isCall.name.l.contains("<operator>.fieldAccess") || getObject(taintNode.value).isCall.name.l.contains("<operator>.indirectFieldAccess")
@@ -586,7 +639,7 @@ def getSinks(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations: Map[Operati
 
 var sourceCreatorCalls = getCreatedSourceFunctions(cpg_typed.call, sourceCreator, sourceOperations)
 
-sourceCreatorCalls.foreach{ case (operation, value) =>
+sourceCreatorCalls.foreach { case (operation, value) =>
   var sourceGraph: Graph[TaintNode, WLDiEdge] = Graph(TaintNode(
     cpg_typed.call.find(node => node.code == operation.name).get.id, TaintNodeType.Source, isSource = true
   ))
@@ -602,9 +655,11 @@ sourceCreatorCalls.foreach{ case (operation, value) =>
     sourceGraph ++= unzipFieldAccess(sourceGraph.nodes)
     sourceGraph ++= findReturns(sourceGraph.nodes)
     sourceGraph ++= followReturns(sourceGraph.nodes)
+    sourceGraph ++= lookForParameters(sourceGraph.nodes)
+    sourceGraph ++= lookForCalls(sourceGraph.nodes)
   }
 
-  sourceOperations ++=  sourceGraph.nodes.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => (
+  sourceOperations ++= sourceGraph.nodes.map((node: Graph[TaintNode, WLDiEdge]#NodeT) => (
     (Operation(getCode(node.value), srcIndex = operation.srcIndex, dstIndex = operation.dstIndex)), value)
   ).toMap
 }
@@ -617,7 +672,7 @@ if (taintGraph.size == 1) {
   }
 
   throw new RuntimeException("No sources found!")
-} 
+}
 
 var lastCount = 0
 
@@ -631,6 +686,8 @@ while (lastCount != taintGraph.size) {
   taintGraph ++= unzipFieldAccess(taintGraphNoRoot.nodes)
   taintGraph ++= findReturns(taintGraphNoRoot.nodes)
   taintGraph ++= followReturns(taintGraphNoRoot.nodes)
+  taintGraph ++= lookForParameters(taintGraphNoRoot.nodes)
+  taintGraph ++= lookForCalls(taintGraphNoRoot.nodes)
 }
 
 taintGraph ++= getSinks(taintGraphNoRoot.nodes, sinkOperations)

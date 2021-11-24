@@ -1,8 +1,6 @@
 digraph TaintDot {
 	nodesep = 1.5
 	ranksep = 1.5
-	"5.0: /home/daniel/joern_test/test/test.c#67 
-\"int* test2 (char *buf123)\" buf123"
 	"5.0: /home/daniel/joern_test/test/test.c#31 
 \"int testPointers (char *buf)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
@@ -39,6 +37,9 @@ digraph TaintDot {
 	"5.0: /home/daniel/joern_test/test/test.c#119 
 \"recv(s, buf, sizeof(buf), 0)\" buf" -> "11.0: /home/daniel/joern_test/test/test.c#132 
 \"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"5.0: /home/daniel/joern_test/test/test.c#22 
+\"int testProc (char* buf1)\" buf1" -> "5.0: /home/daniel/joern_test/test/test.c#158 
+\"testProc(bufTestProc)\" bufTestProc" [label = "0.0: ParameterSource", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#43 
 \"test2->z\" test2" -> "5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
@@ -95,9 +96,6 @@ digraph TaintDot {
 \"recv(s, buf, sizeof(buf), 0)\" buf" [label = "5.0: Call", penwidth = 6.0]
 	"5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\""
-	"5.0: /home/daniel/joern_test/test/test.c#148 
-\"test2(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#67 
-\"int* test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#141 
 \"test(buf)\"" [shape = plain]
 	"10.0: /home/daniel/joern_test/test/test.c#56 
@@ -120,6 +118,9 @@ digraph TaintDot {
 \"(int *)buf123\""
 	"5.0: /home/daniel/joern_test/test/test.c#141 
 \"*p = (int *)test(buf)\" p"
+	"5.0: /home/daniel/joern_test/test/test.c#75 
+\"char * test (char *buf1234)\" buf1234" -> "9.0: /home/daniel/joern_test/test/test.c#78 
+\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
 	"0.0: /home/daniel/joern_test/test/test.c#27 
 \"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "5.0: /home/daniel/joern_test/test/test.c#27 
 \"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
@@ -136,15 +137,20 @@ digraph TaintDot {
 \"test2->x\" test2"
 	"5.0: /home/daniel/joern_test/test/test.c#146 
 \"*retBuf = test(buf)\" retBuf"
+	"9.0: /home/daniel/joern_test/test/test.c#159 
+\"strlen(bufTestProc)\"" [shape = diamond]
 	"9.0: /home/daniel/joern_test/test/test.c#137 
 \"strlen(buf)\"" [shape = diamond]
+	"5.0: /home/daniel/joern_test/test/test.c#141 
+\"test(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#75 
+\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#39 
 \"test1.x\""
 	"5.0: /home/daniel/joern_test/test/test.c#146 
 \"test(buf)\""
-	"5.0: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\" buf1234" -> "9.0: /home/daniel/joern_test/test/test.c#78 
-\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"5.0: /home/daniel/joern_test/test/test.c#27 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "5.0: /home/daniel/joern_test/test/test.c#22 
+\"int testProc (char* buf1)\" buf1" [label = "0.0: ParameterReverse", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#119 
 \"recv(s, buf, sizeof(buf), 0)\" buf" -> "5.0: /home/daniel/joern_test/test/test.c#141 
 \"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
@@ -162,11 +168,16 @@ digraph TaintDot {
 	"5.0: /home/daniel/joern_test/test/test.c#72 
 \"return (int *)buf123;\" (int *)buf123" -> "5.0: /home/daniel/joern_test/test/test.c#148 
 \"test2(buf)\"" [label = "0.0: Return", penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#75 
+\"char * test (char *buf1234)\" buf1234" -> "5.0: /home/daniel/joern_test/test/test.c#80 
+\"return buf1234;\" buf1234" [label = "0.0: ReturnCall", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#116 
 \"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
 	"5.0: /home/daniel/joern_test/test/test.c#40 
 \"test1.z\"" -> "5.0: /home/daniel/joern_test/test/test.c#40 
 \"test1.z\" test1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#158 
+\"testProc(bufTestProc)\" bufTestProc"
 	"5.0: /home/daniel/joern_test/test/test.c#119 
 \"recv(s, buf, sizeof(buf), 0)\" buf" -> "8.0: /home/daniel/joern_test/test/test.c#143 
 \"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
@@ -181,14 +192,14 @@ digraph TaintDot {
 \"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#43 
 \"* buf4 = test2->z\" buf4"
+	"5.0: /home/daniel/joern_test/test/test.c#158 
+\"testProc(bufTestProc)\" bufTestProc" -> "9.0: /home/daniel/joern_test/test/test.c#159 
+\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
 	"5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\" test2"
 	"5.0: /home/daniel/joern_test/test/test.c#34 
 \"test1.x\" test1" -> "5.0: /home/daniel/joern_test/test/test.c#40 
 \"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#146 
-\"test(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
 	"15.0: /home/daniel/joern_test/test/test.c#56 
 \"*buf++\""
 	"0.0: /home/daniel/joern_test/test/test.c#116 
@@ -196,14 +207,16 @@ digraph TaintDot {
 	"5.0: /home/daniel/joern_test/test/test.c#42 
 \"test2->x\"" -> "5.0: /home/daniel/joern_test/test/test.c#42 
 \"test2->x\" test2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#67 
+\"int * test2 (char *buf123)\" buf123" -> "9.0: /home/daniel/joern_test/test/test.c#70 
+\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
 	"10.0: /home/daniel/joern_test/test/test.c#49 
 \"*buf\""
+	"5.0: /home/daniel/joern_test/test/test.c#75 
+\"char * test (char *buf1234)\" buf1234"
 	"5.0: /home/daniel/joern_test/test/test.c#146 
 \"*retBuf = test(buf)\" retBuf" -> "8.0: /home/daniel/joern_test/test/test.c#147 
 \"atoi(retBuf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"5.0: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\" buf1234" -> "5.0: /home/daniel/joern_test/test/test.c#80 
-\"return buf1234;\" buf1234" [label = "0.0: ReturnCall", penwidth = 1.0]
 	"11.0: /home/daniel/joern_test/test/test.c#132 
 \"strcpy(abcd, buf)\" abcd" -> "15.0: /home/daniel/joern_test/test/test.c#138 
 \"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
@@ -242,18 +255,16 @@ digraph TaintDot {
 \"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
 	"14.0: /home/daniel/joern_test/test/test.c#49 
 \"*buf != 0\""
-	"5.0: /home/daniel/joern_test/test/test.c#141 
-\"test(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#150 
 \"testWhile(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#46 
 \"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#34 
 \"test1.x\" test1"
-	"5.0: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\" buf1234"
 	"5.0: /home/daniel/joern_test/test/test.c#133 
 \"*abc = buf\" abc"
+	"5.0: /home/daniel/joern_test/test/test.c#146 
+\"test(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#75 
+\"char * test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
 	"15.0: /home/daniel/joern_test/test/test.c#138 
 \"strlen(abcd)\"" [shape = diamond]
 	"5.0: /home/daniel/joern_test/test/test.c#39 
@@ -288,6 +299,8 @@ digraph TaintDot {
 \"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
 	"5.0: /home/daniel/joern_test/test/test.c#40 
 \"test1.z\""
+	"5.0: /home/daniel/joern_test/test/test.c#67 
+\"int * test2 (char *buf123)\" buf123"
 	"5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\" test2" -> "5.0: /home/daniel/joern_test/test/test.c#37 
 \"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
@@ -312,9 +325,6 @@ digraph TaintDot {
 	"5.0: /home/daniel/joern_test/test/test.c#40 
 \"test1.z\" test1" -> "5.0: /home/daniel/joern_test/test/test.c#39 
 \"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"5.0: /home/daniel/joern_test/test/test.c#67 
-\"int* test2 (char *buf123)\" buf123" -> "9.0: /home/daniel/joern_test/test/test.c#70 
-\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
 	"5.0: /home/daniel/joern_test/test/test.c#43 
 \"test2->z\"" -> "5.0: /home/daniel/joern_test/test/test.c#43 
 \"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
@@ -349,15 +359,20 @@ digraph TaintDot {
 	"5.0: /home/daniel/joern_test/test/test.c#133 
 \"*abc = buf\" abc" -> "9.0: /home/daniel/joern_test/test/test.c#139 
 \"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"5.0: /home/daniel/joern_test/test/test.c#67 
+\"int * test2 (char *buf123)\" buf123" -> "5.0: /home/daniel/joern_test/test/test.c#72 
+\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
 	"5.0: /home/daniel/joern_test/test/test.c#119 
 \"recv(s, buf, sizeof(buf), 0)\" buf" -> "9.0: /home/daniel/joern_test/test/test.c#137 
 \"strlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"5.0: /home/daniel/joern_test/test/test.c#67 
-\"int* test2 (char *buf123)\" buf123" -> "5.0: /home/daniel/joern_test/test/test.c#72 
-\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#22 
+\"int testProc (char* buf1)\" buf1"
 	"5.0: /home/daniel/joern_test/test/test.c#141 
 \"(int *)test(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#141 
 \"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"5.0: /home/daniel/joern_test/test/test.c#148 
+\"test2(buf)\"" -> "5.0: /home/daniel/joern_test/test/test.c#67 
+\"int * test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
 	"10.0: /home/daniel/joern_test/test/test.c#135 
 \"buf[1]\"" -> "10.0: /home/daniel/joern_test/test/test.c#135 
 \"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]

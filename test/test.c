@@ -19,7 +19,7 @@ struct test_struct {
     int z;
 };
 
-int testProc()
+int testProc(char* buf1)
 {
     char* recv_s = "recv";
     int frecv = GetProcAddress(NULL, recv_s);
@@ -153,6 +153,10 @@ int main()
 
     char bufTest[10] = "1234";
     recv(s, &bufTest, sizeof(bufTest), 0);
+
+    char* bufTestProc;
+    testProc(bufTestProc);
+    strlen(bufTestProc);
 
 
     return 0;

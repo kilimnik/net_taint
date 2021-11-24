@@ -1,10 +1,13 @@
-Found 65 nodes.
-Found 8 sink. 
+Found 68 nodes.
+Found 9 sink. 
 17.0: /home/daniel/joern_test/test/test.c#132 
 \"strcpy(abcd, buf)\"
 
 15.0: /home/daniel/joern_test/test/test.c#138 
 \"strlen(abcd)\"
+
+9.0: /home/daniel/joern_test/test/test.c#159 
+\"strlen(bufTestProc)\"
 
 9.0: /home/daniel/joern_test/test/test.c#78 
 \"strlen(buf1234)\"
@@ -12,33 +15,33 @@ Found 8 sink.
 9.0: /home/daniel/joern_test/test/test.c#137 
 \"strlen(buf)\"
 
-9.0: /home/daniel/joern_test/test/test.c#70 
-\"strlen(buf123)\"
-
 9.0: /home/daniel/joern_test/test/test.c#139 
 \"strlen(abc)\"
 
-8.0: /home/daniel/joern_test/test/test.c#143 
-\"atoi(buf)\"
+9.0: /home/daniel/joern_test/test/test.c#70 
+\"strlen(buf123)\"
 
 8.0: /home/daniel/joern_test/test/test.c#147 
 \"atoi(retBuf)\"
+
+8.0: /home/daniel/joern_test/test/test.c#143 
+\"atoi(buf)\"
 
 Found 6 methods. 
 3.625: /home/daniel/joern_test/test/test.c#46 
 \"int testWhile (char *buf)\"
 
 1.3333333333333333: /home/daniel/joern_test/test/test.c#75 
-\"char* test (char *buf1234)\"
+\"char * test (char *buf1234)\"
 
 1.0: /home/daniel/joern_test/test/test.c#67 
-\"int* test2 (char *buf123)\"
+\"int * test2 (char *buf123)\"
 
-0.8229166666666666: /home/daniel/joern_test/test/test.c#85 
+0.8556701030927835: /home/daniel/joern_test/test/test.c#85 
 \"int main ()\"
 
-0.45454545454545453: /home/daniel/joern_test/test/test.c#22 
-\"int testProc ()\"
+0.5: /home/daniel/joern_test/test/test.c#22 
+\"int testProc (char* buf1)\"
 
 0.0: /home/daniel/joern_test/test/test.c#31 
 \"int testPointers (char *buf)\"
