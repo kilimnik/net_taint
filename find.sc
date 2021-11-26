@@ -329,6 +329,7 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
     .filter((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) => innerEdge.edge.label == EdgeType.ParameterSource)
     .flatMap((innerEdge: Graph[TaintNode, WLDiEdge]#EdgeT) =>
       List(
+        (rootNode ~%+> TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false)) (0, EdgeType.Call),
         (TaintNode(getMethod(innerEdge.to.value).head.id, TaintNodeType.Method, isSource = false) ~%+> innerEdge.to.value) (0, innerEdge.edge.label)
       )
     )
@@ -708,7 +709,7 @@ Process(s"dot -Tsvg ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.s
 
 
 def methodGraph = getMethodGraph(taintGraph)
-methodGraph.get(rootNode).diSuccessors.foreach((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
+methodGraph.get(rootNode).diSuccessors.foreach((node: Graph[TaintNode, WLDiEdge]#NodeT) => 
   methodWeightMap += node.value -> TaintNodeWeight(
     node.innerEdgeTraverser.map((edge: Graph[TaintNode, WLDiEdge]#EdgeT) => edge.weight).sum / (getMethod(node.value).call.size + 1)
   ))
