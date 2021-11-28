@@ -478,6 +478,22 @@ val sourceCreator: Map[String, Int] = Map(
   "GetProcAddress" -> 2
 )
 
+val subSourceCall: Map[Operation, OperationValue] = Map(
+  Operation("<operator>.cast") -> OperationValue(0),
+  Operation("<operator>.cast") -> OperationValue(0),
+  Operation("<operator>.indirectIndexAccess") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addressOf") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.indirection") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.preIncrement") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.postIncrement") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.subtraction") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.subtraction") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
+  Operation("<operator>.fieldAccess") -> OperationValue(0),
+  Operation("<operator>.indirectFieldAccess") -> OperationValue(0),
+)
 
 def getSource(calls: Traversal[Call], operations: Map[Operation, OperationValue]): List[WLDiEdge[TaintNode]] =
   calls.flatMap(call =>
@@ -521,6 +537,19 @@ def getIndirectSourceCall(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations
       }
     )
   ).toList
+
+def followSubSource(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations: Map[Operation, OperationValue]): List[WLDiEdge[TaintNode]] = 
+  nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    getType(taintNode.value) == TaintNodeType.Call
+  ).flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    operations.find { case (operation: Operation, _) =>
+      getCallFromId(taintNode.value.id).name.head == operation.name
+    }.map { case (_, operationValue: OperationValue) =>
+      getCallFromId(taintNode.value.id).argument.isIdentifier.map(arg => 
+        (taintNode.value ~%+> TaintNode(arg.id, TaintNodeType.Argument, isSource = true)) (operationValue.weight, EdgeType.IndirectSourceCall)
+      ).l
+    }
+  ).flatten.toList
 
 def getCreatedSourceFunctions(calls: Traversal[Call], sourceCreator: Map[String, Int], sourceOperations: Map[Operation, OperationValue]) =
   calls.flatMap(node =>
@@ -652,6 +681,7 @@ sourceCreatorCalls.foreach { case (operation, value) =>
 
     sourceGraph ++= getIndirectSource(sourceGraph.nodes, indirectSourceOperations)
     sourceGraph ++= getIndirectSourceCall(sourceGraph.nodes, indirectSourceOperationsCall)
+    sourceGraph ++= followSubSource(sourceGraph.nodes, subSourceCall)
     sourceGraph ++= followFunctionCalls(sourceGraph.nodes)
     sourceGraph ++= unzipFieldAccess(sourceGraph.nodes)
     sourceGraph ++= findReturns(sourceGraph.nodes)
@@ -683,6 +713,7 @@ while (lastCount != taintGraph.size) {
 
   taintGraph ++= getIndirectSource(taintGraphNoRoot.nodes, indirectSourceOperations)
   taintGraph ++= getIndirectSourceCall(taintGraphNoRoot.nodes, indirectSourceOperationsCall)
+  taintGraph ++= followSubSource(taintGraphNoRoot.nodes, subSourceCall)
   taintGraph ++= followFunctionCalls(taintGraphNoRoot.nodes)
   taintGraph ++= unzipFieldAccess(taintGraphNoRoot.nodes)
   taintGraph ++= findReturns(taintGraphNoRoot.nodes)
