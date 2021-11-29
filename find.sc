@@ -732,13 +732,13 @@ new PrintWriter(s"${output_path}/taintGraphSimple.dot") {
   write(exportTaintGraph(taintGraph))
   close()
 }
-Process(s"dot -Tsvg ${output_path}/taintGraphSimple.dot -o ${output_path}/taintGraphSimple.svg").!
+Process(s"dot -Tpdf ${output_path}/taintGraphSimple.dot -o ${output_path}/taintGraphSimple.pdf").!
 
 new PrintWriter(s"${output_path}/taintGraph.dot") {
   write(exportPrettyTaintGraph(taintGraphNoRoot, weightMap))
   close()
 }
-Process(s"dot -Tsvg ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.svg").!
+Process(s"dot -Tpdf ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.pdf").!
 
 
 def methodGraph = getMethodGraph(taintGraph)
@@ -751,7 +751,7 @@ new PrintWriter(s"${output_path}/methodGraph.dot") {
   write(exportPrettyTaintGraph(methodGraph - rootNode, methodWeightMap))
   close()
 }
-Process(s"dot -Tsvg ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.svg").!
+Process(s"dot -Tpdf ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.pdf").!
 
 var output = ""
 output += s"Found ${taintGraphNoRoot.nodes.size} nodes.\n"
