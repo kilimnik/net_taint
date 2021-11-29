@@ -545,7 +545,9 @@ def followSubSource(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT, operations: Map[
     operations.find { case (operation: Operation, _) =>
       getCallFromId(taintNode.value.id).name.head == operation.name
     }.map { case (_, operationValue: OperationValue) =>
-      getCallFromId(taintNode.value.id).argument.isIdentifier.map(arg => 
+      getCallFromId(taintNode.value.id).argument.filterNot(arg =>
+          arg.isLiteral
+        ).map(arg => 
         (taintNode.value ~%+> TaintNode(arg.id, TaintNodeType.Argument, isSource = true)) (operationValue.weight, EdgeType.IndirectSourceCall)
       ).l
     }
