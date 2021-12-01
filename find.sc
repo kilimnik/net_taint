@@ -499,13 +499,15 @@ def getSource(calls: Traversal[Call], operations: Map[Operation, OperationValue]
   calls.flatMap(call =>
     operations.find { case (operation: Operation, _) =>
       operation.name == call.name || s"*${operation.name}" == call.name
-    }.map { case (operation: Operation, operationValue: OperationValue) =>
-      List(
-        (rootNode ~%+> TaintNode(call.id, TaintNodeType.Source, isSource = false)) (0, EdgeType.Source),
-        (TaintNode(call.id, TaintNodeType.Source, isSource = false) ~%+>
-          TaintNode(call.argument.argumentIndex(operation.dstIndex).id.head, TaintNodeType.Argument, isSource = true))
-          (operationValue.weight, EdgeType.Call)
-      )
+    }.map { case (operation: Operation, operationValue: OperationValue) => 
+      call.argument.argumentIndex(operation.dstIndex).flatMap(arg => 
+        List(
+          (rootNode ~%+> TaintNode(call.id, TaintNodeType.Source, isSource = false)) (0, EdgeType.Source),
+          (TaintNode(call.id, TaintNodeType.Source, isSource = false) ~%+>
+            TaintNode(call.argument.argumentIndex(operation.dstIndex).id.head, TaintNodeType.Argument, isSource = true))
+            (operationValue.weight, EdgeType.Call)
+        )
+      )      
     }
   ).l.flatten
 
@@ -615,10 +617,11 @@ def findReturns(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[Taint
 def followReturns(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
   nodes.filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
     taintNode.value.nodeType == TaintNodeType.Return
-  ).map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-    (taintNode.value ~%+> TaintNode(taintNode.outerNodeTraverser.
-      findPredecessor(node => node.value.nodeType == TaintNodeType.Call && !node.value.isSource).get.value.id,
-      TaintNodeType.Argument, isSource = true)) (0, EdgeType.Return)
+  ).flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    taintNode.outerNodeTraverser.
+      findPredecessor(node => node.value.nodeType == TaintNodeType.Call && !node.value.isSource).map(n => 
+        (taintNode.value ~%+> TaintNode(n.value.id, TaintNodeType.Argument, isSource = true)) (0, EdgeType.Return)
+      )
   ).toList
 
 def lookForParameters(nodes: Graph[TaintNode, WLDiEdge]#NodeSetT): List[WLDiEdge[TaintNode]] =
@@ -732,13 +735,13 @@ new PrintWriter(s"${output_path}/taintGraphSimple.dot") {
   write(exportTaintGraph(taintGraph))
   close()
 }
-Process(s"dot -Tpdf ${output_path}/taintGraphSimple.dot -o ${output_path}/taintGraphSimple.pdf").!
+// Process(s"dot -Tpdf ${output_path}/taintGraphSimple.dot -o ${output_path}/taintGraphSimple.pdf").!
 
 new PrintWriter(s"${output_path}/taintGraph.dot") {
   write(exportPrettyTaintGraph(taintGraphNoRoot, weightMap))
   close()
 }
-Process(s"dot -Tpdf ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.pdf").!
+// Process(s"dot -Tpdf ${output_path}/taintGraph.dot -o ${output_path}/taintGraph.pdf").!
 
 
 def methodGraph = getMethodGraph(taintGraph)
@@ -751,7 +754,7 @@ new PrintWriter(s"${output_path}/methodGraph.dot") {
   write(exportPrettyTaintGraph(methodGraph - rootNode, methodWeightMap))
   close()
 }
-Process(s"dot -Tpdf ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.pdf").!
+// Process(s"dot -Tpdf ${output_path}/methodGraph.dot -o ${output_path}/methodGraph.pdf").!
 
 var output = ""
 output += s"Found ${taintGraphNoRoot.nodes.size} nodes.\n"
