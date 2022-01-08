@@ -134,7 +134,9 @@ int main()
 
     char *abc = buf[1];
 
-    int z = strlen(buf);
+    int fStrlen = strlen;
+
+    int z = fStrlen(buf);
     z = strlen(abcd);
     z = strlen(abc);
 

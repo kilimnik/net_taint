@@ -1,35 +1,35 @@
-Found 9 sink. 
+Found 8 sink. 
 17.0: /home/D_K/BA/net_taint/test/test.c#132 
 \"strcpy(abcd, buf)\"
 
-15.0: /home/D_K/BA/net_taint/test/test.c#138 
+15.0: /home/D_K/BA/net_taint/test/test.c#140 
 \"strlen(abcd)\"
 
-9.0: /home/D_K/BA/net_taint/test/test.c#159 
+9.0: /home/D_K/BA/net_taint/test/test.c#161 
 \"strlen(bufTestProc)\"
+
+9.0: /home/D_K/BA/net_taint/test/test.c#141 
+\"strlen(abc)\"
+
+9.0: /home/D_K/BA/net_taint/test/test.c#139 
+\"fStrlen(buf)\"
 
 9.0: /home/D_K/BA/net_taint/test/test.c#78 
 \"strlen(buf1234)\"
 
-9.0: /home/D_K/BA/net_taint/test/test.c#137 
-\"strlen(buf)\"
-
-9.0: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abc)\"
-
-9.0: /home/D_K/BA/net_taint/test/test.c#70 
-\"strlen(buf123)\"
-
-8.0: /home/D_K/BA/net_taint/test/test.c#147 
+8.0: /home/D_K/BA/net_taint/test/test.c#149 
 \"atoi(retBuf)\"
 
-8.0: /home/D_K/BA/net_taint/test/test.c#143 
+8.0: /home/D_K/BA/net_taint/test/test.c#145 
 \"atoi(buf)\"
 
 
-Found 2 methods. 
+Found 3 methods. 
 13.0: /home/D_K/BA/net_taint/test/test.c#46 
 \"int testWhile (char *buf)\"
 
-2.0: /home/D_K/BA/net_taint/test/test.c#67 
-\"int * test2 (char *buf123)\"
+3.0: /home/D_K/BA/net_taint/test/test.c#75 
+\"char * test (char *buf1234)\"
+
+2.704081632653061: /home/D_K/BA/net_taint/test/test.c#85 
+\"int main ()\"
