@@ -67,7 +67,8 @@ var methodWeightMap: Map[TaintNode, TaintNodeWeight] = Map(
   rootNode -> TaintNodeWeight(0)
 )
 
-def getArgumentFromId(id: Long) = cpg_typed.argument.id(id) ++ cpg_typed.identifier.id(id)
+def getArgumentFromId(id: Long) =
+  cpg_typed.argument.id(id) ++ cpg_typed.identifier.id(id)
 def getArgumentMethod(id: Long) = getArgumentFromId(id).call.inAst.isMethod
 
 def getParameterFromId(id: Long) = cpg_typed.parameter.id(id)
@@ -900,22 +901,24 @@ def followFunctionCalls(
                 )
             )
             .flatMap(arg =>
-              List(
-                (taintNode.value ~%+> TaintNode(
-                  arg.call.id.head,
-                  TaintNodeType.Call,
-                  isSource = false
-                ))(0, EdgeType.Call),
-                (TaintNode(
-                  arg.call.id.head,
-                  TaintNodeType.Call,
-                  isSource = false
-                ) ~%+> TaintNode(
-                  arg.parameter.id.head,
-                  TaintNodeType.Parameter,
-                  isSource = true
-                ))(0, EdgeType.Parameter)
-              )
+              if (arg.parameter.size > 0)
+                List(
+                  (taintNode.value ~%+> TaintNode(
+                    arg.call.id.head,
+                    TaintNodeType.Call,
+                    isSource = false
+                  ))(0, EdgeType.Call),
+                  (TaintNode(
+                    arg.call.id.head,
+                    TaintNodeType.Call,
+                    isSource = false
+                  ) ~%+> TaintNode(
+                    arg.parameter.id.head,
+                    TaintNodeType.Parameter,
+                    isSource = true
+                  ))(0, EdgeType.Parameter)
+                )
+              else List()
             )
         )
         .l
@@ -999,16 +1002,24 @@ def lookForCalls(
       taintNode.value.nodeType == TaintNodeType.ParameterReverse
     )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).callIn.map(call =>
-        (taintNode.value ~%+>
-          TaintNode(
-            call.argument
-              .argumentIndex(getParameterFromId(taintNode.value.id).order.head)
-              .id
-              .head,
-            TaintNodeType.Argument,
-            isSource = true
-          ))(0, EdgeType.ParameterSource)
+      getMethod(taintNode.value).callIn.flatMap(call =>
+        if (
+          call.argument.size > getParameterFromId(taintNode.value.id).order.head
+        )
+          List(
+            (taintNode.value ~%+>
+              TaintNode(
+                call.argument
+                  .argumentIndex(
+                    getParameterFromId(taintNode.value.id).order.head
+                  )
+                  .id
+                  .head,
+                TaintNodeType.Argument,
+                isSource = true
+              ))(0, EdgeType.ParameterSource)
+          )
+        else List()
       )
     )
     .toList
