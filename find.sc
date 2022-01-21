@@ -939,10 +939,10 @@ def findReturns(
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value)
         .flatMap(method =>
-          method.methodReturn.cfgPrev
+          method.methodReturn.cfgPrev.isReturn
             .filter(returnNode =>
               returnNode.code.contains(getCode(taintNode.value)) &&
-                taintNode.value.isSource
+                taintNode.value.isSource                
             )
             .map(returnNode =>
               (taintNode.value ~%+> TaintNode(
