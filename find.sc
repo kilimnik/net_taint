@@ -931,17 +931,19 @@ def findReturns(
   nodes
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value)
-        .find(method =>
-          method.methodReturn.toReturn.astChildren.code.l
-            .contains(getCode(taintNode.value)) &&
-            taintNode.value.isSource
-        )
-        .map(method =>
-          (taintNode.value ~%+> TaintNode(
-            method.methodReturn.toReturn.id.head,
-            TaintNodeType.Return,
-            isSource = false
-          ))(0, EdgeType.ReturnCall)
+        .flatMap(method =>
+          method.methodReturn.cfgPrev
+            .filter(returnNode =>
+              returnNode.code.contains(getCode(taintNode.value)) &&
+                taintNode.value.isSource
+            )
+            .map(returnNode =>
+              (taintNode.value ~%+> TaintNode(
+                returnNode.id,
+                TaintNodeType.Return,
+                isSource = false
+              ))(0, EdgeType.ReturnCall)
+            )
         )
     )
     .toList
@@ -994,7 +996,7 @@ def lookForParameters(
     )
     .toList
 
-def lookForCalls(
+def lookForParameterCalls(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT
 ): List[WLDiEdge[TaintNode]] =
   nodes
@@ -1020,6 +1022,25 @@ def lookForCalls(
               ))(0, EdgeType.ParameterSource)
           )
         else List()
+      )
+    )
+    .toList
+
+def lookForReturnCalls(
+    nodes: Graph[TaintNode, WLDiEdge]#NodeSetT
+): List[WLDiEdge[TaintNode]] =
+  nodes
+    .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      taintNode.value.nodeType == TaintNodeType.Return
+    )
+    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      getMethod(taintNode.value).callIn.map(call =>
+        (taintNode.value ~%+>
+          TaintNode(
+            call.id,
+            TaintNodeType.Call,
+            isSource = true
+          ))(0, EdgeType.ParameterSource)
       )
     )
     .toList
@@ -1139,7 +1160,8 @@ def search_created_functions(pOperations: Map[Operation, OperationValue]) = {
       graph ++= findReturns(graph.nodes)
       graph ++= followReturns(graph.nodes)
       graph ++= lookForParameters(graph.nodes)
-      graph ++= lookForCalls(graph.nodes)
+      graph ++= lookForParameterCalls(graph.nodes)
+      graph ++= lookForReturnCalls(graph.nodes)
     }
 
     operations ++= graph.nodes
@@ -1204,7 +1226,8 @@ while (lastCount != taintGraph.size) {
   taintGraph ++= findReturns(taintGraphNoRoot.nodes)
   taintGraph ++= followReturns(taintGraphNoRoot.nodes)
   taintGraph ++= lookForParameters(taintGraphNoRoot.nodes)
-  taintGraph ++= lookForCalls(taintGraphNoRoot.nodes)
+  taintGraph ++= lookForParameterCalls(taintGraphNoRoot.nodes)
+  taintGraph ++= lookForReturnCalls(taintGraphNoRoot.nodes)
 }
 
 taintGraph ++= getSinks(taintGraphNoRoot.nodes, sinkOperations)
