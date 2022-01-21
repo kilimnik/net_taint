@@ -107,8 +107,15 @@ def getCode(node: TaintNode) =
     case TaintNodeType.Argument         => getArgumentFromId(node.id).code.head
     case TaintNodeType.Parameter        => getParameterFromId(node.id).name.head
     case TaintNodeType.ParameterReverse => getParameterFromId(node.id).name.head
-    case TaintNodeType.Return => getReturnFromId(node.id).astChildren.code.head
-    case TaintNodeType.Call   => getCallFromId(node.id).code.head
+    case TaintNodeType.Return => {
+      val x = getReturnFromId(node.id)
+      if (x.size > 0) {
+        ""
+      } else {
+        x.astChildren.code.head
+      }
+    }
+    case TaintNodeType.Call => getCallFromId(node.id).code.head
   }
 
 def getObject(node: TaintNode) =
@@ -980,11 +987,11 @@ def lookForParameters(
     )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).parameter
-        .find(param =>
+        .find(param => 
           param.name == getCode(taintNode.value) &&
-            !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-              paramNode.value.id == param.id
-            )
+          !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+            paramNode.value.id == param.id
+          )
         )
         .map(param =>
           (taintNode.value ~%+> TaintNode(
