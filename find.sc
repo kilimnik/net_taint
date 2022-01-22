@@ -942,7 +942,7 @@ def findReturns(
           method.methodReturn.cfgPrev.isReturn
             .filter(returnNode =>
               returnNode.code.contains(getCode(taintNode.value)) &&
-                taintNode.value.isSource                
+                taintNode.value.isSource
             )
             .map(returnNode =>
               (taintNode.value ~%+> TaintNode(
@@ -987,11 +987,11 @@ def lookForParameters(
     )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).parameter
-        .find(param => 
+        .find(param =>
           param.name == getCode(taintNode.value) &&
-          !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-            paramNode.value.id == param.id
-          )
+            !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+              paramNode.value.id == param.id
+            )
         )
         .map(param =>
           (taintNode.value ~%+> TaintNode(
@@ -1101,92 +1101,106 @@ def getSinks(
     .toList
 
 def search_created_functions(pOperations: Map[Operation, OperationValue]) = {
+  var finalOperations =
+    collection.mutable.Map[Operation, OperationValue]()
   var operations =
+    collection.mutable.Map[Operation, OperationValue]()
+  var tempOperations =
     collection.mutable.Map[Operation, OperationValue]() ++= pOperations
 
-  operations.foreach { case (operation, value) =>
-    var graph: Graph[TaintNode, WLDiEdge] = Graph()
+  while (tempOperations.size != 0) {
+    operations ++= tempOperations
+    tempOperations.clear()
 
-    var currentOperationMap = Map[Operation, OperationValue]()
-    currentOperationMap += (operation -> value)
+    operations.foreach { case (operation, value) =>
+      var graph: Graph[TaintNode, WLDiEdge] = Graph()
 
-    graph ++= cpg_typed.call
-      .filter(node => getCallFromId(node.id).name.head == operation.name)
-      .map(call => call.id)
-      .l
-      .map(id =>
+      var currentOperationMap = Map[Operation, OperationValue]()
+      currentOperationMap += (operation -> value)
+
+      graph ++= cpg_typed.call
+        .filter(node => getCallFromId(node.id).name.head == operation.name)
+        .map(call => call.id)
+        .l
+        .map(id =>
+          TaintNode(
+            id,
+            TaintNodeType.Source,
+            isSource = true
+          )
+        )
+
+      graph ++= cpg_typed.identifier
+        .filter(node => node.code == operation.name)
+        .map(node => node.id)
+        .l
+        .map(id =>
+          TaintNode(
+            id,
+            TaintNodeType.Source,
+            isSource = true
+          )
+        )
+
+      var creatorCalls = getCreatedSourceFunctions(
+        cpg_typed.call,
+        sourceCreator,
+        currentOperationMap
+      )
+
+      graph ++= creatorCalls.map({ case (operationInner, _) =>
         TaintNode(
-          id,
+          cpg_typed.call.find(node => node.code == operationInner.name).get.id,
           TaintNodeType.Source,
           isSource = true
         )
-      )
+      })
 
-    graph ++= cpg_typed.identifier
-      .filter(node => node.code == operation.name)
-      .map(node => node.id)
-      .l
-      .map(id =>
-        TaintNode(
-          id,
-          TaintNodeType.Source,
-          isSource = true
+      var lastCount = 0
+      while (lastCount != graph.size) {
+        lastCount = graph.size
+        println(s"last count: ${lastCount}")
+
+        graph ++= getIndirectSource(
+          graph.nodes,
+          indirectSourceOperations
         )
-      )
+        graph ++= getIndirectSourceCall(
+          graph.nodes,
+          indirectSourceOperationsCall
+        )
+        graph ++= followSubSource(graph.nodes, subSourceCall)
+        graph ++= followFunctionCalls(graph.nodes)
+        graph ++= unzipFieldAccess(graph.nodes)
+        graph ++= findReturns(graph.nodes)
+        graph ++= followReturns(graph.nodes)
+        graph ++= lookForParameters(graph.nodes)
+        graph ++= lookForParameterCalls(graph.nodes)
+        graph ++= lookForReturnCalls(graph.nodes)
+      }
 
-    var creatorCalls = getCreatedSourceFunctions(
-      cpg_typed.call,
-      sourceCreator,
-      currentOperationMap
-    )
-
-    graph ++= creatorCalls.map({ case (operationInner, _) =>
-      TaintNode(
-        cpg_typed.call.find(node => node.code == operationInner.name).get.id,
-        TaintNodeType.Source,
-        isSource = true
-      )
-    })
-
-    var lastCount = 0
-    while (lastCount != graph.size) {
-      lastCount = graph.size
-      println(s"last count: ${lastCount}")
-
-      graph ++= getIndirectSource(
-        graph.nodes,
-        indirectSourceOperations
-      )
-      graph ++= getIndirectSourceCall(
-        graph.nodes,
-        indirectSourceOperationsCall
-      )
-      graph ++= followSubSource(graph.nodes, subSourceCall)
-      graph ++= followFunctionCalls(graph.nodes)
-      graph ++= unzipFieldAccess(graph.nodes)
-      graph ++= findReturns(graph.nodes)
-      graph ++= followReturns(graph.nodes)
-      graph ++= lookForParameters(graph.nodes)
-      graph ++= lookForParameterCalls(graph.nodes)
-      graph ++= lookForReturnCalls(graph.nodes)
+      tempOperations ++= graph.nodes
+        .map((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
+          (
+            (Operation(
+              getCode(node.value),
+              srcIndex = operation.srcIndex,
+              dstIndex = operation.dstIndex
+            )),
+            value
+          )
+        )
+        .toMap
     }
 
-    operations ++= graph.nodes
-      .map((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
-        (
-          (Operation(
-            getCode(node.value),
-            srcIndex = operation.srcIndex,
-            dstIndex = operation.dstIndex
-          )),
-          value
-        )
-      )
-      .toMap
+    finalOperations ++= operations
+    operations.clear()
+
+    tempOperations = tempOperations.filter{ case (op,_) => !finalOperations.contains(op)}
   }
 
-  println(operations.size)
-  operations.toMap
+  println(finalOperations.size)
+  finalOperations.toMap
 }
 
 println("Search sourceOperations")
