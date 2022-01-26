@@ -21,8 +21,7 @@ struct test_struct {
 
 int testProc(char* buf1)
 {
-    char* recv_s = "recv";
-    int frecv = GetProcAddress(NULL, recv_s);
+    int frecv = recv;
 
     if (frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR)
         printf("recv() failed with error code : %d", WSAGetLastError());

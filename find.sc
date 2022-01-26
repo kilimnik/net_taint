@@ -20,6 +20,26 @@ import $ivy.`org.scala-graph:graph-dot_2.13:1.13.0`
 
 import $ivy.`io.shiftleft:semanticcpg_2.13:1.3.381`
 
+val DEBUG = true
+
+def debug_graph(graph: Graph[TaintNode, WLDiEdge]) =
+  if (DEBUG) {
+    println(s"[DEBUG] [GRAPH_SIZE]: ${graph.nodes.size}")
+  }
+
+def time[R](block: => R, name: String): R =
+  if (DEBUG) {
+    val t1 = System.nanoTime
+    val result = block // call-by-name
+
+    val duration = (System.nanoTime - t1) / 1e9d
+    println(s"[TIME] [${name}]: took ${duration} seconds")
+
+    result
+  } else {
+    block // call-by-name
+  }
+
 def cpg_typed: Cpg = cpg
 def output_path = s"${project.inputPath}/out"
 def directory: File = new File(output_path)
@@ -48,16 +68,63 @@ object TaintNodeType extends Enumeration {
 
 import TaintNodeType._
 
-case class TaintNode(id: Long, nodeType: TaintNodeType, isSource: Boolean)
+case class TaintNode(
+    id: Long,
+    nodeType: TaintNodeType,
+    isSource: Boolean,
+    code: String
+) {
+  def this(id: Long, nodeType: TaintNodeType, isSource: Boolean) =
+    this(id, nodeType, isSource, getCodeFromId(id, nodeType))
+}
 
 case class TaintNodeWeight(
     var shortestPath: Double = Double.PositiveInfinity,
     var visited: Boolean = false
 )
 
-val rootNode = TaintNode(0, TaintNodeType.Root, isSource = false)
+object TaintFunctionType extends Enumeration {
+  type TaintFunctionType = Value
+  val GetIndirectSource, GetIndirectSourceCall, FollowSubSource,
+      FollowFunctionCalls, UnzipFieldAccess, FindReturns, LookForParameters,
+      LookForParameterCalls, LookForReturnCalls, FollowReturns = Value
+}
+
+val rootNode = TaintNode(0, TaintNodeType.Root, isSource = false, "ROOT")
 var taintGraph: Graph[TaintNode, WLDiEdge] = Graph(rootNode)
 def taintGraphNoRoot = taintGraph - rootNode
+var taintIds: Map[Long, Boolean] = Map()
+
+def clear_caches() = {
+  taintIds = Map()
+}
+
+def addTaintSourceIdsFromEdge(
+    block: => List[WLDiEdge[TaintNode]],
+    taintFunctionType: TaintFunctionType.TaintFunctionType
+): List[WLDiEdge[TaintNode]] = {
+  val result = time(block, taintFunctionType.toString)
+
+  taintIds = taintIds ++ result.flatMap((edge: WLDiEdge[TaintNode]) =>
+    List(
+      edge._1.id -> edge._1.isSource,
+      edge._2.id -> edge._2.isSource
+    )
+  )
+
+  result
+}
+
+def addTaintSourceIds(
+    block: => List[TaintNode]
+): List[TaintNode] = {
+  val result = block
+
+  taintIds =
+    taintIds ++ result.map((node: TaintNode) => node.id -> node.isSource)
+
+  result
+}
 
 var weightMap: Map[TaintNode, TaintNodeWeight] = Map(
   rootNode -> TaintNodeWeight(0)
@@ -92,6 +159,16 @@ def getType(node: TaintNode) =
     case default               => node.nodeType
   }
 
+def getTypeFromId(id: Long, nodeType: TaintNodeType) =
+  cpg_typed.id(id).label.head match {
+    case "CALL"                => TaintNodeType.Call
+    case "METHOD"              => TaintNodeType.Method
+    case "IDENTIFIER"          => TaintNodeType.Argument
+    case "RETURN"              => TaintNodeType.Return
+    case "METHOD_PARAMETER_IN" => TaintNodeType.Parameter
+    case default               => nodeType
+  }
+
 def getMethod(node: TaintNode) =
   getType(node) match {
     case TaintNodeType.Argument         => getArgumentMethod(node.id)
@@ -102,20 +179,20 @@ def getMethod(node: TaintNode) =
     case TaintNodeType.Method           => getMethodFromId(node.id)
   }
 
-def getCode(node: TaintNode) =
-  getType(node) match {
-    case TaintNodeType.Argument         => getArgumentFromId(node.id).code.head
-    case TaintNodeType.Parameter        => getParameterFromId(node.id).name.head
-    case TaintNodeType.ParameterReverse => getParameterFromId(node.id).name.head
+def getCodeFromId(id: Long, nodeType: TaintNodeType) =
+  getTypeFromId(id, nodeType) match {
+    case TaintNodeType.Argument         => getArgumentFromId(id).code.head
+    case TaintNodeType.Parameter        => getParameterFromId(id).name.head
+    case TaintNodeType.ParameterReverse => getParameterFromId(id).name.head
     case TaintNodeType.Return => {
-      val x = getReturnFromId(node.id)
+      val x = getReturnFromId(id)
       if (x.size > 0) {
         ""
       } else {
         x.astChildren.code.head
       }
     }
-    case TaintNodeType.Call => getCallFromId(node.id).code.head
+    case TaintNodeType.Call => getCallFromId(id).code.head
   }
 
 def getObject(node: TaintNode) =
@@ -391,12 +468,14 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
         (innerEdge.from.value ~%+> TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ))(0, EdgeType.Call),
         (TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ) ~%+> innerEdge.to.value)(0, innerEdge.edge.label)
       )
     )
@@ -410,12 +489,14 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
         (rootNode ~%+> TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ))(0, EdgeType.Call),
         (TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ) ~%+> innerEdge.to.value)(0, innerEdge.edge.label)
       )
     )
@@ -429,12 +510,14 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
         (rootNode ~%+> TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ))(0, EdgeType.Call),
         (TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ) ~%+> innerEdge.to.value)(0, innerEdge.edge.label)
       )
     )
@@ -448,12 +531,14 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
         (rootNode ~%+> TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ))(0, EdgeType.Call),
         (TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ) ~%+> innerEdge.to.value)(0, innerEdge.edge.label)
       )
     )
@@ -467,7 +552,8 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
         (TaintNode(
           getMethod(innerEdge.to.value).head.id,
           TaintNodeType.Method,
-          isSource = false
+          isSource = false,
+          "TODO"
         ) ~%+> innerEdge.to.value)(0, EdgeType.Call)
       )
     )
@@ -475,9 +561,11 @@ def getMethodGraph(graph: Graph[TaintNode, WLDiEdge]) = {
   methodGraph
 }
 
-case class OperationValue(weight: Double = 0)
-
-case class Operation(name: String, srcIndex: Int = 0, dstIndex: Int = 0)
+case class OperationValue(
+    weight: Double = 0,
+    srcIndex: Int = 0,
+    dstIndex: Int = 0
+)
 
 val min_method_weight = 2
 
@@ -491,180 +579,168 @@ val pointer_math_weight = 5
 val cmp_weight = 4
 
 // Map[Function name, OperationValue]
-var sourceOperations: Map[Operation, OperationValue] = Map(
-  Operation("recv", dstIndex = 2) -> OperationValue(recv_weight),
-  Operation("recvfrom", dstIndex = 2) -> OperationValue(recv_weight),
-  Operation("WSARecvEx", dstIndex = 2) -> OperationValue(recv_weight),
-  Operation("HttpQueryInfo", dstIndex = 3) -> OperationValue(recv_weight),
-  Operation("HttpQueryInfoA", dstIndex = 3) -> OperationValue(recv_weight),
-  Operation("HttpQueryInfoW", dstIndex = 3) -> OperationValue(recv_weight),
-  Operation("InternetReadFile", dstIndex = 2) -> OperationValue(recv_weight),
-  Operation("InternetReadFileExA", dstIndex = 2) -> OperationValue(recv_weight),
-  Operation("InternetReadFileExW", dstIndex = 2) -> OperationValue(recv_weight)
+var sourceOperations: Map[String, Array[OperationValue]] = Map(
+  "recv" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "recvfrom" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "WSARecvEx" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "HttpQueryInfo" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  "HttpQueryInfoA" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  "HttpQueryInfoW" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  "InternetReadFile" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "InternetReadFileExA" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "InternetReadFileExW" -> Array(OperationValue(recv_weight, dstIndex = 2))
 )
 
 // Map[Function name, OperationValue]
-var sinkOperations: Map[Operation, OperationValue] = Map(
-  Operation("strcpy", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("wcscpy", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("_mbscpy", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpyA", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpyW", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpyn", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpynA", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpynW", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcpy", srcIndex = 1) -> OperationValue(cpy_weight),
-  Operation("lstrcat", srcIndex = 1) -> OperationValue(cat_weight),
-  Operation("lstrcatA", srcIndex = 1) -> OperationValue(cat_weight),
-  Operation("lstrcatW", srcIndex = 1) -> OperationValue(cat_weight),
-  Operation("strlen", srcIndex = 1) -> OperationValue(strlen_weight),
-  Operation("lstrlen", srcIndex = 1) -> OperationValue(strlen_weight),
-  Operation("lstrlenA", srcIndex = 1) -> OperationValue(strlen_weight),
-  Operation("lstrlenW", srcIndex = 1) -> OperationValue(strlen_weight),
-  Operation("atoi", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoi", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("atoi_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoi_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atodbl", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("_atodbl_l", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("_atoldbl", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("_atoldbl_l", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("_atoflt", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("_atoflt_l", srcIndex = 2) -> OperationValue(atoi_weight),
-  Operation("atof", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atof_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtof", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtof_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atoi64", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoi64", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atoi64_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoi64_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("atol", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atol_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtol", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtol_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("atoll", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoll", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_atoll_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("_wtoll_l", srcIndex = 1) -> OperationValue(atoi_weight),
-  Operation("system", srcIndex = 1) -> OperationValue(system_weight)
+var sinkOperations: Map[String, Array[OperationValue]] = Map(
+  "strcpy" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "wcscpy" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "_mbscpy" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpyA" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpyW" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpyn" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpynA" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpynW" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcpy" -> Array(OperationValue(cpy_weight, srcIndex = 1)),
+  "lstrcat" -> Array(OperationValue(cat_weight, srcIndex = 1)),
+  "lstrcatA" -> Array(OperationValue(cat_weight, srcIndex = 1)),
+  "lstrcatW" -> Array(OperationValue(cat_weight, srcIndex = 1)),
+  "strlen" -> Array(OperationValue(strlen_weight, srcIndex = 1)),
+  "lstrlen" -> Array(OperationValue(strlen_weight, srcIndex = 1)),
+  "lstrlenA" -> Array(OperationValue(strlen_weight, srcIndex = 1)),
+  "lstrlenW" -> Array(OperationValue(strlen_weight, srcIndex = 1)),
+  "atoi" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoi" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "atoi_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoi_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atodbl" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "_atodbl_l" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "_atoldbl" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "_atoldbl_l" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "_atoflt" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "_atoflt_l" -> Array(OperationValue(atoi_weight, srcIndex = 2)),
+  "atof" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atof_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtof" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtof_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atoi64" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoi64" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atoi64_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoi64_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "atol" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atol_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtol" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtol_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "atoll" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoll" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_atoll_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "_wtoll_l" -> Array(OperationValue(atoi_weight, srcIndex = 1)),
+  "system" -> Array(OperationValue(system_weight, srcIndex = 1))
 )
 
 // Map[Function name, Src Index, OperationValue]
-var indirectSourceOperations: Map[Operation, OperationValue] = Map(
-  Operation(
-    "<operator>.assignment",
-    srcIndex = 2,
-    dstIndex = 1
-  ) -> OperationValue(0),
-  Operation(
-    "<operator>.assignmentPlus",
-    srcIndex = 2,
-    dstIndex = 1
-  ) -> OperationValue(pointer_math_weight),
-  Operation(
-    "<operator>.assignmentMinus",
-    srcIndex = 2,
-    dstIndex = 1
-  ) -> OperationValue(pointer_math_weight),
-  Operation("memcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
-  Operation("strcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
-  Operation("wcscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(cpy_weight),
-  Operation("_mbscpy", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
+var indirectSourceOperations: Map[String, Array[OperationValue]] = Map(
+  "<operator>.assignment" -> Array(
+    OperationValue(0, srcIndex = 2, dstIndex = 1)
   ),
-  Operation("lstrcpy", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
+  "<operator>.assignmentPlus" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 2, dstIndex = 1)
   ),
-  Operation("lstrcpyA", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
+  "<operator>.assignmentMinus" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 2, dstIndex = 1)
   ),
-  Operation("lstrcpyW", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
-  ),
-  Operation("lstrcpyn", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
-  ),
-  Operation("lstrcpynA", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
-  ),
-  Operation("lstrcpynW", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cpy_weight
-  ),
-  Operation("lstrcat", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cat_weight
-  ),
-  Operation("lstrcatA", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cat_weight
-  ),
-  Operation("lstrcatW", srcIndex = 2, dstIndex = 1) -> OperationValue(
-    cat_weight
-  )
+  "memcpy" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "strcpy" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "wcscpy" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "_mbscpy" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpy" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpyA" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpyW" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpyn" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpynA" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcpynW" -> Array(OperationValue(cpy_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcat" -> Array(OperationValue(cat_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcatA" -> Array(OperationValue(cat_weight, srcIndex = 2, dstIndex = 1)),
+  "lstrcatW" -> Array(OperationValue(cat_weight, srcIndex = 2, dstIndex = 1))
 )
 
 // Map[Function name, OperationValue]
-var indirectSourceOperationsCall: Map[Operation, OperationValue] = Map(
-  Operation("<operator>.cast", srcIndex = 1) -> OperationValue(0),
-  Operation("<operator>.cast", srcIndex = 2) -> OperationValue(0),
-  Operation("<operator>.indirectIndexAccess", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+var indirectSourceOperationsCall: Map[String, Array[OperationValue]] = Map(
+  "<operator>.cast" -> Array(
+    OperationValue(0, srcIndex = 1),
+    OperationValue(0, srcIndex = 2)
   ),
-  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.indirectIndexAccess" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.addressOf", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.addition" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.indirection", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.addressOf" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.preIncrement", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.indirection" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.postIncrement", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.preIncrement" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.notEquals", srcIndex = 1) -> OperationValue(cmp_weight),
-  Operation("<operator>.notEquals", srcIndex = 2) -> OperationValue(cmp_weight),
-  Operation("<operator>.equals", srcIndex = 1) -> OperationValue(cmp_weight),
-  Operation("<operator>.equals", srcIndex = 2) -> OperationValue(cmp_weight),
-  Operation("<operator>.lessThan", srcIndex = 1) -> OperationValue(cmp_weight),
-  Operation("<operator>.lessThan", srcIndex = 2) -> OperationValue(cmp_weight),
-  Operation("<operator>.lessEqualsThan", srcIndex = 1) -> OperationValue(
-    cmp_weight
+  "<operator>.postIncrement" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1)
   ),
-  Operation("<operator>.lessEqualsThan", srcIndex = 2) -> OperationValue(
-    cmp_weight
+  "<operator>.notEquals" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.greaterThan", srcIndex = 1) -> OperationValue(
-    cmp_weight
+  "<operator>.equals" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.greaterThan", srcIndex = 2) -> OperationValue(
-    cmp_weight
+  "<operator>.lessThan" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.greaterEqualsThan", srcIndex = 1) -> OperationValue(
-    cmp_weight
+  "<operator>.lessEqualsThan" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.greaterEqualsThan", srcIndex = 2) -> OperationValue(
-    cmp_weight
+  "<operator>.greaterThan" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.logicalNot", srcIndex = 1) -> OperationValue(
-    cmp_weight
+  "<operator>.greaterEqualsThan" -> Array(
+    OperationValue(cmp_weight, srcIndex = 1),
+    OperationValue(cmp_weight, srcIndex = 2)
   ),
-  Operation("<operator>.subtraction", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.logicalNot" -> Array(OperationValue(cmp_weight, srcIndex = 1)),
+  "<operator>.subtraction" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1),
+    OperationValue(pointer_math_weight, srcIndex = 2)
   ),
-  Operation("<operator>.subtraction", srcIndex = 2) -> OperationValue(
-    pointer_math_weight
+  "<operator>.addition" -> Array(
+    OperationValue(pointer_math_weight, srcIndex = 1),
+    OperationValue(pointer_math_weight, srcIndex = 2)
   ),
-  Operation("<operator>.addition", srcIndex = 1) -> OperationValue(
-    pointer_math_weight
+  "<operator>.fieldAccess" -> Array(OperationValue(0, srcIndex = 1)),
+  "<operator>.indirectFieldAccess" -> Array(OperationValue(0, srcIndex = 1))
+)
+
+var subSourceCall: Map[String, Array[OperationValue]] = Map(
+  "<operator>.cast" -> Array(OperationValue(0)),
+  "<operator>.indirectIndexAccess" -> Array(
+    OperationValue(pointer_math_weight)
   ),
-  Operation("<operator>.addition", srcIndex = 2) -> OperationValue(
-    pointer_math_weight
-  ),
-  Operation("<operator>.fieldAccess", srcIndex = 1) -> OperationValue(0),
-  Operation("<operator>.indirectFieldAccess", srcIndex = 1) -> OperationValue(0)
+  "<operator>.addition" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.addressOf" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.indirection" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.preIncrement" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.postIncrement" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.subtraction" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.subtraction" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.addition" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.addition" -> Array(OperationValue(pointer_math_weight)),
+  "<operator>.fieldAccess" -> Array(OperationValue(0)),
+  "<operator>.indirectFieldAccess" -> Array(OperationValue(0))
 )
 
 // Map[Function name, source name Index]
@@ -672,52 +748,40 @@ val sourceCreator: Map[String, Int] = Map(
   "GetProcAddress" -> 2
 )
 
-var subSourceCall: Map[Operation, OperationValue] = Map(
-  Operation("<operator>.cast") -> OperationValue(0),
-  Operation("<operator>.cast") -> OperationValue(0),
-  Operation("<operator>.indirectIndexAccess") -> OperationValue(
-    pointer_math_weight
-  ),
-  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.addressOf") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.indirection") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.preIncrement") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.postIncrement") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.subtraction") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.subtraction") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.addition") -> OperationValue(pointer_math_weight),
-  Operation("<operator>.fieldAccess") -> OperationValue(0),
-  Operation("<operator>.indirectFieldAccess") -> OperationValue(0)
-)
-
 def getSource(
     calls: Traversal[Call],
-    operations: Map[Operation, OperationValue]
+    operations: Map[String, Array[OperationValue]]
 ): List[WLDiEdge[TaintNode]] =
   calls
     .flatMap(call =>
       operations
-        .find { case (operation: Operation, _) =>
-          operation.name == call.name || s"*${operation.name}" == call.name
+        .find { case (operation: String, _) =>
+          operation == call.name || s"*${operation}" == call.name
         }
-        .map { case (operation: Operation, operationValue: OperationValue) =>
-          call.argument
-            .argumentIndex(operation.dstIndex)
-            .flatMap(arg =>
-              List(
-                (rootNode ~%+> TaintNode(
-                  call.id,
-                  TaintNodeType.Source,
-                  isSource = false
-                ))(0, EdgeType.Source),
-                (TaintNode(call.id, TaintNodeType.Source, isSource = false) ~%+>
-                  TaintNode(
-                    call.argument.argumentIndex(operation.dstIndex).id.head,
-                    TaintNodeType.Argument,
-                    isSource = true
-                  ))(operationValue.weight, EdgeType.Call)
-              )
+        .map {
+          case (operation: String, operationValues: Array[OperationValue]) =>
+            operationValues.flatMap(operationValue =>
+              call
+                .argument(operationValue.dstIndex)
+                .flatMap(arg =>
+                  List(
+                    (rootNode ~%+> new TaintNode(
+                      call.id,
+                      TaintNodeType.Source,
+                      isSource = false
+                    ))(0, EdgeType.Source),
+                    (new TaintNode(
+                      call.id,
+                      TaintNodeType.Source,
+                      isSource = false
+                    ) ~%+>
+                      new TaintNode(
+                        call.argument(operationValue.dstIndex).id,
+                        TaintNodeType.Argument,
+                        isSource = true
+                      ))(operationValue.weight, EdgeType.Call)
+                  )
+                )
             )
         }
     )
@@ -726,64 +790,66 @@ def getSource(
 
 def getIndirectSource(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT,
-    operations: Map[Operation, OperationValue]
+    operations: Map[String, Array[OperationValue]]
 ): List[WLDiEdge[TaintNode]] =
   nodes
+    .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      taintNode.value.isSource
+    )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).call.flatMap(node =>
         operations
-          .find { case (operation: Operation, _) =>
-            node.name == operation.name &&
-              node.argument
-                .argumentIndex(operation.srcIndex)
-                .code
-                .l
-                .contains(getCode(taintNode.value)) &&
-              taintNode.value.isSource
-          }
-          .map { case (operation: Operation, operationValue: OperationValue) =>
+          .getOrElse(node.name, Array())
+          .find((operationValue: OperationValue) =>
+            node
+              .argument(operationValue.srcIndex)
+              .code
+              .contains(taintNode.value.code)
+          )
+          .map((operationValue: OperationValue) =>
             (taintNode.value ~%+>
-              TaintNode(
-                node.argument(operation.dstIndex).id,
+              new TaintNode(
+                node.argument(operationValue.dstIndex).id,
                 TaintNodeType.Argument,
                 isSource = true
               ))(operationValue.weight, EdgeType.IndirectSource)
-          }
+          )
       )
     )
     .toList
 
 def getIndirectSourceCall(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT,
-    operations: Map[Operation, OperationValue]
+    operations: Map[String, Array[OperationValue]]
 ): List[WLDiEdge[TaintNode]] =
   nodes
+    .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      taintNode.value.isSource
+    )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).call.flatMap(node =>
         operations
-          .find { case (operation: Operation, _) =>
-            node.name == operation.name &&
-              node.argument
-                .argumentIndex(operation.srcIndex)
-                .code
-                .l
-                .contains(getCode(taintNode.value)) &&
-              taintNode.value.isSource
-          }
-          .map { case (_, operationValue: OperationValue) =>
-            (taintNode.value ~%+> TaintNode(
+          .getOrElse(node.name, Array())
+          .find((operationValue: OperationValue) =>
+            node
+              .argument(operationValue.srcIndex)
+              .code
+              .contains(taintNode.value.code)
+          )
+          .map((operationValue: OperationValue) =>
+            (taintNode.value ~%+> new TaintNode(
               node.id,
               TaintNodeType.Call,
               isSource = true
             ))(operationValue.weight, EdgeType.IndirectSourceCall)
-          }
+          )
       )
     )
     .toList
 
 def followSubSource(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT,
-    operations: Map[Operation, OperationValue]
+    operations: Map[String, Array[OperationValue]]
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
@@ -791,21 +857,21 @@ def followSubSource(
     )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       operations
-        .find { case (operation: Operation, _) =>
-          getCallFromId(taintNode.value.id).name.head == operation.name
-        }
-        .map { case (_, operationValue: OperationValue) =>
-          getCallFromId(taintNode.value.id).argument
-            .filterNot(arg => arg.isLiteral)
-            .map(arg =>
-              (taintNode.value ~%+> TaintNode(
-                arg.id,
-                TaintNodeType.Argument,
-                isSource = true
-              ))(operationValue.weight, EdgeType.IndirectSourceCall)
-            )
-            .l
-        }
+        .get(getCallFromId(taintNode.value.id).name.head)
+        .map((operationValues: Array[OperationValue]) =>
+          operationValues.flatMap((operationValue: OperationValue) =>
+            getCallFromId(taintNode.value.id).argument
+              .filterNot(arg => arg.isLiteral)
+              .map(arg =>
+                (taintNode.value ~%+> new TaintNode(
+                  arg.id,
+                  TaintNodeType.Argument,
+                  isSource = true
+                ))(operationValue.weight, EdgeType.IndirectSourceCall)
+              )
+              .l
+          )
+        )
     )
     .flatten
     .toList
@@ -813,29 +879,27 @@ def followSubSource(
 def getCreatedSourceFunctions(
     calls: Traversal[Call],
     sourceCreator: Map[String, Int],
-    sourceOperations: Map[Operation, OperationValue]
-): Map[Operation, OperationValue] =
+    sourceOperations: Map[String, Array[OperationValue]]
+): Map[String, Array[OperationValue]] =
   calls
     .flatMap(node =>
       sourceOperations.flatMap {
-        case (operation: Operation, operationValue: OperationValue) =>
+        case (operation: String, operationValues: Array[OperationValue]) =>
           sourceCreator
-            .find { case (creatorName, sourceNameIndex) =>
-              node.name == creatorName &&
-                // Escaping double quote doesn't work https://github.com/scala/bug/issues/6476
-                (
-                  node.argument
-                    .argumentIndex(sourceNameIndex)
-                    .code
-                    .l
-                    .contains(s""""${operation.name}"""") ||
-                    node.code.contains(operation.name)
-                )
-            }
+            .get(node.name)
+            .find(sourceNameIndex =>
+              // Escaping double quote doesn't work https://github.com/scala/bug/issues/6476
+
+              node
+                .argument(sourceNameIndex)
+                .code
+                .contains(s""""${operation}"""") ||
+                node.code.contains(operation)
+            )
             .map(_ =>
               (
-                Operation(node.code, dstIndex = operation.dstIndex),
-                operationValue
+                node.code,
+                operationValues
               )
             )
       }
@@ -845,20 +909,19 @@ def getCreatedSourceFunctions(
 
 def getCastVariables(
     calls: Traversal[Call],
-    creators: Map[Operation, OperationValue]
+    creators: Map[String, Array[OperationValue]]
 ) =
-  calls
-    .flatMap(node =>
+  calls.cast
+    .flatMap((node: Call) =>
       creators
         .filter { case (operation, _) =>
-          node.name == "<operator>.cast" && node.argument
-            .argumentIndex(2)
+          node
+            .argument(2)
             .code
-            .l
-            .contains(operation.name)
+            .contains(operation)
         }
-        .map { case (operation, operationValue) =>
-          (Operation(node.code, dstIndex = operation.dstIndex), operationValue)
+        .map { case (_, operationValue) =>
+          (node.code, operationValue)
         }
     )
     .l
@@ -866,24 +929,20 @@ def getCastVariables(
 
 def getAssignmentVariables(
     calls: Traversal[Call],
-    creators: Map[Operation, OperationValue]
-): Map[Operation, OperationValue] =
-  calls
-    .flatMap(node =>
+    creators: Map[String, Array[OperationValue]]
+): Map[String, Array[OperationValue]] =
+  calls.assignment
+    .flatMap((node: Call) =>
       creators
         .filter { case (operation, _) =>
-          node.name == "<operator>.assignment" && node.argument
-            .argumentIndex(2)
+          node
+            .argument(2)
             .code
-            .l
-            .contains(operation.name)
+            .contains(operation)
         }
-        .map { case (operation, operationValue) =>
+        .map { case (_, operationValue) =>
           (
-            Operation(
-              node.argument.argumentIndex(1).code.l.head,
-              dstIndex = operation.dstIndex
-            ),
+            node.argument(1).code,
             operationValue
           )
         }
@@ -895,31 +954,31 @@ def followFunctionCalls(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT
 ): List[WLDiEdge[TaintNode]] =
   nodes
+    .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      taintNode.value.isSource
+    )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).call
         .filter(node => node.callee.isExternal(false).nonEmpty)
         .flatMap(node =>
           node.argument
             .filter(arg =>
-              arg.code == getCode(taintNode.value) &&
-                taintNode.value.isSource &&
-                !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-                  paramNode.value.id == arg.id
-                )
+              arg.code == taintNode.value.code &&
+                !taintIds.contains(arg.id)
             )
             .flatMap(arg =>
               if (arg.parameter.size > 0)
                 List(
-                  (taintNode.value ~%+> TaintNode(
+                  (taintNode.value ~%+> new TaintNode(
                     arg.call.id.head,
                     TaintNodeType.Call,
                     isSource = false
                   ))(0, EdgeType.Call),
-                  (TaintNode(
+                  (new TaintNode(
                     arg.call.id.head,
                     TaintNodeType.Call,
                     isSource = false
-                  ) ~%+> TaintNode(
+                  ) ~%+> new TaintNode(
                     arg.parameter.id.head,
                     TaintNodeType.Parameter,
                     isSource = true
@@ -936,16 +995,18 @@ def findReturns(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT
 ): List[WLDiEdge[TaintNode]] =
   nodes
+    .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+      taintNode.value.isSource
+    )
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value)
         .flatMap(method =>
-          method.methodReturn.cfgPrev.isReturn
+          method.methodReturn.toReturn
             .filter(returnNode =>
-              returnNode.code.contains(getCode(taintNode.value)) &&
-                taintNode.value.isSource
+              returnNode.code.contains(taintNode.value.code)
             )
             .map(returnNode =>
-              (taintNode.value ~%+> TaintNode(
+              (taintNode.value ~%+> new TaintNode(
                 returnNode.id,
                 TaintNodeType.Return,
                 isSource = false
@@ -968,7 +1029,7 @@ def followReturns(
           node.value.nodeType == TaintNodeType.Call && !node.value.isSource
         )
         .map(n =>
-          (taintNode.value ~%+> TaintNode(
+          (taintNode.value ~%+> new TaintNode(
             n.value.id,
             TaintNodeType.Argument,
             isSource = true
@@ -988,13 +1049,11 @@ def lookForParameters(
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).parameter
         .find(param =>
-          param.name == getCode(taintNode.value) &&
-            !nodes.exists((paramNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-              paramNode.value.id == param.id
-            )
+          param.name == taintNode.value.code &&
+            !taintIds.contains(param.id)
         )
         .map(param =>
-          (taintNode.value ~%+> TaintNode(
+          (taintNode.value ~%+> new TaintNode(
             param.id,
             TaintNodeType.ParameterReverse,
             isSource = true
@@ -1017,13 +1076,12 @@ def lookForParameterCalls(
         )
           List(
             (taintNode.value ~%+>
-              TaintNode(
-                call.argument
-                  .argumentIndex(
+              new TaintNode(
+                call
+                  .argument(
                     getParameterFromId(taintNode.value.id).order.head
                   )
-                  .id
-                  .head,
+                  .id,
                 TaintNodeType.Argument,
                 isSource = true
               ))(0, EdgeType.ParameterSource)
@@ -1043,7 +1101,7 @@ def lookForReturnCalls(
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).callIn.map(call =>
         (taintNode.value ~%+>
-          TaintNode(
+          new TaintNode(
             call.id,
             TaintNodeType.Call,
             isSource = true
@@ -1064,8 +1122,8 @@ def unzipFieldAccess(
     )
     .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       (taintNode.value
-        ~%+> TaintNode(
-          getObject(taintNode.value).isCall.argument.argumentIndex(1).id.head,
+        ~%+> new TaintNode(
+          getObject(taintNode.value).isCall.argument(1).id.head,
           TaintNodeType.Argument,
           isSource = true
         ))(0, EdgeType.IndirectSource)
@@ -1074,119 +1132,180 @@ def unzipFieldAccess(
 
 def getSinks(
     nodes: Graph[TaintNode, WLDiEdge]#NodeSetT,
-    operations: Map[Operation, OperationValue]
+    operations: Map[String, Array[OperationValue]]
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).call.flatMap(node =>
         operations
-          .find { case (operation: Operation, _) =>
-            node.name == operation.name &&
-              node.argument
-                .argumentIndex(operation.srcIndex)
-                .code
-                .l
-                .contains(getCode(taintNode.value)) &&
+          .getOrElse(node.name, Array())
+          .find((operationValue: OperationValue) =>
+            node
+              .argument(operationValue.srcIndex)
+              .code
+              .contains(taintNode.value.code) &&
               taintNode.value.nodeType != TaintNodeType.Call && taintNode.value.nodeType != TaintNodeType.Return
-          }
-          .map { case (_, operationValue: OperationValue) =>
-            (taintNode.value ~%+> TaintNode(
+          )
+          .map((operationValue: OperationValue) =>
+            (taintNode.value ~%+> new TaintNode(
               node.id,
               TaintNodeType.Sink,
               isSource = false
             ))(operationValue.weight, EdgeType.Sink)
-          }
+          )
       )
     )
     .toList
 
-def search_created_functions(pOperations: Map[Operation, OperationValue]) = {
+def search_created_functions(
+    pOperations: Map[String, Array[OperationValue]]
+) = {
   var finalOperations =
-    collection.mutable.Map[Operation, OperationValue]()
+    collection.mutable.Map[String, Array[OperationValue]]()
   var operations =
-    collection.mutable.Map[Operation, OperationValue]()
+    collection.mutable.Map[String, Array[OperationValue]]()
   var tempOperations =
-    collection.mutable.Map[Operation, OperationValue]() ++= pOperations
+    collection.mutable.Map[String, Array[OperationValue]]() ++= pOperations
 
-  while (tempOperations.size != 0) {
+  while (tempOperations.nonEmpty) {
     operations ++= tempOperations
     tempOperations.clear()
 
     operations.foreach { case (operation, value) =>
+      if (DEBUG) {
+        // println(s"[DEBUG]: ${operations}")
+        println(s"[DEBUG]: Current Operation ${operation}")
+      }
       var graph: Graph[TaintNode, WLDiEdge] = Graph()
+      clear_caches()
 
-      var currentOperationMap = Map[Operation, OperationValue]()
+      var currentOperationMap = Map[String, Array[OperationValue]]()
       currentOperationMap += (operation -> value)
 
-      graph ++= cpg_typed.call
-        .filter(node => getCallFromId(node.id).name.head == operation.name)
-        .map(call => call.id)
-        .l
-        .map(id =>
-          TaintNode(
-            id,
-            TaintNodeType.Source,
-            isSource = true
-          )
+      debug_graph(graph)
+      graph ++= addTaintSourceIds(
+        time(
+          cpg_typed.identifier
+            .filter(node => node.code == operation)
+            .map(node => node.id)
+            .l
+            .map(id =>
+              new TaintNode(
+                id,
+                TaintNodeType.Source,
+                isSource = true
+              )
+            ),
+          "filter code"
         )
-
-      graph ++= cpg_typed.identifier
-        .filter(node => node.code == operation.name)
-        .map(node => node.id)
-        .l
-        .map(id =>
-          TaintNode(
-            id,
-            TaintNodeType.Source,
-            isSource = true
-          )
-        )
-
-      var creatorCalls = getCreatedSourceFunctions(
-        cpg_typed.call,
-        sourceCreator,
-        currentOperationMap
       )
 
-      graph ++= creatorCalls.map({ case (operationInner, _) =>
-        TaintNode(
-          cpg_typed.call.find(node => node.code == operationInner.name).get.id,
-          TaintNodeType.Source,
-          isSource = true
+      var creatorCalls = time(
+        getCreatedSourceFunctions(
+          cpg_typed.call,
+          sourceCreator,
+          currentOperationMap
+        ),
+        "getCreatedSourceFunctions"
+      )
+
+      debug_graph(graph)
+      graph ++= addTaintSourceIds(
+        time(
+          creatorCalls
+            .map({ case (operationInner, _) =>
+              new TaintNode(
+                cpg_typed.call
+                  .find(node => node.code == operationInner)
+                  .get
+                  .id,
+                TaintNodeType.Source,
+                isSource = true
+              )
+            })
+            .toList,
+          "map creatorCalls"
         )
-      })
+      )
 
       var lastCount = 0
       while (lastCount != graph.size) {
         lastCount = graph.size
-        println(s"last count: ${lastCount}")
+        println(s"[INFO] [COUNT] last count: ${lastCount}")
 
-        graph ++= getIndirectSource(
-          graph.nodes,
-          indirectSourceOperations
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          getIndirectSource(
+            graph.nodes,
+            indirectSourceOperations
+          ),
+          TaintFunctionType.GetIndirectSource
         )
-        graph ++= getIndirectSourceCall(
-          graph.nodes,
-          indirectSourceOperationsCall
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          getIndirectSourceCall(
+            graph.nodes,
+            indirectSourceOperationsCall
+          ),
+          TaintFunctionType.GetIndirectSourceCall
         )
-        graph ++= followSubSource(graph.nodes, subSourceCall)
-        graph ++= followFunctionCalls(graph.nodes)
-        graph ++= unzipFieldAccess(graph.nodes)
-        graph ++= findReturns(graph.nodes)
-        graph ++= followReturns(graph.nodes)
-        graph ++= lookForParameters(graph.nodes)
-        graph ++= lookForParameterCalls(graph.nodes)
-        graph ++= lookForReturnCalls(graph.nodes)
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          followSubSource(graph.nodes, subSourceCall),
+          TaintFunctionType.FollowSubSource
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          followFunctionCalls(graph.nodes),
+          TaintFunctionType.FollowFunctionCalls
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          unzipFieldAccess(graph.nodes),
+          TaintFunctionType.UnzipFieldAccess
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          findReturns(graph.nodes),
+          TaintFunctionType.FindReturns
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          followReturns(graph.nodes),
+          TaintFunctionType.FollowReturns
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          lookForParameters(graph.nodes),
+          TaintFunctionType.LookForParameters
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          lookForParameterCalls(graph.nodes),
+          TaintFunctionType.LookForParameterCalls
+        )
+
+        debug_graph(graph)
+        graph ++= addTaintSourceIdsFromEdge(
+          lookForReturnCalls(graph.nodes),
+          TaintFunctionType.LookForReturnCalls
+        )
+
+        debug_graph(graph)
       }
 
       tempOperations ++= graph.nodes
         .map((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
           (
-            (Operation(
-              getCode(node.value),
-              srcIndex = operation.srcIndex,
-              dstIndex = operation.dstIndex
-            )),
+            node.value.code,
             value
           )
         )
@@ -1196,15 +1315,18 @@ def search_created_functions(pOperations: Map[Operation, OperationValue]) = {
     finalOperations ++= operations
     operations.clear()
 
-    tempOperations = tempOperations.filter{ case (op,_) => !finalOperations.contains(op)}
+    tempOperations = tempOperations.filter { case (op, _) =>
+      !finalOperations.contains(op)
+    }
   }
 
-  println(finalOperations.size)
+  println(s"[INFO] [SIZE]: ${finalOperations.size}")
   finalOperations.toMap
 }
 
-println("Search sourceOperations")
-sourceOperations = search_created_functions(sourceOperations)
+println("[INFO] [STATUS]: Search sourceOperations")
+sourceOperations =
+  time(search_created_functions(sourceOperations), "sourceOperations")
 
 taintGraph ++= getSource(cpg_typed.call, sourceOperations)
 if (taintGraph.size == 1) {
@@ -1216,39 +1338,78 @@ if (taintGraph.size == 1) {
   throw new RuntimeException("No sources found!")
 }
 
-println("Search sinkOperations")
-sinkOperations = search_created_functions(sinkOperations)
-println("Search indirectSourceOperations")
-indirectSourceOperations = search_created_functions(indirectSourceOperations)
-println("Search indirectSourceOperationsCall")
-indirectSourceOperationsCall = search_created_functions(
-  indirectSourceOperationsCall
-)
-println("Search subSourceCall")
-subSourceCall = search_created_functions(subSourceCall)
+println("[INFO] [STATUS]: Search sinkOperations")
+sinkOperations =
+  time(search_created_functions(sinkOperations), "sinkOperations")
 
-println("Tainting")
+println("[INFO] [STATUS]: Search indirectSourceOperations")
+indirectSourceOperations = time(
+  search_created_functions(indirectSourceOperations),
+  "indirectSourceOperations"
+)
+
+println("[INFO] [STATUS]: Search indirectSourceOperationsCall")
+indirectSourceOperationsCall = time(
+  search_created_functions(
+    indirectSourceOperationsCall
+  ),
+  "indirectSourceOperationsCall"
+)
+
+println("[INFO] [STATUS]: Search subSourceCall")
+subSourceCall = time(search_created_functions(subSourceCall), "subSourceCall")
+
+clear_caches()
+
+println("[INFO] [STATUS]: Tainting")
 var lastCount = 0
 while (lastCount != taintGraph.size) {
   lastCount = taintGraph.size
-  println(s"last count: ${lastCount}")
+  println(s"[INFO] [COUNT]: last count: ${lastCount}")
 
-  taintGraph ++= getIndirectSource(
-    taintGraphNoRoot.nodes,
-    indirectSourceOperations
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    getIndirectSource(taintGraphNoRoot.nodes, indirectSourceOperations),
+    TaintFunctionType.GetIndirectSource
   )
-  taintGraph ++= getIndirectSourceCall(
-    taintGraphNoRoot.nodes,
-    indirectSourceOperationsCall
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    getIndirectSourceCall(
+      taintGraphNoRoot.nodes,
+      indirectSourceOperationsCall
+    ),
+    TaintFunctionType.GetIndirectSourceCall
   )
-  taintGraph ++= followSubSource(taintGraphNoRoot.nodes, subSourceCall)
-  taintGraph ++= followFunctionCalls(taintGraphNoRoot.nodes)
-  taintGraph ++= unzipFieldAccess(taintGraphNoRoot.nodes)
-  taintGraph ++= findReturns(taintGraphNoRoot.nodes)
-  taintGraph ++= followReturns(taintGraphNoRoot.nodes)
-  taintGraph ++= lookForParameters(taintGraphNoRoot.nodes)
-  taintGraph ++= lookForParameterCalls(taintGraphNoRoot.nodes)
-  taintGraph ++= lookForReturnCalls(taintGraphNoRoot.nodes)
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    followSubSource(taintGraphNoRoot.nodes, subSourceCall),
+    TaintFunctionType.FollowSubSource
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    followFunctionCalls(taintGraphNoRoot.nodes),
+    TaintFunctionType.FollowFunctionCalls
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    unzipFieldAccess(taintGraphNoRoot.nodes),
+    TaintFunctionType.UnzipFieldAccess
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    findReturns(taintGraphNoRoot.nodes),
+    TaintFunctionType.FindReturns
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    followReturns(taintGraphNoRoot.nodes),
+    TaintFunctionType.FollowReturns
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    lookForParameters(taintGraphNoRoot.nodes),
+    TaintFunctionType.LookForParameters
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    lookForParameterCalls(taintGraphNoRoot.nodes),
+    TaintFunctionType.LookForParameterCalls
+  )
+  taintGraph ++= addTaintSourceIdsFromEdge(
+    lookForReturnCalls(taintGraphNoRoot.nodes),
+    TaintFunctionType.LookForReturnCalls
+  )
 }
 
 taintGraph ++= getSinks(taintGraphNoRoot.nodes, sinkOperations)
