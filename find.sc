@@ -393,7 +393,7 @@ def fillShortestPaths(
   )
 
   var src_value = weightMap.getOrElse(src, TaintNodeWeight())
-  
+
   while (!src_value.visited) {
     src_value.visited = true
     weightMap += src -> src_value
@@ -412,25 +412,27 @@ def fillShortestPaths(
         weightMap += edge.to.value -> value
       })
 
-    src = graph.nodes.reduceLeft(
-      (
-          node1: Graph[TaintNode, WLDiEdge]#NodeT,
-          node2: Graph[TaintNode, WLDiEdge]#NodeT
-      ) => {
-        val value2 = weightMap.getOrElse(node2.value, TaintNodeWeight())
+    src = graph.nodes
+      .reduceLeft(
+        (
+            node1: Graph[TaintNode, WLDiEdge]#NodeT,
+            node2: Graph[TaintNode, WLDiEdge]#NodeT
+        ) => {
+          val value2 = weightMap.getOrElse(node2.value, TaintNodeWeight())
 
-        if (value2.visited) {
-          node1
-        } else {
-          val value1 = weightMap.getOrElse(node1.value, TaintNodeWeight())
-          if (value1.visited || value1.shortestPath > value2.shortestPath) {
-            node2
-          } else {
+          if (value2.visited) {
             node1
+          } else {
+            val value1 = weightMap.getOrElse(node1.value, TaintNodeWeight())
+            if (value1.visited || value1.shortestPath > value2.shortestPath) {
+              node2
+            } else {
+              node1
+            }
           }
         }
-      }
-    ).value
+      )
+      .value
     src_value = weightMap.getOrElse(src, TaintNodeWeight())
   }
 
@@ -891,7 +893,7 @@ def getCreatedSourceFunctions(
             .find(sourceNameIndex =>
               // Escaping double quote doesn't work https://github.com/scala/bug/issues/6476
 
-              node
+              node.argument.size >= sourceNameIndex && node
                 .argument(sourceNameIndex)
                 .code
                 .contains(s""""${operation}"""") ||
@@ -1315,7 +1317,7 @@ def search_created_functions(
   }
 
   println(s"[INFO] [SIZE]: ${finalOperations.size}")
-  if  (DEBUG) {
+  if (DEBUG) {
     println(s"[DEBUG] [Operations]: ${finalOperations}")
   }
 
