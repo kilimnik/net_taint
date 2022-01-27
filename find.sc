@@ -384,53 +384,54 @@ def exportTaintGraph(taintGraph: Graph[TaintNode, WLDiEdge]) = {
 
 def fillShortestPaths(
     graph: Graph[TaintNode, WLDiEdge],
-    src: TaintNode,
-    pWeightMap: Map[TaintNode, TaintNodeWeight]
+    pSrc: TaintNode
 ): Map[TaintNode, TaintNodeWeight] = {
-  var weightMap: Map[TaintNode, TaintNodeWeight] = Map()
-  weightMap ++= pWeightMap
+  var src = pSrc
 
-  val src_value = weightMap.getOrElse(src, TaintNodeWeight())
-  src_value.visited = true
-  weightMap += src -> src_value
-
-  graph
-    .get(src)
-    .edges
-    .filter(edge => edge.from.value == src)
-    .filter(edge =>
-      !weightMap.getOrElse(edge.to.value, TaintNodeWeight()).visited
-    )
-    .foreach(edge => {
-      val value = weightMap.getOrElse(edge.to.value, TaintNodeWeight())
-      value.shortestPath =
-        Math.min(value.shortestPath, src_value.shortestPath + edge.weight)
-      weightMap += edge.to.value -> value
-    })
-
-  val new_src = graph.nodes.reduceLeft(
-    (
-        node1: Graph[TaintNode, WLDiEdge]#NodeT,
-        node2: Graph[TaintNode, WLDiEdge]#NodeT
-    ) => {
-      val value2 = weightMap.getOrElse(node2.value, TaintNodeWeight())
-
-      if (value2.visited) {
-        node1
-      } else {
-        val value1 = weightMap.getOrElse(node1.value, TaintNodeWeight())
-        if (value1.visited || value1.shortestPath > value2.shortestPath) {
-          node2
-        } else {
-          node1
-        }
-      }
-    }
+  var weightMap: Map[TaintNode, TaintNodeWeight] = Map(
+    src -> TaintNodeWeight(0)
   )
 
-  val new_src_value = weightMap.getOrElse(new_src.value, TaintNodeWeight())
-  if (!new_src_value.visited) {
-    weightMap ++= fillShortestPaths(graph, new_src.value, weightMap)
+  var src_value = weightMap.getOrElse(src, TaintNodeWeight())
+  
+  while (!src_value.visited) {
+    src_value.visited = true
+    weightMap += src -> src_value
+
+    graph
+      .get(src)
+      .edges
+      .filter(edge => edge.from.value == src)
+      .filter(edge =>
+        !weightMap.getOrElse(edge.to.value, TaintNodeWeight()).visited
+      )
+      .foreach(edge => {
+        val value = weightMap.getOrElse(edge.to.value, TaintNodeWeight())
+        value.shortestPath =
+          Math.min(value.shortestPath, src_value.shortestPath + edge.weight)
+        weightMap += edge.to.value -> value
+      })
+
+    src = graph.nodes.reduceLeft(
+      (
+          node1: Graph[TaintNode, WLDiEdge]#NodeT,
+          node2: Graph[TaintNode, WLDiEdge]#NodeT
+      ) => {
+        val value2 = weightMap.getOrElse(node2.value, TaintNodeWeight())
+
+        if (value2.visited) {
+          node1
+        } else {
+          val value1 = weightMap.getOrElse(node1.value, TaintNodeWeight())
+          if (value1.visited || value1.shortestPath > value2.shortestPath) {
+            node2
+          } else {
+            node1
+          }
+        }
+      }
+    ).value
+    src_value = weightMap.getOrElse(src, TaintNodeWeight())
   }
 
   weightMap
@@ -1163,164 +1164,161 @@ def search_created_functions(
   var finalOperations =
     collection.mutable.Map[String, Array[OperationValue]]()
   var operations =
-    collection.mutable.Map[String, Array[OperationValue]]()
-  var tempOperations =
     collection.mutable.Map[String, Array[OperationValue]]() ++= pOperations
 
-  while (tempOperations.nonEmpty) {
-    operations ++= tempOperations
-    tempOperations.clear()
+  while (operations.nonEmpty) {
+    val (operation, value) = operations.head
+    operations.remove(operation)
+    finalOperations += (operation -> value)
 
-    operations.foreach { case (operation, value) =>
-      if (DEBUG) {
-        // println(s"[DEBUG]: ${operations}")
-        println(s"[DEBUG]: Current Operation ${operation}")
-      }
-      var graph: Graph[TaintNode, WLDiEdge] = Graph()
-      clear_caches()
+    if (DEBUG) {
+      println(s"[DEBUG]: ${operations}")
+      println(s"[DEBUG]: Current Operation ${operation}")
+    }
+    var graph: Graph[TaintNode, WLDiEdge] = Graph()
+    clear_caches()
 
-      var currentOperationMap = Map[String, Array[OperationValue]]()
-      currentOperationMap += (operation -> value)
+    var currentOperationMap = Map[String, Array[OperationValue]]()
+    currentOperationMap += (operation -> value)
+
+    // debug_graph(graph)
+    // graph ++= addTaintSourceIds(
+    //   time(
+    //     cpg_typed.identifier
+    //       .filter(node => node.code == operation)
+    //       .map(node => node.id)
+    //       .l
+    //       .map(id =>
+    //         new TaintNode(
+    //           id,
+    //           TaintNodeType.Source,
+    //           isSource = true
+    //         )
+    //       ),
+    //     "filter code"
+    //   )
+    // )
+
+    var creatorCalls = time(
+      getCreatedSourceFunctions(
+        cpg_typed.call,
+        sourceCreator,
+        currentOperationMap
+      ),
+      "getCreatedSourceFunctions"
+    )
+
+    debug_graph(graph)
+    graph ++= addTaintSourceIds(
+      time(
+        creatorCalls
+          .map({ case (operationInner, _) =>
+            new TaintNode(
+              cpg_typed.call
+                .find(node => node.code == operationInner)
+                .get
+                .id,
+              TaintNodeType.Source,
+              isSource = true
+            )
+          })
+          .toList,
+        "map creatorCalls"
+      )
+    )
+
+    var lastCount = 0
+    while (lastCount != graph.size) {
+      lastCount = graph.size
+      println(s"[INFO] [COUNT] last count: ${lastCount}")
 
       debug_graph(graph)
-      graph ++= addTaintSourceIds(
-        time(
-          cpg_typed.identifier
-            .filter(node => node.code == operation)
-            .map(node => node.id)
-            .l
-            .map(id =>
-              new TaintNode(
-                id,
-                TaintNodeType.Source,
-                isSource = true
-              )
-            ),
-          "filter code"
-        )
-      )
-
-      var creatorCalls = time(
-        getCreatedSourceFunctions(
-          cpg_typed.call,
-          sourceCreator,
-          currentOperationMap
+      graph ++= addTaintSourceIdsFromEdge(
+        getIndirectSource(
+          graph.nodes,
+          indirectSourceOperations
         ),
-        "getCreatedSourceFunctions"
+        TaintFunctionType.GetIndirectSource
       )
 
       debug_graph(graph)
-      graph ++= addTaintSourceIds(
-        time(
-          creatorCalls
-            .map({ case (operationInner, _) =>
-              new TaintNode(
-                cpg_typed.call
-                  .find(node => node.code == operationInner)
-                  .get
-                  .id,
-                TaintNodeType.Source,
-                isSource = true
-              )
-            })
-            .toList,
-          "map creatorCalls"
-        )
+      graph ++= addTaintSourceIdsFromEdge(
+        getIndirectSourceCall(
+          graph.nodes,
+          indirectSourceOperationsCall
+        ),
+        TaintFunctionType.GetIndirectSourceCall
       )
 
-      var lastCount = 0
-      while (lastCount != graph.size) {
-        lastCount = graph.size
-        println(s"[INFO] [COUNT] last count: ${lastCount}")
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        followSubSource(graph.nodes, subSourceCall),
+        TaintFunctionType.FollowSubSource
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          getIndirectSource(
-            graph.nodes,
-            indirectSourceOperations
-          ),
-          TaintFunctionType.GetIndirectSource
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        followFunctionCalls(graph.nodes),
+        TaintFunctionType.FollowFunctionCalls
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          getIndirectSourceCall(
-            graph.nodes,
-            indirectSourceOperationsCall
-          ),
-          TaintFunctionType.GetIndirectSourceCall
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        unzipFieldAccess(graph.nodes),
+        TaintFunctionType.UnzipFieldAccess
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          followSubSource(graph.nodes, subSourceCall),
-          TaintFunctionType.FollowSubSource
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        findReturns(graph.nodes),
+        TaintFunctionType.FindReturns
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          followFunctionCalls(graph.nodes),
-          TaintFunctionType.FollowFunctionCalls
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        followReturns(graph.nodes),
+        TaintFunctionType.FollowReturns
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          unzipFieldAccess(graph.nodes),
-          TaintFunctionType.UnzipFieldAccess
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        lookForParameters(graph.nodes),
+        TaintFunctionType.LookForParameters
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          findReturns(graph.nodes),
-          TaintFunctionType.FindReturns
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        lookForParameterCalls(graph.nodes),
+        TaintFunctionType.LookForParameterCalls
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          followReturns(graph.nodes),
-          TaintFunctionType.FollowReturns
-        )
+      debug_graph(graph)
+      graph ++= addTaintSourceIdsFromEdge(
+        lookForReturnCalls(graph.nodes),
+        TaintFunctionType.LookForReturnCalls
+      )
 
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          lookForParameters(graph.nodes),
-          TaintFunctionType.LookForParameters
-        )
-
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          lookForParameterCalls(graph.nodes),
-          TaintFunctionType.LookForParameterCalls
-        )
-
-        debug_graph(graph)
-        graph ++= addTaintSourceIdsFromEdge(
-          lookForReturnCalls(graph.nodes),
-          TaintFunctionType.LookForReturnCalls
-        )
-
-        debug_graph(graph)
-      }
-
-      tempOperations ++= graph.nodes
-        .map((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
-          (
-            node.value.code,
-            value
-          )
-        )
-        .toMap
+      debug_graph(graph)
     }
 
-    finalOperations ++= operations
-    operations.clear()
-
-    tempOperations = tempOperations.filter { case (op, _) =>
-      !finalOperations.contains(op)
-    }
+    operations ++= graph.nodes
+      .filterNot((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
+        finalOperations.contains(node.value.code)
+      )
+      .map((node: Graph[TaintNode, WLDiEdge]#NodeT) =>
+        (
+          node.value.code,
+          value
+        )
+      )
+      .toMap
   }
 
   println(s"[INFO] [SIZE]: ${finalOperations.size}")
+  if  (DEBUG) {
+    println(s"[DEBUG] [Operations]: ${finalOperations}")
+  }
+
   finalOperations.toMap
 }
 
@@ -1412,10 +1410,13 @@ while (lastCount != taintGraph.size) {
   )
 }
 
+println("[INFO] [STATUS]: Sinking")
 taintGraph ++= getSinks(taintGraphNoRoot.nodes, sinkOperations)
 
-weightMap = fillShortestPaths(taintGraph, rootNode, weightMap)
+println("[INFO] [STATUS]: Weighting")
+weightMap = fillShortestPaths(taintGraph, rootNode)
 
+println("[INFO] [STATUS]: Outputting")
 new PrintWriter(s"${output_path}/taintGraphSimple.dot") {
   write(exportTaintGraph(taintGraph))
   close()
