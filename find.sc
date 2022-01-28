@@ -233,7 +233,7 @@ def renderNode(
         .getOrElse(node, TaintNodeWeight())
         .shortestPath}: ${ret.method.filename.head}#${ret.lineNumber.head} \n\\"${escape(
         ret.code.head
-      )}\\" ${escape(ret.astChildren.code.head)}"""
+      )}\\" ${escape(if (ret.astChildren.code.size > 0) ret.astChildren.code.head else "NULL")}"""
     case TaintNodeType.Call =>
       def call = getCallFromId(node.id)
 
@@ -584,14 +584,14 @@ val cmp_weight = 4
 // Map[Function name, OperationValue]
 var sourceOperations: Map[String, Array[OperationValue]] = Map(
   "recv" -> Array(OperationValue(recv_weight, dstIndex = 2)),
-  "recvfrom" -> Array(OperationValue(recv_weight, dstIndex = 2)),
-  "WSARecvEx" -> Array(OperationValue(recv_weight, dstIndex = 2)),
-  "HttpQueryInfo" -> Array(OperationValue(recv_weight, dstIndex = 3)),
-  "HttpQueryInfoA" -> Array(OperationValue(recv_weight, dstIndex = 3)),
-  "HttpQueryInfoW" -> Array(OperationValue(recv_weight, dstIndex = 3)),
-  "InternetReadFile" -> Array(OperationValue(recv_weight, dstIndex = 2)),
-  "InternetReadFileExA" -> Array(OperationValue(recv_weight, dstIndex = 2)),
-  "InternetReadFileExW" -> Array(OperationValue(recv_weight, dstIndex = 2))
+  // "recvfrom" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  // "WSARecvEx" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  // "HttpQueryInfo" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  // "HttpQueryInfoA" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  // "HttpQueryInfoW" -> Array(OperationValue(recv_weight, dstIndex = 3)),
+  // "InternetReadFile" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  // "InternetReadFileExA" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  // "InternetReadFileExW" -> Array(OperationValue(recv_weight, dstIndex = 2))
 )
 
 // Map[Function name, OperationValue]
@@ -765,6 +765,7 @@ def getSource(
           case (operation: String, operationValues: Array[OperationValue]) =>
             operationValues.flatMap(operationValue =>
               call
+                .filter(node => node.argument.size >= operationValue.dstIndex)
                 .argument(operationValue.dstIndex)
                 .flatMap(arg =>
                   List(
@@ -1075,7 +1076,7 @@ def lookForParameterCalls(
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).callIn.flatMap(call =>
         if (
-          call.argument.size > getParameterFromId(taintNode.value.id).order.head
+          call.argument.size >= getParameterFromId(taintNode.value.id).order.head
         )
           List(
             (taintNode.value ~%+>
