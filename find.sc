@@ -95,8 +95,28 @@ var taintGraph: Graph[TaintNode, WLDiEdge] = Graph(rootNode)
 def taintGraphNoRoot = taintGraph - rootNode
 var taintIds: Map[Long, Boolean] = Map()
 
+var getIndirectSourceCache: Map[TaintNode, Boolean] = Map()
+var getIndirectSourceCallCache: Map[TaintNode, Boolean] = Map()
+var followSubSourceCache: Map[TaintNode, Boolean] = Map()
+var followFunctionCallsCache: Map[TaintNode, Boolean] = Map()
+var findReturnsCache: Map[TaintNode, Boolean] = Map()
+var lookForParametersCache: Map[TaintNode, Boolean] = Map()
+var lookForParameterCallsCache: Map[TaintNode, Boolean] = Map()
+var lookForReturnCallsCache: Map[TaintNode, Boolean] = Map()
+var unzipFieldAccessCache: Map[TaintNode, Boolean] = Map()
+
 def clear_caches() = {
   taintIds = Map()
+
+  getIndirectSourceCache = Map()
+  getIndirectSourceCallCache = Map()
+  followSubSourceCache = Map()
+  followFunctionCallsCache = Map()
+  findReturnsCache = Map()
+  lookForParametersCache = Map()
+  lookForParameterCallsCache = Map()
+  lookForReturnCallsCache = Map()
+  unzipFieldAccessCache = Map()
 }
 
 def addTaintSourceIdsFromEdge(
@@ -800,10 +820,17 @@ def getIndirectSource(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.isSource
+      taintNode.value.isSource && !getIndirectSourceCache.contains(
+        taintNode.value
+      )
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).call.flatMap(node =>
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      getIndirectSourceCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).call.flatMap(node =>
         operations
           .getOrElse(node.name, Array())
           .find((operationValue: OperationValue) =>
@@ -811,10 +838,10 @@ def getIndirectSource(
               node
                 .argument(operationValue.srcIndex)
                 .code
-                .contains(taintNode.value.code)
+                .contains(taintNode.code)
           )
           .map((operationValue: OperationValue) =>
-            (taintNode.value ~%+>
+            (taintNode ~%+>
               new TaintNode(
                 node.argument(operationValue.dstIndex).id,
                 TaintNodeType.Argument,
@@ -831,10 +858,17 @@ def getIndirectSourceCall(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.isSource
+      taintNode.value.isSource && !getIndirectSourceCallCache.contains(
+        taintNode.value
+      )
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).call.flatMap(node =>
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      getIndirectSourceCallCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).call.flatMap(node =>
         operations
           .getOrElse(node.name, Array())
           .find((operationValue: OperationValue) =>
@@ -843,10 +877,10 @@ def getIndirectSourceCall(
               node
                 .argument(operationValue.srcIndex)
                 .code
-                .contains(taintNode.value.code)
+                .contains(taintNode.code)
           )
           .map((operationValue: OperationValue) =>
-            (taintNode.value ~%+> new TaintNode(
+            (taintNode ~%+> new TaintNode(
               node.id,
               TaintNodeType.Call,
               isSource = true
@@ -862,17 +896,23 @@ def followSubSource(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getType(taintNode.value) == TaintNodeType.Call
+      getType(taintNode.value) == TaintNodeType.Call && !followSubSourceCache
+        .contains(taintNode.value)
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      followSubSourceCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
       operations
-        .get(getCallFromId(taintNode.value.id).name.head)
+        .get(getCallFromId(taintNode.id).name.head)
         .map((operationValues: Array[OperationValue]) =>
           operationValues.flatMap((operationValue: OperationValue) =>
-            getCallFromId(taintNode.value.id).argument
+            getCallFromId(taintNode.id).argument
               .filterNot(arg => arg.isLiteral)
               .map(arg =>
-                (taintNode.value ~%+> new TaintNode(
+                (taintNode ~%+> new TaintNode(
                   arg.id,
                   TaintNodeType.Argument,
                   isSource = true
@@ -964,21 +1004,28 @@ def followFunctionCalls(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.isSource
+      taintNode.value.isSource && !followFunctionCallsCache.contains(
+        taintNode.value
+      )
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).call
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      followFunctionCallsCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).call
         .filter(node => node.callee.isExternal(false).nonEmpty)
         .flatMap(node =>
           node.argument
             .filter(arg =>
-              arg.code == taintNode.value.code &&
+              arg.code == taintNode.code &&
                 !taintIds.contains(arg.id)
             )
             .flatMap(arg =>
               if (arg.parameter.size > 0)
                 List(
-                  (taintNode.value ~%+> new TaintNode(
+                  (taintNode ~%+> new TaintNode(
                     arg.call.id.head,
                     TaintNodeType.Call,
                     isSource = false
@@ -1005,17 +1052,20 @@ def findReturns(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.isSource
+      taintNode.value.isSource && !findReturnsCache.contains(taintNode.value)
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value)
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      findReturnsCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode)
         .flatMap(method =>
           method.methodReturn.toReturn
-            .filter(returnNode =>
-              returnNode.code.contains(taintNode.value.code)
-            )
+            .filter(returnNode => returnNode.code.contains(taintNode.code))
             .map(returnNode =>
-              (taintNode.value ~%+> new TaintNode(
+              (taintNode ~%+> new TaintNode(
                 returnNode.id,
                 TaintNodeType.Return,
                 isSource = false
@@ -1053,16 +1103,22 @@ def lookForParameters(
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       taintNode.value.nodeType != TaintNodeType.ParameterReverse &&
-        taintNode.value.nodeType != TaintNodeType.Parameter
+        taintNode.value.nodeType != TaintNodeType.Parameter && !lookForParametersCache
+          .contains(taintNode.value)
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).parameter
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      lookForParametersCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).parameter
         .find(param =>
-          param.name == taintNode.value.code &&
+          param.name == taintNode.code &&
             !taintIds.contains(param.id)
         )
         .map(param =>
-          (taintNode.value ~%+> new TaintNode(
+          (taintNode ~%+> new TaintNode(
             param.id,
             TaintNodeType.ParameterReverse,
             isSource = true
@@ -1076,21 +1132,27 @@ def lookForParameterCalls(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.nodeType == TaintNodeType.ParameterReverse
+      taintNode.value.nodeType == TaintNodeType.ParameterReverse && !lookForParameterCallsCache
+        .contains(taintNode.value)
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).callIn.flatMap(call =>
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      lookForParameterCallsCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).callIn.flatMap(call =>
         if (
           call.argument.size >= getParameterFromId(
-            taintNode.value.id
+            taintNode.id
           ).order.head
         )
           List(
-            (taintNode.value ~%+>
+            (taintNode ~%+>
               new TaintNode(
                 call
                   .argument(
-                    getParameterFromId(taintNode.value.id).order.head
+                    getParameterFromId(taintNode.id).order.head
                   )
                   .id,
                 TaintNodeType.Argument,
@@ -1107,11 +1169,17 @@ def lookForReturnCalls(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      taintNode.value.nodeType == TaintNodeType.Return
+      taintNode.value.nodeType == TaintNodeType.Return && !lookForReturnCallsCache
+        .contains(taintNode.value)
     )
-    .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getMethod(taintNode.value).callIn.map(call =>
-        (taintNode.value ~%+>
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      lookForReturnCallsCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .flatMap((taintNode: TaintNode) =>
+      getMethod(taintNode).callIn.map(call =>
+        (taintNode ~%+>
           new TaintNode(
             call.id,
             TaintNodeType.Call,
@@ -1129,12 +1197,19 @@ def unzipFieldAccess(
       getObject(taintNode.value).isCall.name.l
         .contains("<operator>.fieldAccess") || getObject(
         taintNode.value
-      ).isCall.name.l.contains("<operator>.indirectFieldAccess")
+      ).isCall.name.l.contains(
+        "<operator>.indirectFieldAccess"
+      ) && !unzipFieldAccessCache.contains(taintNode.value)
     )
-    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      (taintNode.value
+    .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
+      unzipFieldAccessCache += (taintNode.value -> true)
+
+      taintNode.value
+    })
+    .map((taintNode: TaintNode) =>
+      (taintNode
         ~%+> new TaintNode(
-          getObject(taintNode.value).isCall.argument(1).id.head,
+          getObject(taintNode).isCall.argument(1).id.head,
           TaintNodeType.Argument,
           isSource = true
         ))(0, EdgeType.IndirectSource)
