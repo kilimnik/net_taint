@@ -233,7 +233,9 @@ def renderNode(
         .getOrElse(node, TaintNodeWeight())
         .shortestPath}: ${ret.method.filename.head}#${ret.lineNumber.head} \n\\"${escape(
         ret.code.head
-      )}\\" ${escape(if (ret.astChildren.code.size > 0) ret.astChildren.code.head else "NULL")}"""
+      )}\\" ${escape(
+        if (ret.astChildren.code.size > 0) ret.astChildren.code.head else "NULL"
+      )}"""
     case TaintNodeType.Call =>
       def call = getCallFromId(node.id)
 
@@ -583,7 +585,7 @@ val cmp_weight = 4
 
 // Map[Function name, OperationValue]
 var sourceOperations: Map[String, Array[OperationValue]] = Map(
-  "recv" -> Array(OperationValue(recv_weight, dstIndex = 2)),
+  "recv" -> Array(OperationValue(recv_weight, dstIndex = 2))
   // "recvfrom" -> Array(OperationValue(recv_weight, dstIndex = 2)),
   // "WSARecvEx" -> Array(OperationValue(recv_weight, dstIndex = 2)),
   // "HttpQueryInfo" -> Array(OperationValue(recv_weight, dstIndex = 3)),
@@ -805,10 +807,11 @@ def getIndirectSource(
         operations
           .getOrElse(node.name, Array())
           .find((operationValue: OperationValue) =>
-            node
-              .argument(operationValue.srcIndex)
-              .code
-              .contains(taintNode.value.code)
+            node.argument.size >= operationValue.srcIndex &&
+              node
+                .argument(operationValue.srcIndex)
+                .code
+                .contains(taintNode.value.code)
           )
           .map((operationValue: OperationValue) =>
             (taintNode.value ~%+>
@@ -835,10 +838,12 @@ def getIndirectSourceCall(
         operations
           .getOrElse(node.name, Array())
           .find((operationValue: OperationValue) =>
-            node
-              .argument(operationValue.srcIndex)
-              .code
-              .contains(taintNode.value.code)
+            node.argument.size >= operationValue.srcIndex &&
+
+              node
+                .argument(operationValue.srcIndex)
+                .code
+                .contains(taintNode.value.code)
           )
           .map((operationValue: OperationValue) =>
             (taintNode.value ~%+> new TaintNode(
@@ -1076,7 +1081,9 @@ def lookForParameterCalls(
     .flatMap((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
       getMethod(taintNode.value).callIn.flatMap(call =>
         if (
-          call.argument.size >= getParameterFromId(taintNode.value.id).order.head
+          call.argument.size >= getParameterFromId(
+            taintNode.value.id
+          ).order.head
         )
           List(
             (taintNode.value ~%+>
@@ -1144,10 +1151,12 @@ def getSinks(
         operations
           .getOrElse(node.name, Array())
           .find((operationValue: OperationValue) =>
-            node
-              .argument(operationValue.srcIndex)
-              .code
-              .contains(taintNode.value.code) &&
+            node.argument.size >= operationValue.srcIndex &&
+
+              node
+                .argument(operationValue.srcIndex)
+                .code
+                .contains(taintNode.value.code) &&
               taintNode.value.nodeType != TaintNodeType.Call && taintNode.value.nodeType != TaintNodeType.Return
           )
           .map((operationValue: OperationValue) =>
