@@ -13,4 +13,4 @@ for project in projects:
     if os.path.isdir(f"{project_path}/{OUT_FOLDER}") and len(os.listdir(f"{project_path}/{OUT_FOLDER}")) == 0:
         print(f"Deleting {project}")
 
-        #shutil.rmtree(project_path)
+        shutil.rmtree(project_path)
