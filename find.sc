@@ -1194,12 +1194,14 @@ def unzipFieldAccess(
 ): List[WLDiEdge[TaintNode]] =
   nodes
     .filter((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) =>
-      getObject(taintNode.value).isCall.name.l
+      !unzipFieldAccessCache.contains(taintNode.value) && getObject(
+        taintNode.value
+      ).isCall.name.l
         .contains("<operator>.fieldAccess") || getObject(
         taintNode.value
       ).isCall.name.l.contains(
         "<operator>.indirectFieldAccess"
-      ) && !unzipFieldAccessCache.contains(taintNode.value)
+      )
     )
     .map((taintNode: Graph[TaintNode, WLDiEdge]#NodeT) => {
       unzipFieldAccessCache += (taintNode.value -> true)
