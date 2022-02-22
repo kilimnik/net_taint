@@ -11,7 +11,7 @@ import shutil
 # context.log_level = 'debug'
 
 JOERN_PATH = "/usr/local/bin/joern"
-SCRIPT_PATH = "/scripts/execute_batch.py"
+SCRIPT_PATH = "/scripts/find.sc"
 
 PROJECT_PATHS = ""
 

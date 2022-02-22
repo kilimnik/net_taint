@@ -7,21 +7,1269 @@ Code successfully imported. You can now query it using `cpg`.
 For an overview of all imported code, type `workspace`.
 Adding default overlays to base CPG
 The graph has been modified. You may want to use the `save` command to persist changes to disk.  All changes will also be saved collectively on exit
-res0: Cpg = io.shiftleft.codepropertygraph.generated.Cpg@283240b0
+res0: Cpg = io.shiftleft.codepropertygraph.generated.Cpg@4414ee28
 
-[9999D[0Jjoern> runScript("/scripts/execute_batch.py", Map(), cpg) [9999D[50C[7C
+[9999D[0Jjoern> runScript("/scripts/find.sc", Map(), cpg) [9999D[41C[7C
 [34mCompiling (synthetic)/ammonite/predef/ArgsPredef.sc[39m
 [34mCompiling /(console)[39m
-java.lang.RuntimeException: /scripts/execute_batch.py:3:1 expected end-of-input
-from pwn import *
-^
-  io.joern.console.scripting.AmmoniteExecutor.$anonfun$runScript$7(AmmoniteExecutor.scala:56)
-  map @ io.joern.console.scripting.AmmoniteExecutor.$anonfun$runScript$7(AmmoniteExecutor.scala:53)
-  apply @ io.joern.console.scripting.AmmoniteExecutor.$anonfun$runScript$5(AmmoniteExecutor.scala:44)
-  flatMap @ io.joern.console.scripting.AmmoniteExecutor.$anonfun$runScript$5(AmmoniteExecutor.scala:44)
-  flatMap @ io.joern.console.scripting.AmmoniteExecutor.$anonfun$runScript$3(AmmoniteExecutor.scala:43)
-  apply @ io.joern.console.scripting.AmmoniteExecutor.runScript(AmmoniteExecutor.scala:42)
-  flatMap @ io.joern.console.scripting.AmmoniteExecutor.runScript(AmmoniteExecutor.scala:42)
-
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/apache/netbeans/netbeans-parent/2/netbeans-parent-2.pom
+Downloaded https://repo1.maven.org/maven2/org/apache/netbeans/netbeans-parent/2/netbeans-parent-2.pom
+Downloading https://repo1.maven.org/maven2/org/apache/apache/21/apache-21.pom
+Downloaded https://repo1.maven.org/maven2/org/apache/apache/21/apache-21.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123.pom
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123.pom
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1.pom
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1.pom
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1.pom
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1.pom
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1.pom
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1.pom
+Downloading https://repo1.maven.org/maven2/org/ow2/ow2/1.5/ow2-1.5.pom
+Downloaded https://repo1.maven.org/maven2/org/ow2/ow2/1.5/ow2-1.5.pom
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1.pom
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1.pom
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core/RELEASE123/org-netbeans-core-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-bootstrap/RELEASE123/org-netbeans-bootstrap-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-awt/RELEASE123/org-openide-awt-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-io/RELEASE123/org-openide-io-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util/RELEASE123/org-openide-util-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-text/RELEASE123/org-openide-text-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-editor-mimelookup/RELEASE123/org-netbeans-modules-editor-mimelookup-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-dialogs/RELEASE123/org-openide-dialogs-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-tabcontrol/RELEASE123/org-netbeans-swing-tabcontrol-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-windows/RELEASE123/org-openide-windows-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-libs-asm/RELEASE123/org-netbeans-libs-asm-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-masterfs/RELEASE123/org-netbeans-modules-masterfs-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-scripting/RELEASE123/org-netbeans-api-scripting-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup-base/RELEASE123/org-netbeans-core-startup-base-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm/8.0.1/asm-8.0.1.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.3/graph-core_2.13-1.13.3.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-sampler/RELEASE123/org-netbeans-modules-sampler-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-lookup/RELEASE123/org-openide-util-lookup-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems/RELEASE123/org-openide-filesystems-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-plaf/RELEASE123/org-netbeans-swing-plaf-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-templates/RELEASE123/org-netbeans-api-templates-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-intent/RELEASE123/org-netbeans-api-intent-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-core-startup/RELEASE123/org-netbeans-core-startup-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-swing-outline/RELEASE123/org-netbeans-swing-outline-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-explorer/RELEASE123/org-openide-explorer-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE123/org-netbeans-api-annotations-common-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-queries/RELEASE123/org-netbeans-modules-queries-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-nodes/RELEASE123/org-openide-nodes-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-filesystems-nb/RELEASE123/org-openide-filesystems-nb-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-actions/RELEASE123/org-openide-actions-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-modules-keyring/RELEASE123/org-netbeans-modules-keyring-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-io/RELEASE123/org-netbeans-api-io-RELEASE123-sources.jar
+Downloading https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress/RELEASE123/org-netbeans-api-progress-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE123/org-netbeans-api-progress-nb-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-loaders/RELEASE123/org-openide-loaders-RELEASE123-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-util-ui/RELEASE123/org-openide-util-ui-RELEASE123.jar
+Downloaded https://repo1.maven.org/maven2/org/netbeans/api/org-openide-modules/RELEASE123/org-openide-modules-RELEASE123.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0.pom
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1.pom
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-core_2.13/1.13.1/graph-core_2.13-1.13.1.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-graph/graph-dot_2.13/1.13.0/graph-dot_2.13-1.13.0.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1.pom
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7.pom
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1.pom
+Downloading https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64.pom
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7.pom
+Downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.pom
+Downloading https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23.pom
+Downloaded https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1.pom
+Downloaded https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1.pom
+Downloaded https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23.pom
+Downloaded https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381.pom
+Downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.30/slf4j-parent-1.7.30.pom
+Downloaded https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.30/slf4j-parent-1.7.30.pom
+Downloading https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.pom
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6.pom
+Downloading https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.pom
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.pom
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7.pom
+Downloaded https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.pom
+Downloading https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6.pom
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64.pom
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6.pom
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7.pom
+Downloading https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.10.0/protobuf-java-3.10.0.pom
+Downloaded https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7.pom
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6.pom
+Downloaded https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23.pom
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64.pom
+Downloaded https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.pom
+Downloading https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer-parent/2.8/paranamer-parent-2.8.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-parent/3.10.0/protobuf-parent-3.10.0.pom
+Downloaded https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer-parent/2.8/paranamer-parent-2.8.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-parent/3.10.0/protobuf-parent-3.10.0.pom
+Downloading https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-bom/3.10.0/protobuf-bom-3.10.0.pom
+Downloaded https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-bom/3.10.0/protobuf-bom-3.10.0.pom
+Downloading https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.pom
+Downloading https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17.pom
+Downloading https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.pom
+Downloading https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1.pom
+Downloading https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0.pom
+Downloading https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.pom
+Downloaded https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1.pom
+Downloading https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0.pom
+Downloaded https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.pom
+Downloading https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23.pom
+Downloaded https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0.pom
+Downloading https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199.pom
+Downloaded https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17.pom
+Downloaded https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0.pom
+Downloaded https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23.pom
+Downloading https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4.pom
+Downloaded https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199.pom
+Downloaded https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.pom
+Downloaded https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4.pom
+Downloaded https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.pom
+Downloading https://repo1.maven.org/maven2/org/jline/jline-parent/3.19.0/jline-parent-3.19.0.pom
+Downloading https://repo1.maven.org/maven2/org/apache/commons/commons-parent/17/commons-parent-17.pom
+Downloading https://repo1.maven.org/maven2/com/google/guava/guava-parent/21.0/guava-parent-21.0.pom
+Downloaded https://repo1.maven.org/maven2/org/apache/commons/commons-parent/17/commons-parent-17.pom
+Downloaded https://repo1.maven.org/maven2/org/jline/jline-parent/3.19.0/jline-parent-3.19.0.pom
+Downloaded https://repo1.maven.org/maven2/com/google/guava/guava-parent/21.0/guava-parent-21.0.pom
+Downloading https://repo1.maven.org/maven2/org/apache/apache/7/apache-7.pom
+Downloading https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+Downloaded https://repo1.maven.org/maven2/org/apache/apache/7/apache-7.pom
+Downloaded https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+Downloading https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23.pom
+Downloading https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1.pom
+Downloaded https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1.pom
+Downloaded https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23.pom
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3.pom
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8.pom
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3.pom
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-parent/3.15.8/protobuf-parent-3.15.8.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-parent/3.15.8/protobuf-parent-3.15.8.pom
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-bom/3.15.8/protobuf-bom-3.15.8.pom
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-bom/3.15.8/protobuf-bom-3.15.8.pom
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23.jar
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6-sources.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7-sources.jar
+Downloading https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6-sources.jar
+Downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23.jar
+Downloaded https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23-sources.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64-sources.jar
+Downloading https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64-sources.jar
+Downloading https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23.jar
+Downloading https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.4.23/parsers_2.13-4.4.23-sources.jar
+Downloading https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA-sources.jar
+Downloaded https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0-sources.jar
+Downloading https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7.jar
+Downloaded https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64.jar
+Downloaded https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7.jar
+Downloading https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7-sources.jar
+Downloaded https://repo1.maven.org/maven2/net/oneandone/reflections8/reflections8/0.11.7/reflections8-0.11.7-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381.jar
+Downloaded https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA-sources.jar
+Downloading https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8-sources.jar
+Downloading https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6.jar
+Downloaded https://repo1.maven.org/maven2/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.jar
+Downloading https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381.jar
+Downloading https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23.jar
+Downloaded https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3-sources.jar
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3.jar
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/lenses_2.13/0.11.3/lenses_2.13-0.11.3.jar
+Downloading https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.6/scalap-2.13.6.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23.jar
+Downloading https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381.jar
+Downloading https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4-sources.jar
+Downloaded https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4-sources.jar
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3-sources.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381.jar
+Downloading https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.jar
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-traversal_2.13/1.64/overflowdb-traversal_2.13-1.64.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0-sources.jar
+Downloading https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1.jar
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8-sources.jar
+Downloading https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1.jar
+Downloading https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0.jar
+Downloaded https://repo1.maven.org/maven2/au/com/bytecode/opencsv/2.4/opencsv-2.4.jar
+Downloading https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.jar
+Downloading https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1.jar
+Downloaded https://repo1.maven.org/maven2/com/massisframework/j-text-utils/0.3.4/j-text-utils-0.3.4.jar
+Downloading https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199.jar
+Downloaded https://repo1.maven.org/maven2/org/jline/jline/3.19.0/jline-3.19.0.jar
+Downloading https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3.jar
+Downloaded https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1.jar
+Downloading https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1.jar
+Downloaded https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1.jar
+Downloading https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-protos_2.13/1.3.381/codepropertygraph-protos_2.13-1.3.381-sources.jar
+Downloading https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17-sources.jar
+Downloaded https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-ast_2.13/3.6.7/json4s-ast_2.13-3.6.7.jar
+Downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30-sources.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.4.23/trees_2.13-4.4.23.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/overflowdb-core/1.64/overflowdb-core-1.64.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7.jar
+Downloaded https://repo1.maven.org/maven2/com/thesamet/scalapb/scalapb-runtime_2.13/0.11.3/scalapb-runtime_2.13-0.11.3.jar
+Downloading https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/msgpack/msgpack-core/0.8.17/msgpack-core-0.8.17-sources.jar
+Downloading https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0.jar
+Downloaded https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar
+Downloading https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.1/scopt_2.13-4.0.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381-sources.jar
+Downloaded https://repo1.maven.org/maven2/com/h2database/h2-mvstore/1.4.199/h2-mvstore-1.4.199.jar
+Downloading https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph_2.13/1.3.381/codepropertygraph_2.13-1.3.381-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-core_2.13/3.6.7/json4s-core_2.13-3.6.7.jar
+Downloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8.jar
+Downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.15.8/protobuf-java-3.15.8.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.4.23/scalameta_2.13-4.4.23-sources.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-native_2.13/3.6.7/json4s-native_2.13-3.6.7-sources.jar
+Downloading https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.13/3.6.7/json4s-scalap_2.13-3.6.7-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381-sources.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/semanticcpg_2.13/1.3.381/semanticcpg_2.13-1.3.381-sources.jar
+Downloading https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1-sources.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/fastparse-v2_2.13/2.3.1/fastparse-v2_2.13-2.3.1-sources.jar
+Downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.6/scala-compiler-2.13.6.jar
+Downloaded https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-contrib_2.13/0.2.1/scala-collection-contrib_2.13-0.2.1.jar
+Downloaded https://repo1.maven.org/maven2/io/shiftleft/codepropertygraph-domain-classes_2.13/1.3.381/codepropertygraph-domain-classes_2.13-1.3.381.jar
+Downloaded https://repo1.maven.org/maven2/com/github/pathikrit/better-files_2.13/3.9.1/better-files_2.13-3.9.1.jar
+Downloaded https://repo1.maven.org/maven2/net/sf/trove4j/core/3.1.0/core-3.1.0.jar
+Downloaded https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.4.23/common_2.13-4.4.23.jar
+[34mCompiling /scripts/find.sc[39m
+[INFO] [STATUS]: Search sourceOperations
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation recv
+[TIME] [getCreatedSourceFunctions]: took 0.003756828 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 0.006040752 seconds
+[INFO] [COUNT] last count: 2
+[DEBUG] [GRAPH_SIZE]: 2
+[TIME] [GetIndirectSource]: took 0.03240193 seconds
+[DEBUG] [GRAPH_SIZE]: 4
+[TIME] [GetIndirectSourceCall]: took 0.02941359 seconds
+[DEBUG] [GRAPH_SIZE]: 7
+[TIME] [FollowSubSource]: took 0.004864363 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowFunctionCalls]: took 0.025346787 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [UnzipFieldAccess]: took 0.002806391 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FindReturns]: took 0.003990159 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowReturns]: took 4.26331E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameters]: took 0.003544878 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameterCalls]: took 5.64458E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForReturnCalls]: took 6.34472E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[INFO] [COUNT] last count: 21
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [GetIndirectSource]: took 0.008282174 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [GetIndirectSourceCall]: took 0.005637712 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowSubSource]: took 3.37867E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowFunctionCalls]: took 7.6024E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [UnzipFieldAccess]: took 0.001302435 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FindReturns]: took 9.2995E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowReturns]: took 6.2603E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameters]: took 1.22046E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameterCalls]: took 6.5414E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForReturnCalls]: took 8.4575E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[INFO] [COUNT] last count: 32
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [GetIndirectSource]: took 8.9955E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [GetIndirectSourceCall]: took 8.6024E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowSubSource]: took 2.0977E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowFunctionCalls]: took 7.3604E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [UnzipFieldAccess]: took 0.001878884 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FindReturns]: took 9.6195E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [FollowReturns]: took 5.2902E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameters]: took 7.3634E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForParameterCalls]: took 4.9522E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[TIME] [LookForReturnCalls]: took 5.4843E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 11
+[DEBUG]: HashMap((char*)GetProcAddress(NULL, "recv") -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecvFunc -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, char* -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation GetProcAddress(NULL, "recv")
+[TIME] [getCreatedSourceFunctions]: took 0.001552548 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.27917E-4 seconds
+[INFO] [COUNT] last count: 1
+[DEBUG] [GRAPH_SIZE]: 1
+[TIME] [GetIndirectSource]: took 8.77253E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 2
+[TIME] [GetIndirectSourceCall]: took 0.002436632 seconds
+[DEBUG] [GRAPH_SIZE]: 4
+[TIME] [FollowSubSource]: took 4.25261E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowFunctionCalls]: took 0.005318605 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [UnzipFieldAccess]: took 8.43453E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FindReturns]: took 9.30666E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowReturns]: took 3.7352E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameters]: took 6.91194E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameterCalls]: took 2.6932E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForReturnCalls]: took 3.4972E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[INFO] [COUNT] last count: 11
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [GetIndirectSource]: took 0.002753658 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [GetIndirectSourceCall]: took 0.001793799 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowSubSource]: took 1.09695E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowFunctionCalls]: took 3.2871E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [UnzipFieldAccess]: took 4.95685E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FindReturns]: took 3.2682E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowReturns]: took 2.3941E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameters]: took 3.2722E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameterCalls]: took 3.7232E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForReturnCalls]: took 3.6322E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[INFO] [COUNT] last count: 16
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [GetIndirectSource]: took 5.0223E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [GetIndirectSourceCall]: took 5.0012E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowSubSource]: took 1.19626E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowFunctionCalls]: took 4.2122E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [UnzipFieldAccess]: took 9.66708E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FindReturns]: took 6.5393E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [FollowReturns]: took 3.8481E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameters]: took 5.2392E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForParameterCalls]: took 3.5622E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[TIME] [LookForReturnCalls]: took 3.5142E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 6
+[DEBUG]: HashMap(hRecvFunc -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, char* -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation (char*)GetProcAddress(NULL, "recv")
+[TIME] [getCreatedSourceFunctions]: took 0.001525356 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 2.0301E-5 seconds
+[DEBUG]: HashMap(char* -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation hRecvFunc
+[TIME] [getCreatedSourceFunctions]: took 9.61848E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.058E-5 seconds
+[DEBUG]: HashMap(GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation char*
+[TIME] [getCreatedSourceFunctions]: took 9.41848E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.13E-6 seconds
+[DEBUG]: HashMap((hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation GetProcAddress(hWs2_32, (PCHAR)g_func_recv)
+[TIME] [getCreatedSourceFunctions]: took 0.001084685 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.91874E-4 seconds
+[INFO] [COUNT] last count: 1
+[DEBUG] [GRAPH_SIZE]: 1
+[TIME] [GetIndirectSource]: took 0.001260203 seconds
+[DEBUG] [GRAPH_SIZE]: 2
+[TIME] [GetIndirectSourceCall]: took 0.002902205 seconds
+[DEBUG] [GRAPH_SIZE]: 3
+[TIME] [FollowSubSource]: took 3.61778E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowFunctionCalls]: took 0.005969599 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [UnzipFieldAccess]: took 9.02606E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FindReturns]: took 0.001217291 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowReturns]: took 4.4312E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameters]: took 0.001438672 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameterCalls]: took 5.2573E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForReturnCalls]: took 3.2882E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[INFO] [COUNT] last count: 10
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [GetIndirectSource]: took 0.003888145 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [GetIndirectSourceCall]: took 0.002413231 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowSubSource]: took 2.0847E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowFunctionCalls]: took 4.7623E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [UnzipFieldAccess]: took 7.78619E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FindReturns]: took 6.8393E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowReturns]: took 6.2333E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameters]: took 7.0144E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameterCalls]: took 5.2213E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForReturnCalls]: took 3.3051E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[INFO] [COUNT] last count: 16
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [GetIndirectSource]: took 4.8982E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [GetIndirectSourceCall]: took 5.3123E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowSubSource]: took 8.5704E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowFunctionCalls]: took 4.2572E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [UnzipFieldAccess]: took 5.29647E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FindReturns]: took 4.1512E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [FollowReturns]: took 3.4431E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameters]: took 4.2452E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForParameterCalls]: took 3.5212E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[TIME] [LookForReturnCalls]: took 2.7181E-5 seconds
+[DEBUG] [GRAPH_SIZE]: 5
+[DEBUG]: HashMap(frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv)
+[TIME] [getCreatedSourceFunctions]: took 6.76874E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.6911E-5 seconds
+[DEBUG]: HashMap(frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR
+[TIME] [getCreatedSourceFunctions]: took 5.38117E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.09E-6 seconds
+[DEBUG]: HashMap(hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[DEBUG]: Current Operation frecv
+[TIME] [getCreatedSourceFunctions]: took 5.9785E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.09E-6 seconds
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation hRecv
+[TIME] [getCreatedSourceFunctions]: took 6.20121E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.0451E-5 seconds
+[INFO] [SIZE]: 10
+[DEBUG] [Operations]: HashMap(GetProcAddress(NULL, "recv") -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (char*)GetProcAddress(NULL, "recv") -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecvFunc -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, recv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, char* -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, (hRecvFunc)GetProcAddress(hWs2_32, (PCHAR)g_func_recv) -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, frecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0, hRecv -> [Lammonite.$file.scripts.find$OperationValue;@6e536cd0)
+[TIME] [sourceOperations]: took 0.285702315 seconds
+[INFO] [STATUS]: Search sinkOperations
+[DEBUG]: HashMap(_wtoi64 -> [Lammonite.$file.scripts.find$OperationValue;@3b0eff89, lstrlen -> [Lammonite.$file.scripts.find$OperationValue;@cb153e8, _mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@51e0b542, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@24ee1f0d, lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoi64_l
+[TIME] [getCreatedSourceFunctions]: took 8.87945E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.2951E-5 seconds
+[DEBUG]: HashMap(lstrlen -> [Lammonite.$file.scripts.find$OperationValue;@cb153e8, _mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@51e0b542, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@24ee1f0d, lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoi64
+[TIME] [getCreatedSourceFunctions]: took 7.54958E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.401E-5 seconds
+[DEBUG]: HashMap(_mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@51e0b542, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@24ee1f0d, lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrlen
+[TIME] [getCreatedSourceFunctions]: took 8.83674E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.151E-5 seconds
+[DEBUG]: HashMap(lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@24ee1f0d, lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _mbscpy
+[TIME] [getCreatedSourceFunctions]: took 6.87984E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1441E-5 seconds
+[DEBUG]: HashMap(lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcat
+[TIME] [getCreatedSourceFunctions]: took 8.54833E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.273E-5 seconds
+[DEBUG]: HashMap(_atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrlenA
+[TIME] [getCreatedSourceFunctions]: took 5.81959E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1681E-5 seconds
+[DEBUG]: HashMap(lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoll_l
+[TIME] [getCreatedSourceFunctions]: took 5.03965E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.23E-6 seconds
+[DEBUG]: HashMap(_atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpyA
+[TIME] [getCreatedSourceFunctions]: took 5.16546E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.27E-6 seconds
+[DEBUG]: HashMap(strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoldbl_l
+[TIME] [getCreatedSourceFunctions]: took 4.69984E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.87E-6 seconds
+[DEBUG]: HashMap(_atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation strcpy
+[TIME] [getCreatedSourceFunctions]: took 4.80994E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.84E-6 seconds
+[DEBUG]: HashMap(strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atol_l
+[TIME] [getCreatedSourceFunctions]: took 5.91609E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1891E-5 seconds
+[DEBUG]: HashMap(atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation strlen
+[TIME] [getCreatedSourceFunctions]: took 6.09101E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.931E-6 seconds
+[DEBUG]: HashMap(_wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation atoll
+[TIME] [getCreatedSourceFunctions]: took 8.0475E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.5471E-5 seconds
+[DEBUG]: HashMap(_atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtol_l
+[TIME] [getCreatedSourceFunctions]: took 6.29581E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.58E-6 seconds
+[DEBUG]: HashMap(lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoldbl
+[TIME] [getCreatedSourceFunctions]: took 4.54553E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.601E-6 seconds
+[DEBUG]: HashMap(lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpynA
+[TIME] [getCreatedSourceFunctions]: took 4.34552E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.15E-6 seconds
+[DEBUG]: HashMap(_wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcatW
+[TIME] [getCreatedSourceFunctions]: took 4.44112E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.4E-6 seconds
+[DEBUG]: HashMap(lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoi_l
+[TIME] [getCreatedSourceFunctions]: took 4.62393E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.15E-6 seconds
+[DEBUG]: HashMap(_wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpyn
+[TIME] [getCreatedSourceFunctions]: took 4.42372E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.15E-6 seconds
+[DEBUG]: HashMap(_atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtof_l
+[TIME] [getCreatedSourceFunctions]: took 5.41407E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.751E-6 seconds
+[DEBUG]: HashMap(_atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoflt_l
+[TIME] [getCreatedSourceFunctions]: took 7.05095E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.48E-6 seconds
+[DEBUG]: HashMap(wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atof_l
+[TIME] [getCreatedSourceFunctions]: took 5.61468E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.55E-6 seconds
+[DEBUG]: HashMap(atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation wcscpy
+[TIME] [getCreatedSourceFunctions]: took 4.48292E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.08E-6 seconds
+[DEBUG]: HashMap(_wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation atoi
+[TIME] [getCreatedSourceFunctions]: took 5.25336E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.221E-6 seconds
+[DEBUG]: HashMap(lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtof
+[TIME] [getCreatedSourceFunctions]: took 4.87945E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.76E-6 seconds
+[DEBUG]: HashMap(lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpyW
+[TIME] [getCreatedSourceFunctions]: took 4.46683E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.85E-6 seconds
+[DEBUG]: HashMap(_wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcatA
+[TIME] [getCreatedSourceFunctions]: took 7.30547E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 2.7702E-5 seconds
+[DEBUG]: HashMap(atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoi
+[TIME] [getCreatedSourceFunctions]: took 8.07951E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.022E-5 seconds
+[DEBUG]: HashMap(_atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation atoi_l
+[TIME] [getCreatedSourceFunctions]: took 7.50257E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.1E-6 seconds
+[DEBUG]: HashMap(atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoi64
+[TIME] [getCreatedSourceFunctions]: took 7.26246E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.23E-6 seconds
+[DEBUG]: HashMap(_wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation atof
+[TIME] [getCreatedSourceFunctions]: took 7.51928E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.0301E-5 seconds
+[DEBUG]: HashMap(_wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtol
+[TIME] [getCreatedSourceFunctions]: took 8.15931E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1501E-5 seconds
+[DEBUG]: HashMap(_wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoll
+[TIME] [getCreatedSourceFunctions]: took 7.82119E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.3521E-5 seconds
+[DEBUG]: HashMap(lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoi64_l
+[TIME] [getCreatedSourceFunctions]: took 8.52513E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.3731E-5 seconds
+[DEBUG]: HashMap(lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpy
+[TIME] [getCreatedSourceFunctions]: took 7.69269E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1821E-5 seconds
+[DEBUG]: HashMap(system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrlenW
+[TIME] [getCreatedSourceFunctions]: took 8.14901E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.4341E-5 seconds
+[DEBUG]: HashMap(_wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation system
+[TIME] [getCreatedSourceFunctions]: took 0.001105436 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.2941E-5 seconds
+[DEBUG]: HashMap(lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _wtoll_l
+[TIME] [getCreatedSourceFunctions]: took 7.26537E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.271E-6 seconds
+[DEBUG]: HashMap(atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation lstrcpynW
+[TIME] [getCreatedSourceFunctions]: took 7.28416E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.081E-6 seconds
+[DEBUG]: HashMap(_atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation atol
+[TIME] [getCreatedSourceFunctions]: took 7.30676E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.66E-6 seconds
+[DEBUG]: HashMap(_atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atodbl_l
+[TIME] [getCreatedSourceFunctions]: took 7.82749E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.53E-6 seconds
+[DEBUG]: HashMap(_atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[DEBUG]: Current Operation _atoflt
+[TIME] [getCreatedSourceFunctions]: took 8.022E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.1351E-5 seconds
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation _atodbl
+[TIME] [getCreatedSourceFunctions]: took 7.02675E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.07E-6 seconds
+[INFO] [SIZE]: 43
+[DEBUG] [Operations]: HashMap(_atoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c57d00e, _wtoi64 -> [Lammonite.$file.scripts.find$OperationValue;@3b0eff89, lstrlen -> [Lammonite.$file.scripts.find$OperationValue;@cb153e8, _mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@51e0b542, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@24ee1f0d, lstrlenA -> [Lammonite.$file.scripts.find$OperationValue;@68d05eae, _atoll_l -> [Lammonite.$file.scripts.find$OperationValue;@6e787e4f, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@3a669c67, _atoldbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6e24fa51, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@46bfc15, _atol_l -> [Lammonite.$file.scripts.find$OperationValue;@294c70d1, strlen -> [Lammonite.$file.scripts.find$OperationValue;@27c7443b, atoll -> [Lammonite.$file.scripts.find$OperationValue;@6e78d4e0, _wtol_l -> [Lammonite.$file.scripts.find$OperationValue;@35a8166e, _atoldbl -> [Lammonite.$file.scripts.find$OperationValue;@7fa832f2, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@62d347a0, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@4a2450ce, _wtoi_l -> [Lammonite.$file.scripts.find$OperationValue;@3fca3482, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@1cbae2b, _wtof_l -> [Lammonite.$file.scripts.find$OperationValue;@795d07f5, _atoflt_l -> [Lammonite.$file.scripts.find$OperationValue;@11178a30, _atof_l -> [Lammonite.$file.scripts.find$OperationValue;@7f17d2b4, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@23f1818b, atoi -> [Lammonite.$file.scripts.find$OperationValue;@320258af, _wtof -> [Lammonite.$file.scripts.find$OperationValue;@1f6912d5, lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@5eaae1fe, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@7178ce79, _wtoi -> [Lammonite.$file.scripts.find$OperationValue;@519f27d9, atoi_l -> [Lammonite.$file.scripts.find$OperationValue;@6376885, _atoi64 -> [Lammonite.$file.scripts.find$OperationValue;@f9bdcac, atof -> [Lammonite.$file.scripts.find$OperationValue;@3827d020, _wtol -> [Lammonite.$file.scripts.find$OperationValue;@102e8912, _wtoll -> [Lammonite.$file.scripts.find$OperationValue;@2de0b8d2, _wtoi64_l -> [Lammonite.$file.scripts.find$OperationValue;@7c4f6f7e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@7a6f1607, lstrlenW -> [Lammonite.$file.scripts.find$OperationValue;@1e6d7641, system -> [Lammonite.$file.scripts.find$OperationValue;@36e36b76, _wtoll_l -> [Lammonite.$file.scripts.find$OperationValue;@31d0c64b, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@338d3158, atol -> [Lammonite.$file.scripts.find$OperationValue;@46a78616, _atodbl_l -> [Lammonite.$file.scripts.find$OperationValue;@6b32ed6f, _atoflt -> [Lammonite.$file.scripts.find$OperationValue;@5c679cdc, _atodbl -> [Lammonite.$file.scripts.find$OperationValue;@6ba71f9)
+[TIME] [sinkOperations]: took 0.049216989 seconds
+[INFO] [STATUS]: Search indirectSourceOperations
+[DEBUG]: HashMap(lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@6093fec0, _mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@35737e92, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@77661f92, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@671f9be3, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpyW
+[TIME] [getCreatedSourceFunctions]: took 8.1005E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.3961E-5 seconds
+[DEBUG]: HashMap(_mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@35737e92, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@77661f92, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@671f9be3, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcatA
+[TIME] [getCreatedSourceFunctions]: took 8.29252E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.2401E-5 seconds
+[DEBUG]: HashMap(lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@77661f92, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@671f9be3, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation _mbscpy
+[TIME] [getCreatedSourceFunctions]: took 9.52588E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.879E-5 seconds
+[DEBUG]: HashMap(lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@671f9be3, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcat
+[TIME] [getCreatedSourceFunctions]: took 0.001020321 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 2.2551E-5 seconds
+[DEBUG]: HashMap(strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpyA
+[TIME] [getCreatedSourceFunctions]: took 5.30507E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.801E-6 seconds
+[DEBUG]: HashMap(lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation strcpy
+[TIME] [getCreatedSourceFunctions]: took 7.00515E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.2391E-5 seconds
+[DEBUG]: HashMap(<operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpy
+[TIME] [getCreatedSourceFunctions]: took 6.1136E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.95E-6 seconds
+[DEBUG]: HashMap(lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation <operator>.assignmentPlus
+[TIME] [getCreatedSourceFunctions]: took 6.63153E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.14E-5 seconds
+[DEBUG]: HashMap(<operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpynA
+[TIME] [getCreatedSourceFunctions]: took 5.9473E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.391E-6 seconds
+[DEBUG]: HashMap(lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation <operator>.assignmentMinus
+[TIME] [getCreatedSourceFunctions]: took 4.53262E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.28E-6 seconds
+[DEBUG]: HashMap(memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcatW
+[TIME] [getCreatedSourceFunctions]: took 4.60043E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.06E-6 seconds
+[DEBUG]: HashMap(lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation memcpy
+[TIME] [getCreatedSourceFunctions]: took 7.21556E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.4011E-5 seconds
+[DEBUG]: HashMap(lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpyn
+[TIME] [getCreatedSourceFunctions]: took 5.81109E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.96E-6 seconds
+[DEBUG]: HashMap(wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation lstrcpynW
+[TIME] [getCreatedSourceFunctions]: took 4.79854E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.081E-6 seconds
+[DEBUG]: HashMap(<operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[DEBUG]: Current Operation wcscpy
+[TIME] [getCreatedSourceFunctions]: took 4.65903E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.82E-6 seconds
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation <operator>.assignment
+[TIME] [getCreatedSourceFunctions]: took 4.0166E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.3E-6 seconds
+[INFO] [SIZE]: 16
+[DEBUG] [Operations]: HashMap(lstrcpyW -> [Lammonite.$file.scripts.find$OperationValue;@409fa1d5, lstrcatA -> [Lammonite.$file.scripts.find$OperationValue;@6093fec0, _mbscpy -> [Lammonite.$file.scripts.find$OperationValue;@35737e92, lstrcat -> [Lammonite.$file.scripts.find$OperationValue;@77661f92, lstrcpyA -> [Lammonite.$file.scripts.find$OperationValue;@671f9be3, strcpy -> [Lammonite.$file.scripts.find$OperationValue;@18850c3e, lstrcpy -> [Lammonite.$file.scripts.find$OperationValue;@362c7652, <operator>.assignmentPlus -> [Lammonite.$file.scripts.find$OperationValue;@71f1758a, lstrcpynA -> [Lammonite.$file.scripts.find$OperationValue;@6aaa28d4, <operator>.assignmentMinus -> [Lammonite.$file.scripts.find$OperationValue;@5afe3d43, lstrcatW -> [Lammonite.$file.scripts.find$OperationValue;@fb55ea8, memcpy -> [Lammonite.$file.scripts.find$OperationValue;@759227f1, lstrcpyn -> [Lammonite.$file.scripts.find$OperationValue;@4e454d1f, lstrcpynW -> [Lammonite.$file.scripts.find$OperationValue;@657a75b1, wcscpy -> [Lammonite.$file.scripts.find$OperationValue;@409f27a8, <operator>.assignment -> [Lammonite.$file.scripts.find$OperationValue;@24d63de5)
+[TIME] [indirectSourceOperations]: took 0.021749886 seconds
+[INFO] [STATUS]: Search indirectSourceOperationsCall
+[DEBUG]: HashMap(<operator>.preIncrement -> [Lammonite.$file.scripts.find$OperationValue;@4f65589a, <operator>.addressOf -> [Lammonite.$file.scripts.find$OperationValue;@5ac96d86, <operator>.logicalNot -> [Lammonite.$file.scripts.find$OperationValue;@67e5fe03, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@6505d3a6, <operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.greaterThan
+[TIME] [getCreatedSourceFunctions]: took 4.86574E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.821E-6 seconds
+[DEBUG]: HashMap(<operator>.addressOf -> [Lammonite.$file.scripts.find$OperationValue;@5ac96d86, <operator>.logicalNot -> [Lammonite.$file.scripts.find$OperationValue;@67e5fe03, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@6505d3a6, <operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.preIncrement
+[TIME] [getCreatedSourceFunctions]: took 6.99935E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 8.38E-6 seconds
+[DEBUG]: HashMap(<operator>.logicalNot -> [Lammonite.$file.scripts.find$OperationValue;@67e5fe03, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@6505d3a6, <operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.addressOf
+[TIME] [getCreatedSourceFunctions]: took 4.26622E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.0091E-5 seconds
+[DEBUG]: HashMap(<operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@6505d3a6, <operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.logicalNot
+[TIME] [getCreatedSourceFunctions]: took 4.81654E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.2201E-5 seconds
+[DEBUG]: HashMap(<operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.indirectFieldAccess
+[TIME] [getCreatedSourceFunctions]: took 4.35032E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 7.51E-6 seconds
+[DEBUG]: HashMap(<operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.lessThan
+[TIME] [getCreatedSourceFunctions]: took 4.28642E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.14E-6 seconds
+[DEBUG]: HashMap(<operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.indirectIndexAccess
+[TIME] [getCreatedSourceFunctions]: took 5.13426E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.3041E-5 seconds
+[DEBUG]: HashMap(<operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.fieldAccess
+[TIME] [getCreatedSourceFunctions]: took 3.9968E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.281E-6 seconds
+[DEBUG]: HashMap(<operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.notEquals
+[TIME] [getCreatedSourceFunctions]: took 3.9406E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.12E-6 seconds
+[DEBUG]: HashMap(<operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.subtraction
+[TIME] [getCreatedSourceFunctions]: took 3.9911E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 2.94E-6 seconds
+[DEBUG]: HashMap(<operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.indirection
+[TIME] [getCreatedSourceFunctions]: took 4.53483E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.861E-6 seconds
+[DEBUG]: HashMap(<operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.addition
+[TIME] [getCreatedSourceFunctions]: took 4.05241E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.78E-6 seconds
+[DEBUG]: HashMap(<operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.lessEqualsThan
+[TIME] [getCreatedSourceFunctions]: took 4.04231E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.371E-6 seconds
+[DEBUG]: HashMap(<operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.cast
+[TIME] [getCreatedSourceFunctions]: took 3.8483E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.0E-6 seconds
+[DEBUG]: HashMap(<operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.equals
+[TIME] [getCreatedSourceFunctions]: took 3.9608E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.67E-6 seconds
+[DEBUG]: HashMap(<operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[DEBUG]: Current Operation <operator>.greaterEqualsThan
+[TIME] [getCreatedSourceFunctions]: took 4.26462E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 1.8521E-5 seconds
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation <operator>.postIncrement
+[TIME] [getCreatedSourceFunctions]: took 6.33912E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.57E-6 seconds
+[INFO] [SIZE]: 17
+[DEBUG] [Operations]: HashMap(<operator>.greaterThan -> [Lammonite.$file.scripts.find$OperationValue;@2b105865, <operator>.preIncrement -> [Lammonite.$file.scripts.find$OperationValue;@4f65589a, <operator>.addressOf -> [Lammonite.$file.scripts.find$OperationValue;@5ac96d86, <operator>.logicalNot -> [Lammonite.$file.scripts.find$OperationValue;@67e5fe03, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@6505d3a6, <operator>.lessThan -> [Lammonite.$file.scripts.find$OperationValue;@41e614, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@11f51ec7, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5928ef1c, <operator>.notEquals -> [Lammonite.$file.scripts.find$OperationValue;@127b8f7c, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@1d05ba61, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@24bf9c20, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@3a71d7a4, <operator>.lessEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@74bfbff9, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@4459c5bd, <operator>.equals -> [Lammonite.$file.scripts.find$OperationValue;@1c5f1f8a, <operator>.greaterEqualsThan -> [Lammonite.$file.scripts.find$OperationValue;@28273752, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@216e05d8)
+[TIME] [indirectSourceOperationsCall]: took 0.012979599 seconds
+[INFO] [STATUS]: Search subSourceCall
+[DEBUG]: HashMap(<operator>.addressOf -> [Lammonite.$file.scripts.find$OperationValue;@5e5b82cd, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@f4a0c1b, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@2630aee7, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@549b4242, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.preIncrement
+[TIME] [getCreatedSourceFunctions]: took 4.50232E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 9.26E-6 seconds
+[DEBUG]: HashMap(<operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@f4a0c1b, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@2630aee7, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@549b4242, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.addressOf
+[TIME] [getCreatedSourceFunctions]: took 4.27331E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 5.99E-6 seconds
+[DEBUG]: HashMap(<operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@2630aee7, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@549b4242, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.indirectFieldAccess
+[TIME] [getCreatedSourceFunctions]: took 4.81294E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 6.32E-6 seconds
+[DEBUG]: HashMap(<operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@549b4242, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.cast
+[TIME] [getCreatedSourceFunctions]: took 4.31362E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 3.7E-6 seconds
+[DEBUG]: HashMap(<operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.indirectIndexAccess
+[TIME] [getCreatedSourceFunctions]: took 4.39932E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.441E-6 seconds
+[DEBUG]: HashMap(<operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.fieldAccess
+[TIME] [getCreatedSourceFunctions]: took 4.32021E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.34E-6 seconds
+[DEBUG]: HashMap(<operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.postIncrement
+[TIME] [getCreatedSourceFunctions]: took 4.46552E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.691E-6 seconds
+[DEBUG]: HashMap(<operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.subtraction
+[TIME] [getCreatedSourceFunctions]: took 4.37722E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.44E-6 seconds
+[DEBUG]: HashMap(<operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[DEBUG]: Current Operation <operator>.indirection
+[TIME] [getCreatedSourceFunctions]: took 4.34131E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.191E-6 seconds
+[DEBUG]: HashMap()
+[DEBUG]: Current Operation <operator>.addition
+[TIME] [getCreatedSourceFunctions]: took 4.65394E-4 seconds
+[DEBUG] [GRAPH_SIZE]: 0
+[TIME] [map creatorCalls]: took 4.501E-6 seconds
+[INFO] [SIZE]: 10
+[DEBUG] [Operations]: HashMap(<operator>.preIncrement -> [Lammonite.$file.scripts.find$OperationValue;@54e7921c, <operator>.addressOf -> [Lammonite.$file.scripts.find$OperationValue;@5e5b82cd, <operator>.indirectFieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@f4a0c1b, <operator>.cast -> [Lammonite.$file.scripts.find$OperationValue;@2630aee7, <operator>.indirectIndexAccess -> [Lammonite.$file.scripts.find$OperationValue;@549b4242, <operator>.fieldAccess -> [Lammonite.$file.scripts.find$OperationValue;@5654eff6, <operator>.postIncrement -> [Lammonite.$file.scripts.find$OperationValue;@9210bf3, <operator>.subtraction -> [Lammonite.$file.scripts.find$OperationValue;@2a45cba6, <operator>.indirection -> [Lammonite.$file.scripts.find$OperationValue;@244205fe, <operator>.addition -> [Lammonite.$file.scripts.find$OperationValue;@551875df)
+[TIME] [subSourceCall]: took 0.007480654 seconds
+[INFO] [STATUS]: Tainting
+[INFO] [COUNT]: last count: 17
+[TIME] [GetIndirectSource]: took 0.010421271 seconds
+[TIME] [GetIndirectSourceCall]: took 0.022093594 seconds
+[TIME] [FollowSubSource]: took 0.002631001 seconds
+[TIME] [FollowFunctionCalls]: took 0.054123774 seconds
+[TIME] [UnzipFieldAccess]: took 0.004532926 seconds
+[TIME] [FindReturns]: took 0.005875884 seconds
+[TIME] [FollowReturns]: took 0.046719265 seconds
+[TIME] [LookForParameters]: took 0.007123396 seconds
+[TIME] [LookForParameterCalls]: took 0.003950858 seconds
+[TIME] [LookForReturnCalls]: took 0.001899585 seconds
+[INFO] [COUNT]: last count: 145
+[TIME] [GetIndirectSource]: took 0.038950437 seconds
+[TIME] [GetIndirectSourceCall]: took 0.025299913 seconds
+[TIME] [FollowSubSource]: took 0.003747027 seconds
+[TIME] [FollowFunctionCalls]: took 0.017394479 seconds
+[TIME] [UnzipFieldAccess]: took 0.008109865 seconds
+[TIME] [FindReturns]: took 0.00600852 seconds
+[TIME] [FollowReturns]: took 0.003369418 seconds
+[TIME] [LookForParameters]: took 0.005718536 seconds
+[TIME] [LookForParameterCalls]: took 0.001407471 seconds
+[TIME] [LookForReturnCalls]: took 0.001320776 seconds
+[INFO] [COUNT]: last count: 296
+[TIME] [GetIndirectSource]: took 0.011862153 seconds
+[TIME] [GetIndirectSourceCall]: took 0.007188819 seconds
+[TIME] [FollowSubSource]: took 0.002489855 seconds
+[TIME] [FollowFunctionCalls]: took 0.005069673 seconds
+[TIME] [UnzipFieldAccess]: took 0.012985189 seconds
+[TIME] [FindReturns]: took 0.004109446 seconds
+[TIME] [FollowReturns]: took 0.0028023 seconds
+[TIME] [LookForParameters]: took 0.004366438 seconds
+[TIME] [LookForParameterCalls]: took 0.001679964 seconds
+[TIME] [LookForReturnCalls]: took 0.001531006 seconds
+[INFO] [COUNT]: last count: 371
+[TIME] [GetIndirectSource]: took 0.007160988 seconds
+[TIME] [GetIndirectSourceCall]: took 0.00419256 seconds
+[TIME] [FollowSubSource]: took 0.001749597 seconds
+[TIME] [FollowFunctionCalls]: took 0.001515036 seconds
+[TIME] [UnzipFieldAccess]: took 0.009778389 seconds
+[TIME] [FindReturns]: took 0.001307996 seconds
+[TIME] [FollowReturns]: took 0.002135357 seconds
+[TIME] [LookForParameters]: took 0.001949807 seconds
+[TIME] [LookForParameterCalls]: took 0.001443553 seconds
+[TIME] [LookForReturnCalls]: took 0.001288785 seconds
+[INFO] [COUNT]: last count: 406
+[TIME] [GetIndirectSource]: took 0.001342347 seconds
+[TIME] [GetIndirectSourceCall]: took 0.001252503 seconds
+[TIME] [FollowSubSource]: took 0.001742407 seconds
+[TIME] [FollowFunctionCalls]: took 0.001187819 seconds
+[TIME] [UnzipFieldAccess]: took 0.009074423 seconds
+[TIME] [FindReturns]: took 0.001086784 seconds
+[TIME] [FollowReturns]: took 0.001705395 seconds
+[TIME] [LookForParameters]: took 0.001127707 seconds
+[TIME] [LookForParameterCalls]: took 0.00160125 seconds
+[TIME] [LookForReturnCalls]: took 0.001331997 seconds
+[INFO] [STATUS]: Sinking
+[INFO] [STATUS]: Weighting
+[INFO] [STATUS]: Outputting
+res1: Any = ()
 
 [9999D[0Jjoern>

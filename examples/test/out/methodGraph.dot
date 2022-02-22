@@ -1,1127 +1,1124 @@
 digraph TaintDot {
 	nodesep = 1.5
 	ranksep = 1.5
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"strlen(abc)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#42 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" -> "Infinity: /targets/test/test.c#139 
 \"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" int *" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\" buf1234" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#77 
-\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" -> "Infinity: /targets/test/test.c#115 
 \"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"fStrlen(buf)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\""
-	"17.5: /home/D_K/BA/net_taint/test/test.c#45 
+	"Infinity: /targets/test/test.c#147 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" x"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#144 
+\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"17.5: /targets/test/test.c#45 
 \"int testWhile (char *buf)\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\" int *" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\"" [shape = house]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#77 
-\"strlen(buf1234)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [shape = plain]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\" bufTest"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"testWhile(buf)\"" [shape = plain]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#153 
-\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"test(buf123)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"fStrlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" buf123"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\" buf"
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\" buf1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"z = strlen(buf123)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"x = atoi(buf)\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abcd)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"5.125: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\" buf1" [label = "0.0: ParameterReverse", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" z" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\" buf123" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"z = strlen(buf123)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"x = testWhile(buf)\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\" int *" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" data" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#148 
-\"x = atoi(retBuf)\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#93 
-\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"2.0: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#153 
-\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#160 
-\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"1.3333333333333333: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"0.0: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\" buf1234" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#77 
-\"z = strlen(buf1234)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"0.0: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#30 
-\"int testPointers (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"atoi(buf)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#153 
-\"testPointers(buf)\"" [shape = plain]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"x = atoi(buf)\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"5.125: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" x"
-	"2.0: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#105 
-\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#148 
-\"atoi(retBuf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" z" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"strlen(buf123)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"*buf111 = test(buf123)\" buf111" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" buf123" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#160 
-\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" int *"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"17.5: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\" bufTest" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#160 
-\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [shape = house]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#148 
-\"x = atoi(retBuf)\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\" buf1234"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"*retBuf = test(buf)\" retBuf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#148 
-\"x = atoi(retBuf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#66 
-\"int* test2 (char *buf123)\" buf123"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"fStrlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"5.125: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#77 
-\"z = strlen(buf1234)\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" x" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#105 
-\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\" int *" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"1.3333333333333333: /home/D_K/BA/net_taint/test/test.c#74 
-\"char* test (char *buf1234)\"" [shape = parallelogram]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#105 
-\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"x = testWhile(buf)\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"p = test2(buf)\" p" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#93 
-\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#71 
-\"(int *)buf123\" int *" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#69 
-\"z = strlen(buf123)\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\" bufTest" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
+	"Infinity: /targets/test/test.c#134 
 \"buf[1]\" buf"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" test1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" data" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"test(buf123)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#45 
-\"int testWhile (char *buf)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf)\"" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#123 
 \"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#153 
-\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#145 
-\"data[x]\" data"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#22 
-\"int testProc (char* buf1)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#36 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" x" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#93 
-\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#33 
-\"test1.x\" test1"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\" bufTest" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#156 
-\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"z = fStrlen(buf)\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#148 
-\"atoi(retBuf)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#139 
-\"z = strlen(abcd)\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#105 
-\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"sizeof(buf1) - 1\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#87 
-\"test(buf123)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" [label = "5.0: Call", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#144 
-\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"4.7272727272727275: /home/D_K/BA/net_taint/test/test.c#84 
-\"int main ()\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"test(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#118 
-\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#138 
-\"fStrlen(buf)\"" [label = "4.0: Sink", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\" abcd" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#131 
-\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#88 
-\"x = atoi(buf111)\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#115 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#147 
-\"test(buf)\"" [shape = plain]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#151 
-\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" test1" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"*p = (int *)test(buf)\" p"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#55 
-\"*buf++\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1) - 1\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#51 
-\"buf++\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"sizeof(buf)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"test2->z\" test2" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\""
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#160 
-\"strlen(bufTestProc)\"" [shape = diamond]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#123 
-\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#132 
-\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"test2->x\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#41 
-\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#129 
-\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\" int *"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"* buf2 = test1.z\" buf2"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#38 
-\"test1.x\" x"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#39 
-\"test1.z\" z" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#42 
-\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#48 
-\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#142 
-\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"sizeof(buf1)\"" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#26 
-\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#140 
-\"z = strlen(abc)\" z"
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#149 
-\"test2(buf)\"" [shape = plain]
-	"Infinity: /home/D_K/BA/net_taint/test/test.c#134 
-\"buf[1]\" buf" -> "Infinity: /home/D_K/BA/net_taint/test/test.c#160 
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" -> "Infinity: /targets/test/test.c#139 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#160 
 \"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#140 
+\"strlen(abc)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\" int *" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [shape = plain]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" z" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" -> "Infinity: /targets/test/test.c#148 
+\"atoi(retBuf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#142 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#151 
+\"testWhile(buf)\"" [shape = plain]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#151 
+\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#151 
+\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1"
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" buf123" -> "Infinity: /targets/test/test.c#69 
+\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#151 
+\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#39 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2"
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#151 
+\"x = testWhile(buf)\" x" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#22 
+\"int testProc (char* buf1)\" buf1" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1)\"" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\" int *" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\" x" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" x" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#147 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" -> "Infinity: /targets/test/test.c#148 
+\"x = atoi(retBuf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#156 
+\"&bufTest\" bufTest" -> "Infinity: /targets/test/test.c#160 
+\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#144 
+\"x = atoi(buf)\" x" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" x" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"*buf++\""
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z"
+	"Infinity: /targets/test/test.c#48 
+\"*buf\"" -> "Infinity: /targets/test/test.c#48 
+\"*buf\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\""
+	"Infinity: /targets/test/test.c#156 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [shape = house]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" -> "Infinity: /targets/test/test.c#140 
+\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#147 
+\"test(buf)\""
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\"" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\" x" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" [shape = parallelogram]
+	"Infinity: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\" buf123" -> "Infinity: /targets/test/test.c#69 
+\"z = strlen(buf123)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\"" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1"
+	"Infinity: /targets/test/test.c#156 
+\"&bufTest\"" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\" bufTest" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\""
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\""
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#74 
+\"char* test (char *buf1234)\" buf1234" -> "Infinity: /targets/test/test.c#77 
+\"strlen(buf1234)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#142 
+\"test(buf)\""
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\" buf123" -> "Infinity: /targets/test/test.c#69 
+\"strlen(buf123)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\"" -> "Infinity: /targets/test/test.c#55 
+\"buf++\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\""
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#38 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf\"" -> "Infinity: /targets/test/test.c#48 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\"" -> "Infinity: /targets/test/test.c#26 
+\"sizeof(buf1)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\" buf123"
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf"
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" -> "Infinity: /targets/test/test.c#139 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#38 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\"" -> "Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" -> "Infinity: /targets/test/test.c#41 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\" buf123" -> "Infinity: /targets/test/test.c#71 
+\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#153 
+\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\"" -> "Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf"
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\"" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" -> "Infinity: /targets/test/test.c#39 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\"" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x"
+	"Infinity: /targets/test/test.c#30 
+\"int testPointers (char *buf)\" buf" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd"
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" x" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\""
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" buf123"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\"" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\" int *"
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\""
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" z" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" z" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#142 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#156 
+\"&bufTest\" bufTest"
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\"" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\" data" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\""
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#153 
+\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#87 
+\"test(buf123)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /targets/test/test.c#55 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#153 
+\"testPointers(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#69 
+\"strlen(buf123)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#134 
+\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"5.125: /targets/test/test.c#22 
+\"int testProc (char* buf1)\"" [shape = parallelogram]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#144 
+\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [shape = plain]
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#159 
+\"testProc(bufTestProc)\" bufTestProc"
+	"1.3333333333333333: /targets/test/test.c#74 
+\"char* test (char *buf1234)\"" [shape = parallelogram]
+	"Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p" -> "Infinity: /targets/test/test.c#93 
+\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#30 
+\"int testPointers (char *buf)\" buf"
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\""
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf)\"" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#148 
+\"atoi(retBuf)\"" [shape = diamond]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#105 
+\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf" -> "Infinity: /targets/test/test.c#51 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1)\"" -> "Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" x" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#105 
+\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\""
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\""
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" z"
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#159 
+\"testProc(bufTestProc)\" bufTestProc" [label = "0.0: ParameterSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#156 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\"" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" -> "Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\"" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" -> "Infinity: /targets/test/test.c#93 
+\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#55 
+\"*buf++\"" -> "Infinity: /targets/test/test.c#55 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" x"
+	"Infinity: /targets/test/test.c#51 
+\"buf++\"" -> "Infinity: /targets/test/test.c#51 
+\"buf++\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" x" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf"
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\" data"
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\"" -> "Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" int *" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#87 
+\"test(buf123)\"" -> "Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" int *"
+	"2.0: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\"" [shape = parallelogram]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#38 
+\"test1.x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf)\"" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1)\"" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf"
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" -> "Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#77 
+\"z = strlen(buf1234)\" z"
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#144 
+\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\""
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#22 
+\"int testProc (char* buf1)\" buf1" -> "Infinity: /targets/test/test.c#26 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf"
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#160 
+\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" int *" -> "Infinity: /targets/test/test.c#71 
+\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4"
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [shape = house]
+	"Infinity: /targets/test/test.c#144 
+\"x = atoi(buf)\" x"
+	"Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3"
+	"Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1"
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\""
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1"
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#41 
+\"test2->x\" x" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\""
+	"Infinity: /targets/test/test.c#22 
+\"int testProc (char* buf1)\" buf1"
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\" int *" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#77 
+\"strlen(buf1234)\"" [shape = diamond]
+	"2.0: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\"" -> "Infinity: /targets/test/test.c#66 
+\"int* test2 (char *buf123)\" buf123" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /targets/test/test.c#51 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1)\"" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc"
+	"Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf" -> "Infinity: /targets/test/test.c#55 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\""
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#42 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf != 0\""
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p"
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#147 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#105 
+\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" buf123" -> "Infinity: /targets/test/test.c#69 
+\"z = strlen(buf123)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"5.125: /targets/test/test.c#22 
+\"int testProc (char* buf1)\"" -> "Infinity: /targets/test/test.c#22 
+\"int testProc (char* buf1)\" buf1" [label = "0.0: ParameterReverse", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#26 
+\"sizeof(buf1)\""
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#41 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#55 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" -> "Infinity: /targets/test/test.c#139 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z"
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" x" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#51 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#148 
+\"x = atoi(retBuf)\" x"
+	"Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" -> "Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" -> "Infinity: /targets/test/test.c#38 
+\"test1.x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"0.0: /targets/test/test.c#30 
+\"int testPointers (char *buf)\"" [shape = parallelogram]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1)\""
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" x" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" -> "Infinity: /targets/test/test.c#38 
+\"* buf1 = test1.x\" buf1" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\" test1"
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#159 
+\"testProc(bufTestProc)\" bufTestProc" -> "Infinity: /targets/test/test.c#160 
+\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#74 
+\"char* test (char *buf1234)\" buf1234" -> "Infinity: /targets/test/test.c#77 
+\"z = strlen(buf1234)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#151 
+\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\""
+	"Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\" abcd" -> "Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\"" -> "Infinity: /targets/test/test.c#39 
+\"test1.z\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" z" -> "Infinity: /targets/test/test.c#42 
+\"* buf4 = test2->z\" buf4" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\"" [label = "6.0: Sink", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#147 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" test2"
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" x" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#151 
+\"x = testWhile(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#134 
+\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#131 
+\"strcpy(abcd, buf)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#51 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\"" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" [label = "5.0: Call", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z"
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\""
+	"17.5: /targets/test/test.c#45 
+\"int testWhile (char *buf)\"" -> "Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#140 
+\"z = strlen(abc)\" z" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" -> "Infinity: /targets/test/test.c#105 
+\"connect(s, (SOCKADDR *)&si_other, sizeof(si_other)) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#39 
+\"test1.z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#55 
+\"buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#147 
+\"*retBuf = test(buf)\" retBuf"
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [shape = plain]
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1] != 0\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#156 
+\"&bufTest\""
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\""
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#153 
+\"testPointers(buf)\"" [shape = plain]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2"
+	"Infinity: /targets/test/test.c#87 
+\"test(buf123)\""
+	"Infinity: /targets/test/test.c#144 
+\"atoi(buf)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\" x"
+	"Infinity: /targets/test/test.c#69 
+\"z = strlen(buf123)\" z"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#134 
+\"buf[1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\""
+	"Infinity: /targets/test/test.c#48 
+\"*buf\""
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2" -> "Infinity: /targets/test/test.c#41 
+\"test2->x\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\" x"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#48 
+\"*buf\" buf"
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\"" -> "Infinity: /targets/test/test.c#38 
+\"test1.x\" test1" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#148 
+\"x = atoi(retBuf)\" x" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\"" -> "Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf)\""
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#36 
+\"test2->x\" test2" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [label = "0.0: ParameterSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#156 
+\"&bufTest\" bufTest" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"0.0: /targets/test/test.c#30 
+\"int testPointers (char *buf)\"" -> "Infinity: /targets/test/test.c#30 
+\"int testPointers (char *buf)\" buf" [label = "0.0: Parameter", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#151 
+\"x = testWhile(buf)\" x"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /targets/test/test.c#139 
+\"strlen(abcd)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111" -> "Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\" x"
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" buf123" -> "Infinity: /targets/test/test.c#71 
+\"(int *)buf123\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#160 
+\"strlen(bufTestProc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#30 
+\"int testPointers (char *buf)\" buf" -> "Infinity: /targets/test/test.c#33 
+\"test1.x\"" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#151 
+\"testWhile(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#51 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#48 
+\"*buf\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#71 
+\"(int *)buf123\"" -> "Infinity: /targets/test/test.c#71 
+\"(int *)buf123\" buf123" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#156 
+\"&bufTest\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#115 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\" buf1" -> "Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#87 
+\"*buf111 = test(buf123)\" buf111"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#144 
+\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#138 
+\"z = fStrlen(buf)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0) == SOCKET_ERROR\"" [label = "4.0: IndirectSourceCall", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#93 
+\"WSAStartup(MAKEWORD(2, 2), &wsa) != 0\""
+	"Infinity: /targets/test/test.c#139 
+\"strlen(abcd)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#45 
+\"int testWhile (char *buf)\" buf" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#115 
+\"sizeof(buf1) - 1\"" -> "Infinity: /targets/test/test.c#115 
+\"sizeof(buf1)\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#41 
+\"test2->x\" test2"
+	"1.3333333333333333: /targets/test/test.c#74 
+\"char* test (char *buf1234)\"" -> "Infinity: /targets/test/test.c#74 
+\"char* test (char *buf1234)\" buf1234" [label = "0.0: Parameter", penwidth = 1.0]
+	"5.125: /targets/test/test.c#22 
+\"int testProc (char* buf1)\"" -> "Infinity: /targets/test/test.c#26 
+\"frecv(s, buf1, sizeof(buf1) - 1, 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#123 
+\"sizeof(buf) - 1\""
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" -> "Infinity: /targets/test/test.c#149 
+\"p = test2(buf)\" p" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#88 
+\"x = atoi(buf111)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#39 
+\"test1.z\"" -> "Infinity: /targets/test/test.c#39 
+\"test1.z\" z" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#88 
+\"atoi(buf111)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"Infinity: /targets/test/test.c#160 
+\"strlen(bufTestProc)\"" [shape = diamond]
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\"" -> "Infinity: /targets/test/test.c#42 
+\"test2->z\" z" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd"
+	"Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\" buf" -> "Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" [label = "6.0: IndirectSource", penwidth = 7.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#123 
+\"buf[sizeof(buf) - 1]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\""
+	"Infinity: /targets/test/test.c#149 
+\"test2(buf)\""
+	"Infinity: /targets/test/test.c#132 
+\"*abc = buf\" abc" -> "Infinity: /targets/test/test.c#140 
+\"strlen(abc)\"" [label = "4.0: Sink", penwidth = 5.0]
+	"Infinity: /targets/test/test.c#134 
+\"buf[1]\" buf" -> "Infinity: /targets/test/test.c#144 
+\"atoi(buf)\"" [label = "3.0: Sink", penwidth = 4.0]
+	"4.646464646464646: /targets/test/test.c#84 
+\"int main ()\"" -> "Infinity: /targets/test/test.c#156 
+\"recv(s, &bufTest, sizeof(bufTest), 0)\"" [label = "0.0: Source", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#149 
+\"test2(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#74 
+\"char* test (char *buf1234)\" buf1234"
+	"Infinity: /targets/test/test.c#38 
+\"test1.x\""
+	"Infinity: /targets/test/test.c#145 
+\"data[x]\" data" -> "Infinity: /targets/test/test.c#145 
+\"data[x]\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#142 
+\"*p = (int *)test(buf)\" p"
+	"Infinity: /targets/test/test.c#36 
+\"test2->x\"" -> "Infinity: /targets/test/test.c#41 
+\"* buf3 = test2->x\" buf3" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#144 
+\"x = atoi(buf)\" x" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" z"
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\" buf" -> "Infinity: /targets/test/test.c#142 
+\"test(buf)\"" [label = "0.0: Call", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#42 
+\"test2->z\" test2" -> "Infinity: /targets/test/test.c#42 
+\"test2->z\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#142 
+\"test(buf)\"" -> "Infinity: /targets/test/test.c#142 
+\"(int *)test(buf)\"" [label = "0.0: IndirectSourceCall", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#55 
+\"buf++\" buf" -> "Infinity: /targets/test/test.c#55 
+\"*buf++\"" [label = "5.0: IndirectSourceCall", penwidth = 6.0]
+	"Infinity: /targets/test/test.c#129 
+\"memcpy(abcd, buf, sizeof(buf))\" abcd" -> "Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#118 
+\"recv(s, buf, sizeof(buf), 0)\"" [shape = house]
+	"Infinity: /targets/test/test.c#33 
+\"test1.x\" test1" -> "Infinity: /targets/test/test.c#39 
+\"* buf2 = test1.z\" buf2" [label = "0.0: IndirectSource", penwidth = 1.0]
+	"Infinity: /targets/test/test.c#134 
+\"*abc = buf[1]\" abc" -> "Infinity: /targets/test/test.c#139 
+\"z = strlen(abcd)\" z" [label = "0.0: IndirectSource", penwidth = 1.0]
 }
